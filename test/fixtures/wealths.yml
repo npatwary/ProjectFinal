@@ -1,0 +1,32 @@
+# == Schema Information
+#
+# Table name: wealths
+#
+#  id                 :integer          not null, primary key
+#  PlayerCharacter_id :integer
+#  copper             :integer
+#  silver             :integer
+#  electrum           :integer
+#  gold               :integer
+#  platinum           :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PlayerCharacter_id: 
+  copper: 1
+  silver: 1
+  electrum: 1
+  gold: 1
+  platinum: 1
+
+two:
+  PlayerCharacter_id: 
+  copper: 1
+  silver: 1
+  electrum: 1
+  gold: 1
+  platinum: 1

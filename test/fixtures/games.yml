@@ -4,7 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  name          :string
-#  map           :binary
+#  map           :string
 #  game_history  :text
 #  game_password :string
 #  created_at    :datetime         not null

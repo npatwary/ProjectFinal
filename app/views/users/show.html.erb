@@ -1,4 +1,6 @@
 <% provide(:title, 'User-Profile') %>
+<p> Hello, <%= @user.user_name %>
+<ul><li><%= link_to "Create new game",new_game_path %></li></ul>
 <h2>Pending Game Invitations Sent</h2>
 <table width="100%" border="1">
   <tr>
@@ -45,8 +47,8 @@
   	<td><%= game.name %></td>
   	<td>(me)</td>
   	<td>n/a</td>
-  	<td><%= link_to "View", root_path %></td>
-  	<td><%= link_to "Edit", root_path %></td>
+  	<td><%= link_to "View", game_path(game) %></td>
+  	<td><%= link_to "Edit", edit_game_path(game) %></td>
   	<td><%= link_to "Delete", root_path %></td>
   </tr>
   <% end %>

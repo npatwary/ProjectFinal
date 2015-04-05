@@ -1,0 +1,143 @@
+# == Schema Information
+#
+# Table name: player_characters
+#
+#  id                             :integer          not null, primary key
+#  isUsed                         :boolean
+#  name                           :string
+#  classDnD                       :string
+#  level                          :integer
+#  background                     :string
+#  race                           :string
+#  alignment                      :string
+#  experiencePoints               :integer
+#  inspiration                    :string
+#  proficiencyBonus               :integer
+#  armorClass                     :integer
+#  initiative                     :integer
+#  speed                          :integer
+#  currentHitPoints               :integer
+#  maxHitPoints                   :integer
+#  temporaryHitPoints             :integer
+#  totalHitDice                   :string
+#  hitDice                        :string
+#  deathSaveSuccesses             :integer
+#  deathSaveFailures              :integer
+#  personalityTraits              :string
+#  ideals                         :string
+#  bonds                          :string
+#  flaws                          :string
+#  attacksDescription             :string
+#  passiveWisdom                  :string
+#  otherProficienciesAndLanguages :string
+#  maxEquipmentCarryCapacity      :integer
+#  currentEquipmentCarryCapacity  :integer
+#  featuresAndTraits              :string
+#  age                            :integer
+#  height                         :string
+#  weight                         :string
+#  eyes                           :string
+#  skin                           :string
+#  hair                           :string
+#  characterAppearance            :string
+#  characterBackstory             :string
+#  additionalFeaturesAndTraits    :string
+#  treasure                       :string
+#  spellCastingAbility            :string
+#  spellSaveDC                    :string
+#  spellAttackBonus               :string
+#  created_at                     :datetime         not null
+#  updated_at                     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  isUsed: false
+  name: MyString
+  classDnD: MyString
+  level: 1
+  background: MyString
+  race: MyString
+  alignment: MyString
+  experiencePoints: 1
+  inspiration: MyString
+  proficiencyBonus: 1
+  armorClass: 1
+  initiative: 1
+  speed: 1
+  currentHitPoints: 1
+  maxHitPoints: 1
+  temporaryHitPoints: 1
+  totalHitDice: MyString
+  hitDice: MyString
+  deathSaveSuccesses: 1
+  deathSaveFailures: 1
+  personalityTraits: MyString
+  ideals: MyString
+  bonds: MyString
+  flaws: MyString
+  attacksDescription: MyString
+  passiveWisdom: MyString
+  otherProficienciesAndLanguages: MyString
+  maxEquipmentCarryCapacity: 1
+  currentEquipmentCarryCapacity: 1
+  featuresAndTraits: MyString
+  age: 1
+  height: MyString
+  weight: MyString
+  eyes: MyString
+  skin: MyString
+  hair: MyString
+  characterAppearance: MyString
+  characterBackstory: MyString
+  additionalFeaturesAndTraits: MyString
+  treasure: MyString
+  spellCastingAbility: MyString
+  spellSaveDC: MyString
+  spellAttackBonus: MyString
+
+two:
+  isUsed: false
+  name: MyString
+  classDnD: MyString
+  level: 1
+  background: MyString
+  race: MyString
+  alignment: MyString
+  experiencePoints: 1
+  inspiration: MyString
+  proficiencyBonus: 1
+  armorClass: 1
+  initiative: 1
+  speed: 1
+  currentHitPoints: 1
+  maxHitPoints: 1
+  temporaryHitPoints: 1
+  totalHitDice: MyString
+  hitDice: MyString
+  deathSaveSuccesses: 1
+  deathSaveFailures: 1
+  personalityTraits: MyString
+  ideals: MyString
+  bonds: MyString
+  flaws: MyString
+  attacksDescription: MyString
+  passiveWisdom: MyString
+  otherProficienciesAndLanguages: MyString
+  maxEquipmentCarryCapacity: 1
+  currentEquipmentCarryCapacity: 1
+  featuresAndTraits: MyString
+  age: 1
+  height: MyString
+  weight: MyString
+  eyes: MyString
+  skin: MyString
+  hair: MyString
+  characterAppearance: MyString
+  characterBackstory: MyString
+  additionalFeaturesAndTraits: MyString
+  treasure: MyString
+  spellCastingAbility: MyString
+  spellSaveDC: MyString
+  spellAttackBonus: MyString
