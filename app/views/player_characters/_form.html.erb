@@ -1,0 +1,195 @@
+<%= form_for(@player_character) do |f| %>
+  <% if @player_character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player_character.errors.count, "error") %> prohibited this player_character from being saved:</h2>
+
+      <ul>
+      <% @player_character.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :isUsed %><br>
+    <%= f.check_box :isUsed %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="col-sm-4">
+  <div class="field">
+    <%= f.label :class%><br>
+    <%= f.text_field :classDnD %>
+  </div>
+  <div class="field">
+    <%= f.label :level %><br>
+    <%= f.number_field :level %>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="field">
+    <%= f.label :background %><br>
+    <%= f.text_field :background %>
+  </div>
+  <div class="field">
+    <%= f.label :race %><br>
+    <%= f.text_field :race %>
+  </div>
+  </div>
+  <div class="col-sm-4">
+  <div class="field">
+    <%= f.label :alignment %><br>
+    <%= f.text_field :alignment %>
+  </div>
+  <div class="field">
+    <%= f.label :experiencePoints %><br>
+    <%= f.number_field :experiencePoints %>
+  </div>
+  </div>
+  <div class="field">
+    <%= f.label :inspiration %><br>
+    <%= f.text_field :inspiration %>
+  </div>
+  <div class="field">
+    <%= f.label :proficiencyBonus %><br>
+    <%= f.number_field :proficiencyBonus %>
+  </div>
+  <div class="field">
+    <%= f.label :armorClass %><br>
+    <%= f.number_field :armorClass %>
+  </div>
+  <div class="field">
+    <%= f.label :initiative %><br>
+    <%= f.number_field :initiative %>
+  </div>
+  <div class="field">
+    <%= f.label :speed %><br>
+    <%= f.number_field :speed %>
+  </div>
+  <div class="field">
+    <%= f.label :currentHitPoints %><br>
+    <%= f.number_field :currentHitPoints %>
+  </div>
+  <div class="field">
+    <%= f.label :maxHitPoints %><br>
+    <%= f.number_field :maxHitPoints %>
+  </div>
+  <div class="field">
+    <%= f.label :temporaryHitPoints %><br>
+    <%= f.number_field :temporaryHitPoints %>
+  </div>
+  <div class="field">
+    <%= f.label :totalHitDice %><br>
+    <%= f.text_field :totalHitDice %>
+  </div>
+  <div class="field">
+    <%= f.label :hitDice %><br>
+    <%= f.text_field :hitDice %>
+  </div>
+  <div class="field">
+    <%= f.label :deathSaveSuccesses %><br>
+    <%= f.number_field :deathSaveSuccesses %>
+  </div>
+  <div class="field">
+    <%= f.label :deathSaveFailures %><br>
+    <%= f.number_field :deathSaveFailures %>
+  </div>
+  <div class="field">
+    <%= f.label :personalityTraits %><br>
+    <%= f.text_field :personalityTraits %>
+  </div>
+  <div class="field">
+    <%= f.label :ideals %><br>
+    <%= f.text_field :ideals %>
+  </div>
+  <div class="field">
+    <%= f.label :bonds %><br>
+    <%= f.text_field :bonds %>
+  </div>
+  <div class="field">
+    <%= f.label :flaws %><br>
+    <%= f.text_field :flaws %>
+  </div>
+  <div class="field">
+    <%= f.label :attacksDescription %><br>
+    <%= f.text_field :attacksDescription %>
+  </div>
+  <div class="field">
+    <%= f.label :passiveWisdom %><br>
+    <%= f.text_field :passiveWisdom %>
+  </div>
+  <div class="field">
+    <%= f.label :otherProficienciesAndLanguages %><br>
+    <%= f.text_field :otherProficienciesAndLanguages %>
+  </div>
+  <div class="field">
+    <%= f.label :maxEquipmentCarryCapacity %><br>
+    <%= f.number_field :maxEquipmentCarryCapacity %>
+  </div>
+  <div class="field">
+    <%= f.label :currentEquipmentCarryCapacity %><br>
+    <%= f.number_field :currentEquipmentCarryCapacity %>
+  </div>
+  <div class="field">
+    <%= f.label :featuresAndTraits %><br>
+    <%= f.text_field :featuresAndTraits %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br>
+    <%= f.number_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :height %><br>
+    <%= f.text_field :height %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br>
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :eyes %><br>
+    <%= f.text_field :eyes %>
+  </div>
+  <div class="field">
+    <%= f.label :skin %><br>
+    <%= f.text_field :skin %>
+  </div>
+  <div class="field">
+    <%= f.label :hair %><br>
+    <%= f.text_field :hair %>
+  </div>
+  <div class="field">
+    <%= f.label :characterAppearance %><br>
+    <%= f.text_field :characterAppearance %>
+  </div>
+  <div class="field">
+    <%= f.label :characterBackstory %><br>
+    <%= f.text_field :characterBackstory %>
+  </div>
+  <div class="field">
+    <%= f.label :additionalFeaturesAndTraits %><br>
+    <%= f.text_field :additionalFeaturesAndTraits %>
+  </div>
+  <div class="field">
+    <%= f.label :treasure %><br>
+    <%= f.text_field :treasure %>
+  </div>
+  <div class="field">
+    <%= f.label :spellCastingAbility %><br>
+    <%= f.text_field :spellCastingAbility %>
+  </div>
+  <div class="field">
+    <%= f.label :spellSaveDC %><br>
+    <%= f.text_field :spellSaveDC %>
+  </div>
+  <div class="field">
+    <%= f.label :spellAttackBonus %><br>
+    <%= f.text_field :spellAttackBonus %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

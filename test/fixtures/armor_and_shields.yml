@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: armor_and_shields
+#
+#  id                 :integer          not null, primary key
+#  PlayerCharacter_id :integer
+#  name               :string
+#  disadvantage       :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PlayerCharacter_id: 
+  name: MyString
+  disadvantage: MyString
+
+two:
+  PlayerCharacter_id: 
+  name: MyString
+  disadvantage: MyString

@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: saving_throws
+#
+#  id                 :integer          not null, primary key
+#  PlayerCharacter_id :integer
+#  name               :string
+#  proficient         :boolean
+#  modifier           :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PlayerCharacter_id: 
+  name: MyString
+  proficient: false
+  modifier: 1
+
+two:
+  PlayerCharacter_id: 
+  name: MyString
+  proficient: false
+  modifier: 1
