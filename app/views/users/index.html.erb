@@ -1,0 +1,14 @@
+
+<% provide(:title, 'Review-Index') %>
+
+<%  @users.each do |user| %>
+	<div>
+		<%= user.user_name %>
+		<%= user.email %>
+		<%= user.password %>
+	</div>
+<% end %>
+
+<hr>
+
+<%= link_to "Home", root_path %>
