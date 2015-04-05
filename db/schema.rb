@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150405010608) do
 
   create_table "game_invitations", force: :cascade do |t|
@@ -50,8 +49,6 @@ ActiveRecord::Schema.define(version: 20150405010608) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
-=======
-ActiveRecord::Schema.define(version: 20150405183510) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -180,6 +177,5 @@ ActiveRecord::Schema.define(version: 20150405183510) do
   end
 
   add_index "wealths", ["PlayerCharacter_id"], name: "index_wealths_on_PlayerCharacter_id"
->>>>>>> chreebranch
 
 end
