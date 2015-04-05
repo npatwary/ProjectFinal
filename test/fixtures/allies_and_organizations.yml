@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: allies_and_organizations
+#
+#  id                 :integer          not null, primary key
+#  PlayerCharacter_id :integer
+#  name               :string
+#  description        :string
+#  symbolDnD          :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  PlayerCharacter_id: 
+  name: MyString
+  description: MyString
+  symbolDnD: MyString
+
+two:
+  PlayerCharacter_id: 
+  name: MyString
+  description: MyString
+  symbolDnD: MyString
