@@ -1,0 +1,22 @@
+<% provide(:title, "Game-Add") %>
+<h2>New Game</h2>
+
+<%= form_for(@game) do |f| %>
+	<ul>
+		<li><%= f.label :name,'Game Name:'%></br>
+			<%= f.text_field :name %>
+		</li>
+		<li><%= f.label :game_password,'Game Password:'%></br>
+			<%= f.text_field :game_password %>
+		</li>
+		<li><%= f.label :map, 'Game Map:' %></br>
+			<%= f.text_field :map%>
+		</li>
+		<li><%= f.label :game_history,'Game History:' %></br>
+			<%= f.text_field :game_history %>
+		</li>
+	</ul>
+	<%= f.submit "Create Game" %>&nbsp;<button type="button">Cancel</button>
+<% end %>	
+<hr>
+<%= link_to "Go to User Home page",user_path(current_user) %>

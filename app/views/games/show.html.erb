@@ -1,0 +1,45 @@
+<% provide(:title, "Game-Show") %>
+<ul>
+	<li>Edit Game</li>
+	<li><%= link_to "Invite Users",new_game_invitation_path(@game) %></li>
+</ul>
+<h2> Game Details: </h2>
+<table width="100%" border="1">
+  <tr>
+    <td>Game Name</td><td><%= @game.name%></td>
+</tr>
+<tr>
+    <td>Dungeon Master </td><td><%= (dungeon_master?(@game.dungeon_master)) ? ("(me)") : (@game.dungeon_master.user_name)%></td>
+</tr>
+<tr>
+    <td>Game Map</td><td><%= @game.map%></td>
+</tr>
+<tr>
+    <td>Game History</td><td><%= @game.game_history%></td>
+</tr>
+<tr>
+    <td>Game Password</td><td><%= @game.game_password%></td>
+</tr>
+<tr>
+    <td>Game Players</td>
+    <td> TODO: </td>
+ </tr>
+</table>
+<% if dungeon_master?(@game.dungeon_master) %>
+	<h2> Pending Game Invitation </h2>
+	<table width="100%">
+		<tr><th align='left'>Dungeon Master </th>
+			<th align='left'>Invited Users </th>
+			<th align='left'> &nbsp;</th>
+		</tr>
+		<% @game.game_invitations.each do |game_invitation| %>
+		<tr>
+			<td>(me)</td>
+			<td><%= game_invitation.user_player.user_name %></td>
+			<td>Cancel</td>
+		</tr>
+		<% end %>
+	</table>
+<% end %>
+<hr>
+<%= link_to "Go to User Home page",user_path(current_user) %>
