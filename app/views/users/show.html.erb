@@ -1,0 +1,53 @@
+<% provide(:title, 'User-Profile') %>
+<h2>Pending Game Invitations Sent</h2>
+<table width="100%" border="1">
+  <tr>
+    <th>Game Name</th>
+    <th>Invited Users</th>
+    <th> &nbsp;&nbsp;</th>
+  </tr>
+  <% @user.game_invitations_sent.each do |game_invitation| %>
+  <tr>
+  	<td><%= game_invitation.game.name %></td>
+	<td><%= game_invitation.user_player.user_name %></td>
+	<td><%= link_to "Cancel", root_path %></td>
+  </tr>
+  <% end %>
+  </table>
+<h2>Pending Game Invitations Received</h2>
+<table width="100%" border="1">
+  <tr>
+    <th>Game Name</th>
+    <th>Dungeon Master</th>
+    <th>Game Password</th>
+    <th colspan=2 > &nbsp;&nbsp;</th>
+  </tr>
+  <% @user.game_invitations_received.each do |game_invitation| %>
+  <tr>
+  	<td><%= game_invitation.game.name %></td>
+	<td><%= game_invitation.dungeon_master.user_name %></td>
+	<td><%= game_invitation.game_password %></td>
+	<td><%= link_to "Accept", root_path %></td>
+	<td><%= link_to "Reject", root_path %></td>
+  </tr>
+  <% end %>
+  </table>
+<h2> My Active Games </h2>
+<table width="100%" border="1">
+  <tr>
+    <th>Game Name</th>
+    <th>Dungeon Master</th>
+    <th>Player Character</th>
+    <th colspan=3 > &nbsp;&nbsp;</th>
+  </tr>
+  <% @user.games_created.each do |game| %>
+  <tr>
+  	<td><%= game.name %></td>
+  	<td>(me)</td>
+  	<td>n/a</td>
+  	<td><%= link_to "View", root_path %></td>
+  	<td><%= link_to "Edit", root_path %></td>
+  	<td><%= link_to "Delete", root_path %></td>
+  </tr>
+  <% end %>
+  </table>

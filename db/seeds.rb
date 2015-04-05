@@ -5,3 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+user1 = User.create(user_name:"testuser1",email:"testuser1@gmail.com",password:"pwd1")
+user2 = User.create(user_name:"testuser2",email:"testuser2@gmail.com",password:"pwd2")
+user3 = User.create(user_name:"testuser3",email:"testuser3@gmail.com",password:"pwd2")
+game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user1)
+game2 = Game.create(name:"testgame2",game_password:"axxxxxx",dungeon_master:user2)
+game3 = Game.create(name:"testgame3",game_password:"axxxxxx",dungeon_master:user3)
+
+GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,user_player:user2)
+GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,user_player:user3)
+
+GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user1,user_player:user1)
+GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user1,user_player:user1)

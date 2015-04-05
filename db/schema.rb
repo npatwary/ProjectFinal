@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150404163728) do
+ActiveRecord::Schema.define(version: 20150405010608) do
+
+  create_table "game_invitations", force: :cascade do |t|
+    t.string   "game_password"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "game_id"
+    t.integer  "dungeon_master_id"
+    t.integer  "user_player_id"
+  end
+
+  add_index "game_invitations", ["dungeon_master_id"], name: "index_game_invitations_on_dungeon_master_id"
+  add_index "game_invitations", ["game_id"], name: "index_game_invitations_on_game_id"
+  add_index "game_invitations", ["user_player_id"], name: "index_game_invitations_on_user_player_id"
+
+  create_table "games", force: :cascade do |t|
+    t.string   "name"
+    t.binary   "map"
+    t.text     "game_history"
+    t.string   "game_password"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+  end
+
+  add_index "games", ["name"], name: "index_games_on_name", unique: true
+  add_index "games", ["user_id"], name: "index_games_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
@@ -20,5 +46,8 @@ ActiveRecord::Schema.define(version: 20150404163728) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
 end

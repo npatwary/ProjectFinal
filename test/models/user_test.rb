@@ -21,6 +21,7 @@ class UserTest < ActiveSupport::TestCase
 	test "should be valid " do 
  		assert @user.valid?
  	end
+ 
  	test " user_name should be present" do
  		@user.user_name = "  "
  		assert_not @user.valid?
@@ -33,5 +34,4 @@ class UserTest < ActiveSupport::TestCase
  		@user.password = " "
  		assert_not @user.valid?
  	end
-
 end

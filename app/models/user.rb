@@ -17,5 +17,15 @@ class User < ActiveRecord::Base
 	validates :email, presence: true, uniqueness: true
 	validates :password, presence: true
 
+	has_many :games_created,
+			class_name: "Game",
+			foreign_key: "user_id"
 
+	has_many :game_invitations_sent,
+			class_name: "GameInvitation",
+			foreign_key: "dungeon_master_id"
+
+	has_many :game_invitations_received,
+			class_name: "GameInvitation",
+			foreign_key: "user_player_id"		
 end

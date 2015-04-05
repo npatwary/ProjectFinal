@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: games
+#
+#  id            :integer          not null, primary key
+#  name          :string
+#  map           :binary
+#  game_history  :text
+#  game_password :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  user_id       :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: "Game1"
+  map: 
+  game_history: "This is game 1 history"
+  game_password: "game1xxx"
+
+two:
+  name: "Game2"
+  map: 
+  game_history: "Game 2 history"
+  game_password: "game2xxxx"
