@@ -17,8 +17,10 @@ one:
   user_name: "user1"
   email: "user1@memphis.edu"
   password: "user1xxxx"
+  password_confirmation: "user1xxxx"
 
 two:
   user_name: "user2"
   email: "user2@memphis.edu"
   password: "user2xxxx"
+  password_confirmation: "user2xxxx"
