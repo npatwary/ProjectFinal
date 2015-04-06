@@ -12,7 +12,7 @@
     <td>Dungeon Master </td><td><%= (dungeon_master?(@game.dungeon_master)) ? ("(me)") : (@game.dungeon_master.user_name)%></td>
 </tr>
 <tr>
-    <td>Game Map</td><td><%= @game.map%></td>
+    <td>Game Map</td><td><% unless @game.map.nil?%><%=  image_tag("/images/uploads/" + @game.map, size: "200x200", alt: "Game Map")%><% end %></td>
 </tr>
 <tr>
     <td>Game History</td><td><%= @game.game_history%></td>

@@ -1,8 +1,7 @@
 <% provide(:title, "GameInvitation-Add") %>
 <h2>Invite User(s)</h2>
-<div id="errors">
-</div>
-<div>
+
+<div id="game_invitation_content">
 	<%= form_for(@game_invitation) do |f| %>
 		<ul>
 			<li><%= f.label :name,'Game Name:'%>
@@ -11,10 +10,10 @@
 				<%= f.hidden_field :game, :value => @game_invitation.game.id %>
 				<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
 			<li><%= f.label :user_player,'Invite Users:' %></br>
-				<%= f.text_field :user_player %>
+				<%= f.text_field :user_player %> <%= button_tag "+"%><%= button_tag "-" %>
 			</li>
 		</ul>
-		<%= f.submit "Invite User(s)" %>&nbsp;<button type="button">Cancel</button>
+		<%= f.submit "Invite User(s)" %>&nbsp;<%= button_tag "Reset", type: :reset %>
 	<% end %>
 </div>	
 <hr>

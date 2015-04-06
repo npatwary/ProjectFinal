@@ -1,7 +1,12 @@
 <% provide(:title, "Game-Add") %>
 <h2>New Game</h2>
+<% if @game.errors.any? %>
 <div id="errors">
+      <% @game.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
 </div>
+<% end %>
 <div>
 	<%= form_for(@game) do |f| %>
 		<ul>
@@ -12,13 +17,14 @@
 				<%= f.text_field :game_password %>
 			</li>
 			<li><%= f.label :map, 'Game Map:' %></br>
-				<%= f.text_field :map%>
+				<!--<%= f.text_field :map%>-->
+				<%= f.file_field :map %>
 			</li>
 			<li><%= f.label :game_history,'Game History:' %></br>
 				<%= f.text_field :game_history %>
 			</li>
 		</ul>
-		<%= f.submit "Create Game" %>&nbsp;<button type="button">Cancel</button>
+		<%= f.submit "Create Game" %>&nbsp;<%= button_tag "Reset", type: :reset %>
 	<% end %>
 </div>	
 <hr>
