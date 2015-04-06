@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  root 'users#new'
   get 'users', to:'users#index', as: 'users'
   get '/users/new', to: 'users#new', as: 'new_users'
   post '/users', to: 'users#create'

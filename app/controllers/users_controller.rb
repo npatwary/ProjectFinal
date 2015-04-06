@@ -10,11 +10,11 @@ class UsersController < ApplicationController
 
 
 	def create
-		@user = User.new(params.require(:user).permit(:user_name, :email, :password))
+		@user = User.new(params.require(:user).permit(:user_name, :email, :password,:password_confirmation))
 
   		if @user.save
   			flash[:notice] = "User Successfully created"
-  			redirect_to users_url
+  			redirect_to user_path(@user)
   		else
   			flash.now[:alert] = " Errors in form "
   			@user.errors.full_messages.each do |message|
