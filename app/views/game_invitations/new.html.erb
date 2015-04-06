@@ -1,17 +1,21 @@
 <% provide(:title, "GameInvitation-Add") %>
 <h2>Invite User(s)</h2>
-<%= form_for(@game_invitation) do |f| %>
-	<ul>
-		<li><%= f.label :name,'Game Name:'%>
-			<%= f.label :name, @game_invitation.game.name %>
-		</li>
-			<%= f.hidden_field :game, :value => @game_invitation.game.id %>
-			<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
-		<li><%= f.label :user_player,'Invite Users:' %></br>
-			<%= f.text_field :user_player %>
-		</li>
-	</ul>
-	<%= f.submit "Invite User(s)" %>&nbsp;<button type="button">Cancel</button>
-<% end %>	
+<div id="errors">
+</div>
+<div>
+	<%= form_for(@game_invitation) do |f| %>
+		<ul>
+			<li><%= f.label :name,'Game Name:'%>
+				<%= f.label :name, @game_invitation.game.name %>
+			</li>
+				<%= f.hidden_field :game, :value => @game_invitation.game.id %>
+				<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
+			<li><%= f.label :user_player,'Invite Users:' %></br>
+				<%= f.text_field :user_player %>
+			</li>
+		</ul>
+		<%= f.submit "Invite User(s)" %>&nbsp;<button type="button">Cancel</button>
+	<% end %>
+</div>	
 <hr>
 <%= link_to "Go to Game page",game_path(@game_invitation.game) %>

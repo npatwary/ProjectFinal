@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'users#new'
   get 'users', to:'users#index', as: 'users'
   get '/users/new', to: 'users#new', as: 'new_users'
+
   post '/users', to: 'users#create'
 
   get '/users/:id' => 'users#show', as: 'user'

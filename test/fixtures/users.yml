@@ -8,7 +8,6 @@
 #  password              :string
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
-#  conform_password      :string
 #  password_confirmation :string
 #
 
