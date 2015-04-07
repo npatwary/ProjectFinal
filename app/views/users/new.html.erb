@@ -1,8 +1,7 @@
 <% provide(:title, 'Sign-up') %>
-
-Welcome to the Dungens and Dragons game !
-
-
+<br>&nbsp;
+<h2>Sign Up </h2>
+<div>
 <table border = "0">
 	<%= form_for(@user) do |f| %>
 		<tr>
@@ -21,14 +20,15 @@ Welcome to the Dungens and Dragons game !
 			<td><%= f.label 'Confirmation' %></td>
 				<td><%= f.password_field :password_confirmation %></td>
 		</tr>
-		<tr>
+		<br><tr>
 			<td><%= f.submit "Create Account" %></td>
 			<td>&nbsp;&nbsp;<%= button_tag  "Reset", type: :reset %></td>
 		</tr>
-		<tr>
-			<td> <%= button_tag  "Log In:" %></td>
-		</tr>
 	<% end %>
 </table>
-<hr>
-<%= link_to "Home", root_path %>
+</div>
+<br>&nbsp;
+<div>
+Already Member ?
+<%= link_to "Login", login_path %>
+</div>

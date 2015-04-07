@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406001442) do
+ActiveRecord::Schema.define(version: 20150407151517) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150406001442) do
     t.datetime "updated_at",            null: false
     t.string   "conform_password"
     t.string   "password_confirmation"
+    t.string   "password_digest"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  #get 'sessions/new'
+
   resources :player_characters
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -9,6 +11,11 @@ Rails.application.routes.draw do
   get 'users', to:'users#index', as: 'users'
   get '/users/new', to: 'users#new', as: 'new_users'
   post '/users', to: 'users#create'
+
+  #get '/sessions/new', to: 'sessions#new', as: 'sessions_new'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
   get '/users/:id' => 'users#show', as: 'user'
 
