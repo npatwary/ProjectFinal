@@ -12,9 +12,6 @@ game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user
 game2 = Game.create(name:"testgame2",game_password:"axxxxxx",dungeon_master:user2)
 game3 = Game.create(name:"testgame3",game_password:"axxxxxx",dungeon_master:user3)
 
-GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,user_player:user2)
-GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,user_player:user3)
-
 GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user2,user_player:user1)
 GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user3,user_player:user1)
 

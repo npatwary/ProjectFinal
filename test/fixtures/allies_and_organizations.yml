@@ -3,7 +3,7 @@
 # Table name: allies_and_organizations
 #
 #  id                 :integer          not null, primary key
-#  PlayerCharacter_id :integer
+#  playercharacter_id :integer
 #  name               :string
 #  description        :string
 #  symbolDnD          :string
