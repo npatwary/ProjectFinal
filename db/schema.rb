@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150407151517) do
-=======
-ActiveRecord::Schema.define(version: 20150406201622) do
->>>>>>> 67847f4f5e6e452ef296b346e719780ba85f398e
+ActiveRecord::Schema.define(version: 20150407195409) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -164,10 +160,8 @@ ActiveRecord::Schema.define(version: 20150406201622) do
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
     t.string   "email"
-    t.string   "password"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "password_confirmation"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
 

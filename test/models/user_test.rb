@@ -2,13 +2,12 @@
 #
 # Table name: users
 #
-#  id                    :integer          not null, primary key
-#  user_name             :string
-#  email                 :string
-#  password              :string
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  password_confirmation :string
+#  id              :integer          not null, primary key
+#  user_name       :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
 #
 
 require 'test_helper'
@@ -16,7 +15,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
 	
 	def setup
-		@user = User.new(user_name: "tbaniya", email: "abc@memphis.edu", password:"same",password_confirmation:"same")
+		@user = User.new(user_name: "tbaniya", email: "abc@memphis.edu", password:"same12",password_confirmation:"same12")
 	end
 
 	test "should be valid " do 

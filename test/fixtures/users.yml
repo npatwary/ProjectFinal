@@ -2,13 +2,12 @@
 #
 # Table name: users
 #
-#  id                    :integer          not null, primary key
-#  user_name             :string
-#  email                 :string
-#  password              :string
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  password_confirmation :string
+#  id              :integer          not null, primary key
+#  user_name       :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -16,11 +15,13 @@
 one:
   user_name: "user1"
   email: "user1@memphis.edu"
-  password: "user1xxxx"
-  password_confirmation: "user1xxxx"
+  password_digest: <%= User.digest('user1xxxx')%>
+ # password: "user1xxxx"
+  #password_confirmation: "user1xxxx"
 
 two:
   user_name: "user2"
   email: "user2@memphis.edu"
-  password: "user2xxxx"
-  password_confirmation: "user2xxxx"
+  password_digest: <%= User.digest('user2xxxx')%>
+  #password: "user2xxxx"
+ # password_confirmation: "user2xxxx"

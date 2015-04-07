@@ -2,13 +2,12 @@
 #
 # Table name: users
 #
-#  id                    :integer          not null, primary key
-#  user_name             :string
-#  email                 :string
-#  password              :string
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  password_confirmation :string
+#  id              :integer          not null, primary key
+#  user_name       :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
 #
 
 class User < ActiveRecord::Base
@@ -23,8 +22,7 @@ before_save { self.user_name = user_name.downcase }
 
   has_secure_password
   validates :password, length: { minimum: 6 }
-	#validates :password, presence: true,confirmation: true,length: { minimum: 6 }
-	#validates :password_confirmation, presence: true
+
 
 	def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ?
