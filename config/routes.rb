@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'users#new'
   get 'users', to:'users#index', as: 'users'
   get '/users/new', to: 'users#new', as: 'new_users'
+
   post '/users', to: 'users#create'
 
   #get '/sessions/new', to: 'sessions#new', as: 'sessions_new'
@@ -19,11 +20,13 @@ Rails.application.routes.draw do
 
   get '/users/:id' => 'users#show', as: 'user'
 
+  get '/games' => 'games#index', as: 'games'
   get '/games/new' => 'games#new', as:'new_game'
   get '/games/:id' => 'games#show', as:'game'
   get '/games/:id/edit' => 'games#edit', as:'edit_game'
   post '/games' => 'games#create'
 
+  get '/game_invitations' => 'game_invitations#index', as:'game_invitations'
   get '/game_invitations/:game_id/new' => 'game_invitations#new', as:'new_game_invitation'
   post '/game_invitations' => 'game_invitations#create'
   # Example of regular route:

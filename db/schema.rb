@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150407151517) do
+=======
+ActiveRecord::Schema.define(version: 20150406201622) do
+>>>>>>> 67847f4f5e6e452ef296b346e719780ba85f398e
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -129,7 +133,10 @@ ActiveRecord::Schema.define(version: 20150407151517) do
     t.string   "spellAttackBonus"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "creator_id"
   end
+
+  add_index "player_characters", ["creator_id"], name: "index_player_characters_on_creator_id"
 
   create_table "saving_throws", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -160,7 +167,6 @@ ActiveRecord::Schema.define(version: 20150407151517) do
     t.string   "password"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.string   "conform_password"
     t.string   "password_confirmation"
     t.string   "password_digest"
   end

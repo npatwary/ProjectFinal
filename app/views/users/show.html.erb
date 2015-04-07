@@ -1,8 +1,20 @@
 <% provide(:title, 'User-Profile') %>
-<p> Hello, <%= @user.user_name %>
-<ul><li><%= link_to "Create new game",new_game_path %></li></ul>
-<h2>Pending Game Invitations Sent</h2>
-<table width="100%" border="1">
+<div style="float:right"> Hello, <%= @user.user_name %> </div>
+<ul class="nav nav-pills" role="tablist">
+  <li class="active"><%= link_to 'User Home', user_path(current_user)%></li>
+  <li><%= link_to 'Games', games_path %></li>
+  <li><%= link_to 'Player Characters', player_characters_path %></li>
+  <li><%= link_to 'Game Invitations', game_invitations_path  %></li>
+</ul>
+<div>
+  <ul>
+    <li><%= link_to "Create new game",new_game_path,class: 'btn btn-link' %></li>
+    <li><%= link_to "Create new player character",new_player_character_path,class: 'btn btn-link' %></li>
+  </ul>
+</div>
+<h1>Pending Game Invitations Sent</h1>
+<div>
+<table class="table">
   <tr>
     <th>Game Name</th>
     <th>Invited Users</th>
@@ -16,8 +28,10 @@
   </tr>
   <% end %>
   </table>
-<h2>Pending Game Invitations Received</h2>
-<table width="100%" border="1">
+</div>
+<h1>Pending Game Invitations Received</h1>
+<div>
+<table class="table">
   <tr>
     <th>Game Name</th>
     <th>Dungeon Master</th>
@@ -34,8 +48,10 @@
   </tr>
   <% end %>
   </table>
+</div>
 <h2> My Active Games </h2>
-<table width="100%" border="1">
+<div>
+<table class="table">
   <tr>
     <th>Game Name</th>
     <th>Dungeon Master</th>
@@ -47,9 +63,10 @@
   	<td><%= game.name %></td>
   	<td>(me)</td>
   	<td>n/a</td>
-  	<td><%= link_to "View", game_path(game) %></td>
-  	<td><%= link_to "Edit", edit_game_path(game) %></td>
-  	<td><%= link_to "Delete", root_path %></td>
+  	<td><%= link_to "View", game_path(game),class: 'btn'  %></td>
+  	<td><%= link_to "Edit", edit_game_path(game),class: 'btn' %></td>
+  	<td><%= link_to "Delete", root_path, data: { confirm: 'Are you sure?' }, class: 'btn' %></td>
   </tr>
   <% end %>
   </table>
+</div>
