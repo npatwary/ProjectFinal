@@ -1,6 +1,9 @@
 class PlayerCharactersController < ApplicationController
   before_action :set_player_character, only: [:show, :edit, :update, :destroy]
 
+  @@ability_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
+  @@skill_names = ['Acrobatics', 'Animal Handling', 'Arcana', 'Athletics', 'Deception', 'History', 'Insight', 'Intimidation', 'Investigation', 'Medicine', 'Nature', 'Perception', 'Performance', 'Religion', 'Sleight of Hand', 'Stealth', 'Survival']
+  @@skill_abilities = ['Dex', 'Wis', 'Int','Str', 'Cha', 'Int', 'Wis', 'Cha', 'Int', 'Wis', 'Int', 'Wis', 'Cha', 'Cha', 'Int', 'Dex', 'Dex', 'Wis']
   # GET /player_characters
   # GET /player_characters.json
   def index
@@ -15,6 +18,26 @@ class PlayerCharactersController < ApplicationController
   # GET /player_characters/new
   def new
     @player_character = PlayerCharacter.new
+
+    if @player_character.ability_scores.empty?
+      @@ability_names.each do |n|
+          @player_character.ability_scores.build(name: n)
+      end
+    end
+    if @player_character.saving_throws.empty?
+      @@ability_names.each do |n|
+        @player_character.saving_throws.build(name: n)
+      end
+    end
+    if @player_character.skills.empty?
+      Hash[@@skill_names.zip(@@skill_abilities)].each do |n, a|
+        @player_character.skills.build(name: n, ability: a)
+      end
+    end
+    @player_character.attack_weapons.build if @player_character.attack_weapons.empty?
+    @player_character.armor_and_shields.build if @player_character.armor_and_shields.empty?    
+    @player_character.build_wealth if @player_character.wealth.nil?
+    @player_character.allies_and_organizations.build if @player_character.allies_and_organizations.empty?
   end
 
   # GET /player_characters/1/edit
@@ -62,6 +85,7 @@ class PlayerCharactersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_player_character
       @player_character = PlayerCharacter.find(params[:id])
@@ -71,4 +95,7 @@ class PlayerCharactersController < ApplicationController
     def player_character_params
       params.require(:player_character).permit(:isUsed, :name, :classDnD, :level, :background, :race, :alignment, :experiencePoints, :inspiration, :proficiencyBonus, :armorClass, :initiative, :speed, :currentHitPoints, :maxHitPoints, :temporaryHitPoints, :totalHitDice, :hitDice, :deathSaveSuccesses, :deathSaveFailures, :personalityTraits, :ideals, :bonds, :flaws, :attacksDescription, :passiveWisdom, :otherProficienciesAndLanguages, :maxEquipmentCarryCapacity, :currentEquipmentCarryCapacity, :featuresAndTraits, :age, :height, :weight, :eyes, :skin, :hair, :characterAppearance, :characterBackstory, :additionalFeaturesAndTraits, :treasure, :spellCastingAbility, :spellSaveDC, :spellAttackBonus)
     end
-end
+    # def ability_score_params
+    #   params.require(:ability_score).permit(:name, :score, :modifier)
+    # end
+  end

@@ -17,3 +17,7 @@ GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,u
 
 GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user1,user_player:user1)
 GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user1,user_player:user1)
+
+
+AB = AbilityScore.create(name: "Strength", score: 1, modifier: 1)
+# AB.PlayerCharacter.create(name: "test")

@@ -3,7 +3,7 @@
 # Table name: armor_and_shields
 #
 #  id                 :integer          not null, primary key
-#  PlayerCharacter_id :integer
+#  playercharacter_id :integer
 #  name               :string
 #  disadvantage       :string
 #  created_at         :datetime         not null
