@@ -5,6 +5,11 @@ class GameInvitationsController < ApplicationController
 		@game_invitation.game = game
 	end
 
+	def index
+		@game_invitations_sent = current_user.game_invitations_sent
+		@game_invitations_received = current_user.game_invitations_received
+	end
+
 	def create
 		#@game_invitation = GameInvitation.new(params.require(:game_invitation).permit(:game_password))
 		game = Game.find(params[:game_invitation][:game])

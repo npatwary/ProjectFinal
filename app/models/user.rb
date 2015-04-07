@@ -33,5 +33,17 @@ class User < ActiveRecord::Base
 
 	has_many :game_invitations_received,
 			class_name: "GameInvitation",
-			foreign_key: "user_player_id"		
+			foreign_key: "user_player_id"
+
+	has_many :player_characters,
+			class_name: "PlayerCharacter",
+			foreign_key: "creator_id"	
+
+	#def games_playing
+	#	games_playing = []
+	#	player_characters.each do |PlayerCharacter|
+	#		games_playing.push(player_character.game) unless player_character.game.nil?
+	#	end
+	#	return games_playing
+	#end	
 end

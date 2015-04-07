@@ -48,6 +48,7 @@
 #  spellAttackBonus               :string
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
+#  creator_id                     :integer
 #
 
 class PlayerCharacter < ActiveRecord::Base
@@ -58,4 +59,8 @@ class PlayerCharacter < ActiveRecord::Base
 	has_many :ArmourAndShields
 	has_one :Wealth
 	has_many :AlliesAndOrganizations
+
+	belongs_to :creator,
+				class_name: "User",
+				foreign_key: "creator_id"
 end

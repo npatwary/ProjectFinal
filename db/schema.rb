@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406010041) do
+ActiveRecord::Schema.define(version: 20150406201622) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -129,7 +129,10 @@ ActiveRecord::Schema.define(version: 20150406010041) do
     t.string   "spellAttackBonus"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "creator_id"
   end
+
+  add_index "player_characters", ["creator_id"], name: "index_player_characters_on_creator_id"
 
   create_table "saving_throws", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"

@@ -6,6 +6,11 @@
 		<%= user.user_name %>
 		<%= user.email %>
 		<%= user.password %>
+		<% user.player_characters.each do |player_character| %>
+		<ul>
+			<li><%= player_character.name %></li>
+		</ul>
+		<% end %>
 	</div>
 <% end %>
 

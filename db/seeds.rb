@@ -8,7 +8,7 @@
 user1 = User.create(user_name:"testuser1",email:"testuser1@gmail.com",password:"pwd1",password_confirmation:"pwd1")
 user2 = User.create(user_name:"testuser2",email:"testuser2@gmail.com",password:"pwd2",password_confirmation:"pwd2")
 user3 = User.create(user_name:"testuser3",email:"testuser3@gmail.com",password:"pwd2",password_confirmation:"pwd2")
-game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user1)
+game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user1,map:"testuser1newgame.jpg")
 game2 = Game.create(name:"testgame2",game_password:"axxxxxx",dungeon_master:user2)
 game3 = Game.create(name:"testgame3",game_password:"axxxxxx",dungeon_master:user3)
 
@@ -17,3 +17,6 @@ GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,u
 
 GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user2,user_player:user1)
 GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user3,user_player:user1)
+
+PlayerCharacter.create(name:"The Great Giant", creator:user1)
+PlayerCharacter.create(name:"Salamander - The Dragon Slayer", creator:user1)

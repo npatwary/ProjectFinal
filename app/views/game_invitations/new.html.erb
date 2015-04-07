@@ -1,20 +1,28 @@
 <% provide(:title, "GameInvitation-Add") %>
-<h2>Invite User(s)</h2>
+<h1>Invite User(s)</h1>
 
 <div id="game_invitation_content">
 	<%= form_for(@game_invitation) do |f| %>
-		<ul>
-			<li><%= f.label :name,'Game Name:'%>
-				<%= f.label :name, @game_invitation.game.name %>
-			</li>
-				<%= f.hidden_field :game, :value => @game_invitation.game.id %>
-				<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
-			<li><%= f.label :user_player,'Invite Users:' %></br>
-				<%= f.text_field :user_player %> <%= button_tag "+"%><%= button_tag "-" %>
-			</li>
-		</ul>
-		<%= f.submit "Invite User(s)" %>&nbsp;<%= button_tag "Reset", type: :reset %>
+		<div class='form-group'>
+	    	<%= f.label :name,'Game Name:',class: "col-sm-2 control-label"%>
+	    	<%= f.label :name,@game_invitation.game.name,class: "col-sm-10 control-label"%>
+		</div>
+		<%= f.hidden_field :game, :value => @game_invitation.game.id %>
+		<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
+		<div class='form-group'>
+	    	<%= f.label :user_player,'Invite Users:',class: "col-sm-2 control-label"%>
+	    	<div class="col-sm-10">
+	    		<%= f.text_field :user_player,  class: 'form-control'%>
+			</div>
+		</div>
+		<div class="form-group">
+    		<div class="col-sm-offset-2 col-sm-10">
+				<%= f.submit "Invite User(s)" %>&nbsp;<%= button_tag "Reset", type: :reset %>
+			</div>
+		</div>
 	<% end %>
 </div>	
-<hr>
-<%= link_to "Go to Game page",game_path(@game_invitation.game) %>
+<div class="col-sm-12">
+	<hr>
+	<%= link_to "Go to Game page",game_path(@game_invitation.game) %>
+</div>
