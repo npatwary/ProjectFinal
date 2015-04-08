@@ -1,5 +1,9 @@
 <% provide(:title, 'User-Profile') %>
+<table align = "center" width = "97%">
+  <tr><td>
 <div style="float:right"> Hello, <%= @user.user_name %> </div>
+<br>
+<div style="float:right"><%= link_to "Log out", logout_path, method: "delete" %> </div>
 <ul class="nav nav-pills" role="tablist">
   <li class="active"><%= link_to 'User Home', user_path(current_user)%></li>
   <li><%= link_to 'Games', games_path %></li>
@@ -70,3 +74,5 @@
   <% end %>
   </table>
 </div>
+</td></tr>
+</table>

@@ -1,8 +1,7 @@
 <% provide(:title, 'Sign-up') %>
-<br>&nbsp;
 <h2>Sign Up </h2>
-<div>
-<table border = "0">
+<p>
+	<table border = "0">
 	<%= form_for(@user) do |f| %>
 		<tr>
 			<td><%= f.label :user_name %></td>
@@ -18,17 +17,16 @@
 		</tr>
 		<tr>
 			<td><%= f.label 'Confirmation' %></td>
-				<td><%= f.password_field :password_confirmation %></td>
+			<td><%= f.password_field :password_confirmation %></td>
 		</tr>
-		<br><tr>
-			<td><%= f.submit "Create Account" %></td>
-			<td>&nbsp;&nbsp;<%= button_tag  "Reset", type: :reset %></td>
-		</tr>
+	</table>
+</p>
+	<p>
+		<%= f.submit "Create Account" %>
+			&nbsp;&nbsp;<%= button_tag  "Reset", type: :reset %>
+	</p>
 	<% end %>
-</table>
-</div>
-<br>&nbsp;
-<div>
-Already Member ?
-<%= link_to "Login", login_path %>
-</div>
+	<p>
+		Already Member ?
+		<%= link_to "Login", login_path %>
+	</p>
