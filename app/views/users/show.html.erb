@@ -62,7 +62,16 @@
   <tr>
   	<td><%= game.name %></td>
   	<td>(me)</td>
-  	<td>n/a</td>
+    <% player_characters = '' 
+      game.player_characters.each do |player_character|
+        if player_characters.length == 0 
+          player_characters = player_character.name
+        else
+          player_characters = "#{player_characters};#{player_character.name}"
+        end
+      end
+        %>
+  	<td><%= player_characters %></td>
   	<td><%= link_to "View", game_path(game),class: 'btn'  %></td>
   	<td><%= link_to "Edit", edit_game_path(game),class: 'btn' %></td>
   	<td><%= link_to "Delete", root_path, data: { confirm: 'Are you sure?' }, class: 'btn' %></td>

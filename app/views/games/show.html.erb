@@ -22,11 +22,17 @@
 </tr>
 <tr>
     <td>Game Players</td>
-    	<% @game.player_characters.each do |pc| %>
-  		<td><%= pc.name %></td>
-  		
+    <% player_characters = '' 
+      @game.player_characters.each do |player_character|
+        if player_characters.length == 0 
+          player_characters = player_character.name
+        else
+          player_characters = "#{player_characters};#{player_character.name}"
+        end
+      end
+        %>
+   	<td><%= player_characters %></td>	
  </tr>
- <% end %>
 
 </table>
 <% if dungeon_master?(@game.dungeon_master) %>
@@ -49,3 +55,4 @@
 
 
 <hr>
+<%= link_to "Go to User Home page",user_path(current_user) %>
