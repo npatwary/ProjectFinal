@@ -19,6 +19,75 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
+  <%= f.fields_for :ability_scores do |abilityScoreForm| %>
+    <div class="field">
+      <%= abilityScoreForm.object.name %><br>
+      <%= abilityScoreForm.text_field :score %><br>
+      <%= abilityScoreForm.text_field :modifier %><br>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :saving_throws do |savingThrowForm| %>
+    <div class="field">
+      <%= savingThrowForm.object.name %><br>
+      <%= savingThrowForm.radio_button :proficient, '0' %><br>
+      <%= savingThrowForm.text_field :modifier %><br>
+    </div>
+  <% end %>
+  <%= f.fields_for :skills do |skillsForm| %>
+    <div class="field">
+      <%= skillsForm.object.name %>
+      <%= skillsForm.object.ability%><br>
+      <%= skillsForm.radio_button :proficient, '0' %><br>
+      <%= skillsForm.label :modifier%><br>
+      <%= skillsForm.text_field :modifier %><br>
+    </div>
+  <% end %>
+  <%= f.fields_for :attack_weapons do |attackWeaponsForm| %>
+    <div class="field">
+      <%= attackWeaponsForm.label :name%><br>
+      <%= attackWeaponsForm.text_field :name %><br>
+      <%= attackWeaponsForm.label :attackBonus%><br>
+      <%= attackWeaponsForm.text_field :attackBonus %><br>
+      <%= attackWeaponsForm.label :damage%><br>
+      <%= attackWeaponsForm.text_field :damage %><br>
+      <%= attackWeaponsForm.label :type%><br>
+      <%= attackWeaponsForm.text_field :type %><br>
+    </div>
+  <% end %>
+  <%= f.fields_for :armor_and_shields do |armorAndShieldsForm| %>
+    <div class="field">
+      <%= armorAndShieldsForm.label :name%><br>
+      <%= armorAndShieldsForm.text_field :name %><br>
+      <%= armorAndShieldsForm.label :Disadvantage%><br>
+      <%= armorAndShieldsForm.text_field :disadvantage %><br>
+    </div>
+  <% end %>
+  <%= f.fields_for :wealth do |wealthForm| %>
+    <div class="field">
+      <%= wealthForm.label :copper%><br>
+      <%= wealthForm.text_field :copper %><br>
+      <%= wealthForm.label :silver%><br>
+      <%= wealthForm.text_field :silver %><br>
+      <%= wealthForm.label :electrum%><br>
+      <%= wealthForm.text_field :electrum %><br>
+      <%= wealthForm.label :gold%><br>
+      <%= wealthForm.text_field :gold %><br>
+      <%= wealthForm.label :platinum%><br>
+      <%= wealthForm.text_field :platinum %><br>
+    </div>
+  <% end %>
+  <%= f.fields_for :allies_and_organizations do |alliesAndOrganizationsForm| %>
+    <div class="field">
+      <%= alliesAndOrganizationsForm.label :name%><br>
+      <%= alliesAndOrganizationsForm.text_field :name %><br>
+      <%= alliesAndOrganizationsForm.label :Symbol%><br>
+      <%= alliesAndOrganizationsForm.text_field :symbolDnD %><br>
+      <%= alliesAndOrganizationsForm.label :description%><br>
+      <%= alliesAndOrganizationsForm.text_field :description %><br>
+    </div>
+  <% end %>
   <div class="col-sm-4">
   <div class="field">
     <%= f.label :class%><br>
@@ -29,6 +98,7 @@
     <%= f.number_field :level %>
   </div>
   </div>
+
   <div class="col-sm-4">
   <div class="field">
     <%= f.label :background %><br>

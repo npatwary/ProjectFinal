@@ -1,7 +1,7 @@
 class CreateWealths < ActiveRecord::Migration
   def change
     create_table :wealths do |t|
-      t.references :PlayerCharacter, index: true
+      t.references :playercharacter, index: true
       t.integer :copper
       t.integer :silver
       t.integer :electrum
@@ -10,6 +10,6 @@ class CreateWealths < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :wealths, :PlayerCharacters
+    add_foreign_key :wealths, :player_characters
   end
 end

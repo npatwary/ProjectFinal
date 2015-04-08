@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407195409) do
+ActiveRecord::Schema.define(version: 20150407221434) do
 
   create_table "ability_scores", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
     t.string   "name"
     t.integer  "score"
     t.integer  "modifier"
+    t.integer  "playercharacter_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "ability_scores", ["PlayerCharacter_id"], name: "index_ability_scores_on_PlayerCharacter_id"
+  add_index "ability_scores", ["playercharacter_id"], name: "index_ability_scores_on_playercharacter_id"
 
   create_table "allies_and_organizations", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.string   "name"
     t.string   "description"
     t.string   "symbolDnD"
@@ -33,20 +33,20 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "allies_and_organizations", ["PlayerCharacter_id"], name: "index_allies_and_organizations_on_PlayerCharacter_id"
+  add_index "allies_and_organizations", ["playercharacter_id"], name: "index_allies_and_organizations_on_playercharacter_id"
 
   create_table "armor_and_shields", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.string   "name"
     t.string   "disadvantage"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
-  add_index "armor_and_shields", ["PlayerCharacter_id"], name: "index_armor_and_shields_on_PlayerCharacter_id"
+  add_index "armor_and_shields", ["playercharacter_id"], name: "index_armor_and_shields_on_playercharacter_id"
 
   create_table "attack_weapons", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.string   "name"
     t.integer  "attackBonus"
     t.string   "damage"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "attack_weapons", ["PlayerCharacter_id"], name: "index_attack_weapons_on_PlayerCharacter_id"
+  add_index "attack_weapons", ["playercharacter_id"], name: "index_attack_weapons_on_playercharacter_id"
 
   create_table "game_invitations", force: :cascade do |t|
     t.string   "game_password"
@@ -130,12 +130,14 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "creator_id"
+    t.integer  "game_id"
   end
 
   add_index "player_characters", ["creator_id"], name: "index_player_characters_on_creator_id"
+  add_index "player_characters", ["game_id"], name: "index_player_characters_on_game_id"
 
   create_table "saving_throws", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
     t.integer  "modifier"
@@ -143,10 +145,10 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "saving_throws", ["PlayerCharacter_id"], name: "index_saving_throws_on_PlayerCharacter_id"
+  add_index "saving_throws", ["playercharacter_id"], name: "index_saving_throws_on_playercharacter_id"
 
   create_table "skills", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
     t.integer  "modifier"
@@ -155,7 +157,7 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "skills", ["PlayerCharacter_id"], name: "index_skills_on_PlayerCharacter_id"
+  add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name"
@@ -169,7 +171,7 @@ ActiveRecord::Schema.define(version: 20150407195409) do
   add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
   create_table "wealths", force: :cascade do |t|
-    t.integer  "PlayerCharacter_id"
+    t.integer  "playercharacter_id"
     t.integer  "copper"
     t.integer  "silver"
     t.integer  "electrum"
@@ -179,6 +181,6 @@ ActiveRecord::Schema.define(version: 20150407195409) do
     t.datetime "updated_at",         null: false
   end
 
-  add_index "wealths", ["PlayerCharacter_id"], name: "index_wealths_on_PlayerCharacter_id"
+  add_index "wealths", ["playercharacter_id"], name: "index_wealths_on_playercharacter_id"
 
 end
