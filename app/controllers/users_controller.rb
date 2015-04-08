@@ -19,11 +19,6 @@ class UsersController < ApplicationController
   			flash[:success] = "Welcome to Dungeons and Dragons !"
   			redirect_to user_path(@user)
   		else
-  			flash.now[:alert] = " Errors in form "
-  			@user.errors.full_messages.each do |message|
-  				flash.now[:alert] += " "
-  				flash.now[:alert] += message
-  			end
   			render 'new'
   		end
 	end

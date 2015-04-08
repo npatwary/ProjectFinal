@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+
+  <ul>
+  	
+    <% @user.errors.full_messages.each do |msg| %>
+      <font color = "red">*<%= msg %> </font>
+  	<br>
+  		<% end %>
+  </ul>
+
+
+<% end %>
