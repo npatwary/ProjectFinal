@@ -3,7 +3,7 @@
 # Table name: wealths
 #
 #  id                 :integer          not null, primary key
-#  PlayerCharacter_id :integer
+#  playercharacter_id :integer
 #  copper             :integer
 #  silver             :integer
 #  electrum           :integer

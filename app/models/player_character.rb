@@ -53,13 +53,7 @@
 #
 
 class PlayerCharacter < ActiveRecord::Base
-	has_many :AbilityScores
-	has_many :SavingThrows
-	has_many :Skills
-	has_many :AttackWeapons
-	has_many :ArmourAndShields
-	has_one :Wealth
-	has_many :AlliesAndOrganizations
+
 
 	belongs_to :creator,
 				class_name: "User",
@@ -68,4 +62,17 @@ class PlayerCharacter < ActiveRecord::Base
 	belongs_to :game,
 				class_name: "Game",
 				foreign_key: "game_id"
+
+	belongs_to :creator, class_name: "User", foreign_key: "creator_id"
+
+	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore"
+	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow"
+	has_many :skills, foreign_key: "playercharacter_id", class_name: "Skill"
+	has_many :attack_weapons, foreign_key: "playercharacter_id", class_name: "AttackWeapon"
+	has_many :armor_and_shields, foreign_key: "playercharacter_id", class_name: "ArmorAndShield"
+	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth"
+	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization"
+
+	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :attack_weapons, :armor_and_shields, :wealth, :allies_and_organizations
+
 end

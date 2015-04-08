@@ -1,7 +1,7 @@
 class CreateSkills < ActiveRecord::Migration
   def change
     create_table :skills do |t|
-      t.references :PlayerCharacter, index: true
+      t.references :playercharacter, index: true
       t.string :name
       t.boolean :proficient
       t.integer :modifier
@@ -9,6 +9,6 @@ class CreateSkills < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :skills, :PlayerCharacters
+    add_foreign_key :skills, :player_characters
   end
 end

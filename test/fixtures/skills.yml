@@ -3,7 +3,7 @@
 # Table name: skills
 #
 #  id                 :integer          not null, primary key
-#  PlayerCharacter_id :integer
+#  playercharacter_id :integer
 #  name               :string
 #  proficient         :boolean
 #  modifier           :integer
