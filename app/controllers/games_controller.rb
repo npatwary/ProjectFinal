@@ -2,6 +2,7 @@ class GamesController < ApplicationController
 
 	def index
 		@user_owned_games = current_user.games_created
+		
 		# add @games_playing also
 	end
 	
@@ -20,6 +21,7 @@ class GamesController < ApplicationController
 			@game.map = sanitized_filename
 		end
 		@game.dungeon_master = current_user
+		
 		if @game.save
 			redirect_to game_path(@game)
 		else
@@ -28,9 +30,21 @@ class GamesController < ApplicationController
 	end
 
 	def show
-		@game = Game.find(params[:id])
+		@game = Game.find(params[:id])	
 	end
 
 	def edit
+		@game = Game.find(params[:id])
 	end
+
+	 def update
+  		@game = Game.find(params[:id])
+  		if @game.update(params.require(:game).permit(:name, :map, :game_history, :game_password))
+  			redirect_to games_url(@game)
+  		else
+  			redirect_to games_url
+  		end
+  end
+
+	
 end

@@ -19,8 +19,11 @@
   <tr>
   	<td><%= game.name %></td>
   	<td>(me)</td>
-  	<td>n/a</td>
-  	<td><%= link_to "View", game_path(game),class: 'btn'  %></td>
+   	<td><%= game.player_characters.each do |pc| %>
+        <td><%= pc.name %></td>
+        <% end %>
+    </td>
+  	<td><%= link_to "View", game_path({game_id: game.id}),class: 'btn'  %></td>
   	<td><%= link_to "Edit", edit_game_path(game),class: 'btn' %></td>
   	<td><%= link_to "Delete", root_path, data: { confirm: 'Are you sure?' }, class: 'btn' %></td>
   </tr>

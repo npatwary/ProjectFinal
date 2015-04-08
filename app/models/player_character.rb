@@ -49,6 +49,7 @@
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #  creator_id                     :integer
+#  game_id                        :integer
 #
 
 class PlayerCharacter < ActiveRecord::Base
@@ -63,4 +64,8 @@ class PlayerCharacter < ActiveRecord::Base
 	belongs_to :creator,
 				class_name: "User",
 				foreign_key: "creator_id"
+
+	belongs_to :game,
+				class_name: "Game",
+				foreign_key: "game_id"
 end

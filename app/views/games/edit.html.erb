@@ -1,0 +1,31 @@
+<% provide(:title, "Game-Edit") %>
+
+<h2> Edit Game </h2>
+
+<%= form_for(@game) do |f| %>
+ 	<table width="100%" border="1">
+ 		<tr>
+    		<td>Game Name</td><td><%= f.text_field :name%></td>
+		</tr>
+		<tr>
+    		<td>Game Map</td><td><%= f.file_field :map%></td>
+		</tr>
+		<tr>
+    		<td>Game History</td><td><%= f.text_field :game_history%></td>
+		</tr>
+		<tr>
+    		<td>Game Password</td><td><%= f.text_field :game_password%></td>
+		</tr>
+ 	</table>
+
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+ 	<p>
+   <%= f.submit "Edit" %> &nbsp;<%= link_to '<button type="button">Cancel</button>'.html_safe, games_path %>
+	</p>
+
+	
+
+
+<% end %>
+

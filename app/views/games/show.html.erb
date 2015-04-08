@@ -22,8 +22,12 @@
 </tr>
 <tr>
     <td>Game Players</td>
-    <td> TODO: </td>
+    	<% @game.player_characters.each do |pc| %>
+  		<td><%= pc.name %></td>
+  		
  </tr>
+ <% end %>
+
 </table>
 <% if dungeon_master?(@game.dungeon_master) %>
 	<h2> Pending Game Invitation </h2>
@@ -41,5 +45,7 @@
 		<% end %>
 	</table>
 <% end %>
+
+
+
 <hr>
-<%= link_to "Go to User Home page",user_path(current_user) %>

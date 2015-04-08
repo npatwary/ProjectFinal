@@ -8,7 +8,9 @@
 user1 = User.create(user_name:"testuser1",email:"testuser1@gmail.com",password:"pwd123",password_confirmation:"pwd123")
 user2 = User.create(user_name:"testuser2",email:"testuser2@gmail.com",password:"pwd234",password_confirmation:"pwd234")
 user3 = User.create(user_name:"testuser3",email:"testuser3@gmail.com",password:"pwd234",password_confirmation:"pwd234")
-game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user1,map:"testuser1newgame.jpg")
+game1 = Game.create(name:"testgame1",game_password:"axxxxxx",dungeon_master:user1,map:"testuser1newgame.jpg",player_characters: 
+	PlayerCharacter.create(name:"The Great Giant", creator:user1))
+
 game2 = Game.create(name:"testgame2",game_password:"axxxxxx",dungeon_master:user2)
 game3 = Game.create(name:"testgame3",game_password:"axxxxxx",dungeon_master:user3)
 
