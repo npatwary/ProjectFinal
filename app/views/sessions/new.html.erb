@@ -1,22 +1,36 @@
 <% provide(:title, "Log in") %>
-<h2>Log in</h2>
-<div>
-	<table>
-		<%= form_for(:session, url: login_path) do |f| %>
-		<tr>
-			<td><%= f.label :user_name %></td>
-      		<td><%= f.text_field :user_name %></td>
-      	</tr>
-      	<tr>
-      		<td><%= f.label :password %></td>
-      		<td><%= f.password_field :password %></td>
-      	</tr>
-      	<tr>
-			<td><%= f.submit "Log in" %></td>
-		</tr>
-    	<% end %>
-    </table>
+<div class="panel panel-default">
+<div class="panel-heading">Sign Up</div>
+
+  <div class = 'form-group'>
+    <%= form_for(:session, url: login_path) do |f| %>
+
+      <div class='form-group'>
+      <%= f.label :user_name,'User Name:',class: "col-sm-2 control-label"%>
+        <div class="col-sm-10">
+          <%= f.text_field :user_name,  class: 'form-control'%>
+        </div>
+     </div>
+
+     <div class='form-group'>
+      <%= f.label :password,'User Name:',class: "col-sm-2 control-label"%>
+        <div class="col-sm-10">
+          <%= f.password_field :password,  class: 'form-control'%>
+        </div>
+     </div>
+
+     <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <%= f.submit "Log in " %>
+        </div>
+      </div>
+
+    <% end %>
+  </div>
 </div>
+
+<hr>
 <p>
   New user? <%= link_to "Sign up now!", root_url %>
-</p>
+</p> 
+
