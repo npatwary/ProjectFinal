@@ -63,8 +63,6 @@ class PlayerCharacter < ActiveRecord::Base
 				class_name: "Game",
 				foreign_key: "game_id"
 
-	belongs_to :creator, class_name: "User", foreign_key: "creator_id"
-
 	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore"
 	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow"
 	has_many :skills, foreign_key: "playercharacter_id", class_name: "Skill"

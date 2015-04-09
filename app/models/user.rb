@@ -47,11 +47,11 @@ before_save { self.user_name = user_name.downcase }
 			class_name: "PlayerCharacter",
 			foreign_key: "creator_id"	
 
-	#def games_playing
-	#	games_playing = []
-	#	player_characters.each do |PlayerCharacter|
-	#		games_playing.push(player_character.game) unless player_character.game.nil?
-	#	end
-	#	return games_playing
-	#end	
+	def games_playing
+		games_playing = []
+		player_characters.each do |player_character|
+			games_playing.push(player_character.game) unless player_character.game.nil?
+		end
+		return games_playing
+	end	
 end

@@ -1,27 +1,59 @@
 <% provide(:title, "GameInvitation-Add") %>
-<h1>Invite User(s)</h1>
 
-<div id="game_invitation_content">
-	<%= form_for(@game_invitation) do |f| %>
-		<div class='form-group'>
-	    	<%= f.label :name,'Game Name:',class: "col-sm-2 control-label"%>
-	    	<%= f.label :name,@game_invitation.game.name,class: "col-sm-10 control-label"%>
-		</div>
-		<%= f.hidden_field :game, :value => @game_invitation.game.id %>
-		<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
-		<div class='form-group'>
-	    	<%= f.label :user_player,'Invite Users:',class: "col-sm-2 control-label"%>
-	    	<div class="col-sm-10">
-	    		<%= f.text_field :user_player,  class: 'form-control'%>
+<% if @game_invitation.errors.any? %>
+<div id="error_explanation">
+      <h2><%= pluralize(@game_invitation.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% @game_invitation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+</div>
+<% end %>
+
+<div style="margin-top: 10px;">
+	<div class="panel panel-default">
+	  <!-- Default panel contents -->
+	  <div class="panel-heading">Invite User(s)</div>
+	 </div>
+	  <div id="game_invitation_content">
+		<%= form_for(@game_invitation) do |f| %>
+			<div class='form-group'>
+		    	<%= f.label :name,'Game Name:',class: "col-sm-3 control-label"%>
+		    	<%= f.label :name,@game_invitation.game.name,class: "col-sm-9 control-label"%>
 			</div>
-		</div>
-		<div class="form-group">
-    		<div class="col-sm-offset-2 col-sm-10">
-				<%= f.submit "Invite User(s)" %>&nbsp;<%= button_tag "Reset", type: :reset %>
+			<%= f.hidden_field :game, :value => @game_invitation.game.id %>
+			<%= f.hidden_field :game_password, :value => @game_invitation.game.game_password %>
+			<div class='form-group'>
+				<div class="col-sm-3">
+		    		<%= f.label :user_player,'Invite Users ( use ; to add multiple users ) :'%>
+		    	</div>
+		    	<div class="col-sm-9">
+		    		<% user_player_name = ""
+		    		unless @game_invitation.user_names.nil?
+		    			@game_invitation.user_names.each do |user_name|
+		    				if user_player_name.length == 0
+		    					user_player_name = user_name
+		    				else
+		    					user_player_name = "#{user_player_name};#{user_name}"
+		    				end
+		    			end
+		    		end
+		    		%>
+		    		<%= f.text_field :user_player, :value =>user_player_name,  class: 'form-control'%>
+				</div>
 			</div>
-		</div>
-	<% end %>
-</div>	
+			<div class="form-group">
+	    		<div class="col-sm-offset-3 col-sm-9">
+					<%= f.submit "Invite User(s)" %>&nbsp;<%= button_tag "Reset", type: :reset %>
+				</div>
+			</div>
+		<% end %>
+		</div>	
+	</div>
+
+
 <div class="col-sm-12">
 	<hr>
 	<%= link_to "Go to Game page",game_path(@game_invitation.game) %>

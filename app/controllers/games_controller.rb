@@ -4,6 +4,7 @@ class GamesController < ApplicationController
 		@user_owned_games = current_user.games_created
 		
 		# add @games_playing also
+		@games_playing = current_user.games_playing
 	end
 	
 	def new

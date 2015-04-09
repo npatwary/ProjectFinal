@@ -19,5 +19,10 @@ GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,u
 GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user2,user_player:user1)
 GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user3,user_player:user1)
 
-PlayerCharacter.create(name:"The Great Giant", creator:user1,game:game1)
+#player_characters playinging in game1 in which user1 is dungeon master
+PlayerCharacter.create(name:"The Great Giant", creator:user3,game:game1)
 PlayerCharacter.create(name:"Salamander - The Dragon Slayer", creator:user2,game:game1)
+
+#player_characters belonging to user1 playinging in game2 and game3
+PlayerCharacter.create(name:"Luffy - The Rubberman", creator:user1,game:game2)
+PlayerCharacter.create(name:"Zoro - The fighter", creator:user1,game:game3)
