@@ -1,4 +1,7 @@
 class GameInvitationsController < ApplicationController
+	before_action :logged_in_user, only: [:index,:new,:create]
+  	before_action :is_dungeon_master_user,   only: [:new]
+
 	def new
 		@game_invitation = GameInvitation.new
 		game = Game.find(params[:game_id])
@@ -95,7 +98,16 @@ class GameInvitationsController < ApplicationController
 
 		
 		users = valid_users.join(',')
-		flash[:notice] = users + " invited to the game!"
+		flash[:success] = users + " successfully invited to the game!"
 		redirect_to game_path(game)
 	end
+
+	private
+    # Confirms if the user is dungeon user.
+	 def is_dungeon_master_user
+	    game = Game.find_by id: params[:game_id]
+	    if game.nil? or !dungeon_master?(game.dungeon_master)
+	    	redirect_to(root_url) 
+	    end 
+	 end
 end

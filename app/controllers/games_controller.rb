@@ -1,5 +1,8 @@
 class GamesController < ApplicationController
 
+	before_action :logged_in_user, only: [:show,:index,:update,:edit,:new,:create]
+  	before_action :is_dungeon_master_user,   only: [:edit,:update]
+
 	def index
 		@user_owned_games = current_user.games_created
 		
@@ -24,6 +27,7 @@ class GamesController < ApplicationController
 		@game.dungeon_master = current_user
 		
 		if @game.save
+			flash[:success] =  "Game successfully created!"
 			redirect_to game_path(@game)
 		else
 			render 'new'
@@ -45,7 +49,16 @@ class GamesController < ApplicationController
   		else
   			redirect_to games_url
   		end
-  end
+  	end
+
+  	private
+    # Confirms if the user is dungeon user.
+	 def is_dungeon_master_user
+	    game = Game.find_by id: params[:id]
+	    if game.nil? or !dungeon_master?(game.dungeon_master)
+	    	redirect_to(root_url) 
+	    end
+	 end
 
 	
 end

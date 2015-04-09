@@ -26,8 +26,4 @@ module SessionsHelper
     @current_user = nil
   end
 
-  def dungeon_master?(user)
-    user == current_user
-  end
-
 end

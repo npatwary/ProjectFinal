@@ -9,19 +9,27 @@
 <body>
 
 <% if flash[:success] %>
-<p> <%= flash[:success] %></p>
+<div class="alert alert-info" role="alert">
+	<p> <%= flash[:success] %></p>
+</div>
 <% end %>
 
 <% if flash[:alert] %>
-<p> <%= flash[:alert] %></p>
+<div class="alert alert-warning" role="alert">
+	<p > <%= flash[:alert] %></p>
+</div>
 <% end %>
 
 <% if flash[:warning] %>
-<p> <%= flash[:warning] %></p>
+<div class="alert alert-warning" role="alert">
+	<p> <%= flash[:warning] %></p>
+</div>
 <% end %>
 
 <% if flash[:danger] %>
-<p> <%= flash[:danger] %></p>
+<div class="alert alert-danger" role="alert">
+	<p> <%= flash[:danger] %></p>
+</div>
 <% end %>
 
 <%= yield %>
