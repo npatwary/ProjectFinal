@@ -24,5 +24,7 @@ class Game < ActiveRecord::Base
 			class_name: "GameInvitation",
 			foreign_key: "game_id"
 
-	has_many :player_characters
+
+    has_many :player_characters
+
 end

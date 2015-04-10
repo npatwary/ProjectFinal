@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20150407221434) do
+=======
+ActiveRecord::Schema.define(version: 20150408181447) do
+>>>>>>> nurTask1
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -82,6 +86,14 @@ ActiveRecord::Schema.define(version: 20150407221434) do
 
   add_index "games", ["name"], name: "index_games_on_name", unique: true
   add_index "games", ["user_id"], name: "index_games_on_user_id"
+
+  create_table "invited_games_models", force: :cascade do |t|
+    t.string   "name"
+    t.string   "dungeonMaster"
+    t.string   "passKey"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "player_characters", force: :cascade do |t|
     t.boolean  "isUsed"
@@ -166,9 +178,6 @@ ActiveRecord::Schema.define(version: 20150407221434) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
   create_table "wealths", force: :cascade do |t|
     t.integer  "playercharacter_id"

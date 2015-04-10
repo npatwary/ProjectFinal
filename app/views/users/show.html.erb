@@ -78,6 +78,7 @@
   </tr>
   <% @user.games_created.each do |game| %>
   <tr>
+
     <td><%= game.name %></td>
     <td>(me)</td>
     <% player_characters = '' 
@@ -117,3 +118,22 @@
   </table>
   </div>
 </div>
+
+  	<td><%= game.name %></td>
+  	<td>(me)</td>
+  	<td>n/a</td>
+  	<td><%= link_to "View", game_path(game),class: 'btn'  %></td>
+  	<td><%= link_to "Edit", edit_game_path(game),class: 'btn' %></td>
+    <td>userid: <%= @user.id %><td>
+    <td>gameid: <%= game.id %><td>
+  	<td><%= link_to "Delete", user_path(:user_id => @user.id, :game_id => game.id), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn' %></td>
+  </tr>
+  <% end %>
+  </table>
+</div>
+
+<br>
+<br>
+<hr>
+<p> Please ignore below this line </p>
+

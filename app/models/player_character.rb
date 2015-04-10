@@ -59,9 +59,8 @@ class PlayerCharacter < ActiveRecord::Base
 				class_name: "User",
 				foreign_key: "creator_id"
 
-	belongs_to :game,
-				class_name: "Game",
-				foreign_key: "game_id"
+
+
 
 	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore"
 	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow"
@@ -73,4 +72,8 @@ class PlayerCharacter < ActiveRecord::Base
 
 	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :attack_weapons, :armor_and_shields, :wealth, :allies_and_organizations
 
+
+	belongs_to :game			
+
+	
 end

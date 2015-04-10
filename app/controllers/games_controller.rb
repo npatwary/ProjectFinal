@@ -42,6 +42,7 @@ class GamesController < ApplicationController
 		@game = Game.find(params[:id])
 	end
 
+
 	 def update
   		@game = Game.find(params[:id])
   		if @game.update(params.require(:game).permit(:name, :map, :game_history, :game_password))
@@ -61,4 +62,10 @@ class GamesController < ApplicationController
 	 end
 
 	
+	def destroy
+		Game.destroy(params[:game_id]);
+		redirect_to games_path;
+	end
+
+
 end

@@ -1,0 +1,2 @@
+module InvitedGamesModelHelper
+end
