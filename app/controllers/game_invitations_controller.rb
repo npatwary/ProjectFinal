@@ -54,4 +54,10 @@ class GameInvitationsController < ApplicationController
 		flash[:notice] = users + " invited to the game!"
 		redirect_to game_path(game)
 	end
+
+	def destroy
+		@invitation_id = params[:game_inv_id];
+        GameInvitation.destroy(params[:game_inv_id]);
+        redirect_to game_invitations_path
+	end
 end

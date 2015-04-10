@@ -33,4 +33,10 @@ class GamesController < ApplicationController
 
 	def edit
 	end
+
+	def destroy
+		Game.destroy(params[:game_id]);
+		redirect_to games_path;
+	end
+
 end

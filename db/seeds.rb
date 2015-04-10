@@ -18,5 +18,12 @@ GameInvitation.create(game_password:"axxxxxxx",game:game1,dungeon_master:user1,u
 GameInvitation.create(game_password:"axxxxxxx",game:game2,dungeon_master:user2,user_player:user1)
 GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user3,user_player:user1)
 
-PlayerCharacter.create(name:"The Great Giant", creator:user1)
-PlayerCharacter.create(name:"Salamander - The Dragon Slayer", creator:user1)
+
+
+PlayerCharacter.create(isUsed:"false", name:"The Great Giant", creator:user1)
+PlayerCharacter.create(isUsed:"false", name:"Salamander - The Dragon Slayer", creator:user1)
+
+
+Game.create(name:"testgamepc",game_password:"apcxxxx",dungeon_master:user1, 
+	player_characters: PlayerCharacter.create([{isUsed:"false", name:"Monk", creator:user1}, {isUsed:"false", name:"Mice", creator:user2}]) )
+

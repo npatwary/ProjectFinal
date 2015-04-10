@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406201622) do
+ActiveRecord::Schema.define(version: 20150408181447) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -83,6 +83,14 @@ ActiveRecord::Schema.define(version: 20150406201622) do
   add_index "games", ["name"], name: "index_games_on_name", unique: true
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
+  create_table "invited_games_models", force: :cascade do |t|
+    t.string   "name"
+    t.string   "dungeonMaster"
+    t.string   "passKey"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "player_characters", force: :cascade do |t|
     t.boolean  "isUsed"
     t.string   "name"
@@ -130,9 +138,11 @@ ActiveRecord::Schema.define(version: 20150406201622) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "creator_id"
+    t.integer  "game_id"
   end
 
   add_index "player_characters", ["creator_id"], name: "index_player_characters_on_creator_id"
+  add_index "player_characters", ["game_id"], name: "index_player_characters_on_game_id"
 
   create_table "saving_throws", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"
@@ -165,9 +175,6 @@ ActiveRecord::Schema.define(version: 20150406201622) do
     t.datetime "updated_at",            null: false
     t.string   "password_confirmation"
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
   create_table "wealths", force: :cascade do |t|
     t.integer  "PlayerCharacter_id"

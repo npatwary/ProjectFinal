@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'join_game/new'
+
+  get 'join_game/join_game_form'
+
   resources :player_characters
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -12,6 +16,9 @@ Rails.application.routes.draw do
   post '/users', to: 'users#create'
 
   get '/users/:id' => 'users#show', as: 'user'
+  
+  delete '/users/:id' => 'users#delete'
+
 
   get '/games' => 'games#index', as: 'games'
   get '/games/new' => 'games#new', as:'new_game'
@@ -19,9 +26,26 @@ Rails.application.routes.draw do
   get '/games/:id/edit' => 'games#edit', as:'edit_game'
   post '/games' => 'games#create'
 
+  delete '/games' => 'games#destroy'
+
   get '/game_invitations' => 'game_invitations#index', as:'game_invitations'
+  put '/game_invitations' => 'game_invitations#index'
   get '/game_invitations/:game_id/new' => 'game_invitations#new', as:'new_game_invitation'
   post '/game_invitations' => 'game_invitations#create'
+  
+  delete 'game_invitations' => 'game_invitations#destroy'
+
+  get '/join_game/:game_id/new' => 'join_game#new', as:'join_game'
+
+  get '/join_game/user_input_debug'  =>'join_game#user_input', as: 'debug'
+  post '/join_game/user_input_debug'  =>'join_game#user_input'  
+ #  patch '/join_game/:game_id/new' =>'join_game#put'
+  delete '/game_invitations' =>'join_game#user_input'
+
+  
+
+
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
