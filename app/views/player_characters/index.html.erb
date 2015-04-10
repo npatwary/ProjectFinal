@@ -1,53 +1,20 @@
+<% content_for :content do %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Player Characters</h1>
+<h1>View Characters</h1>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Isused</th>
       <th>Name</th>
-      <th>Classdnd</th>
+      <th>Class</th>
       <th>Level</th>
       <th>Background</th>
       <th>Race</th>
       <th>Alignment</th>
       <th>Experiencepoints</th>
-      <th>Inspiration</th>
-      <th>Proficiencybonus</th>
-      <th>Armorclass</th>
-      <th>Initiative</th>
-      <th>Speed</th>
-      <th>Currenthitpoints</th>
-      <th>Maxhitpoints</th>
-      <th>Temporaryhitpoints</th>
-      <th>Totalhitdice</th>
-      <th>Hitdice</th>
-      <th>Deathsavesuccesses</th>
-      <th>Deathsavefailures</th>
-      <th>Personalitytraits</th>
-      <th>Ideals</th>
-      <th>Bonds</th>
-      <th>Flaws</th>
-      <th>Attacksdescription</th>
-      <th>Passivewisdom</th>
-      <th>Otherproficienciesandlanguages</th>
-      <th>Maxequipmentcarrycapacity</th>
-      <th>Currentequipmentcarrycapacity</th>
-      <th>Featuresandtraits</th>
-      <th>Age</th>
-      <th>Height</th>
-      <th>Weight</th>
-      <th>Eyes</th>
-      <th>Skin</th>
-      <th>Hair</th>
-      <th>Characterappearance</th>
-      <th>Characterbackstory</th>
-      <th>Additionalfeaturesandtraits</th>
-      <th>Treasure</th>
-      <th>Spellcastingability</th>
-      <th>Spellsavedc</th>
-      <th>Spellattackbonus</th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -55,7 +22,6 @@
   <tbody>
     <% @player_characters.each do |player_character| %>
       <tr>
-        <td><%= player_character.isUsed %></td>
         <td><%= player_character.name %></td>
         <td><%= player_character.classDnD %></td>
         <td><%= player_character.level %></td>
@@ -63,41 +29,7 @@
         <td><%= player_character.race %></td>
         <td><%= player_character.alignment %></td>
         <td><%= player_character.experiencePoints %></td>
-        <td><%= player_character.inspiration %></td>
-        <td><%= player_character.proficiencyBonus %></td>
-        <td><%= player_character.armorClass %></td>
-        <td><%= player_character.initiative %></td>
-        <td><%= player_character.speed %></td>
-        <td><%= player_character.currentHitPoints %></td>
-        <td><%= player_character.maxHitPoints %></td>
-        <td><%= player_character.temporaryHitPoints %></td>
-        <td><%= player_character.totalHitDice %></td>
-        <td><%= player_character.hitDice %></td>
-        <td><%= player_character.deathSaveSuccesses %></td>
-        <td><%= player_character.deathSaveFailures %></td>
-        <td><%= player_character.personalityTraits %></td>
-        <td><%= player_character.ideals %></td>
-        <td><%= player_character.bonds %></td>
-        <td><%= player_character.flaws %></td>
-        <td><%= player_character.attacksDescription %></td>
-        <td><%= player_character.passiveWisdom %></td>
-        <td><%= player_character.otherProficienciesAndLanguages %></td>
-        <td><%= player_character.maxEquipmentCarryCapacity %></td>
-        <td><%= player_character.currentEquipmentCarryCapacity %></td>
-        <td><%= player_character.featuresAndTraits %></td>
-        <td><%= player_character.age %></td>
-        <td><%= player_character.height %></td>
-        <td><%= player_character.weight %></td>
-        <td><%= player_character.eyes %></td>
-        <td><%= player_character.skin %></td>
-        <td><%= player_character.hair %></td>
-        <td><%= player_character.characterAppearance %></td>
-        <td><%= player_character.characterBackstory %></td>
-        <td><%= player_character.additionalFeaturesAndTraits %></td>
-        <td><%= player_character.treasure %></td>
-        <td><%= player_character.spellCastingAbility %></td>
-        <td><%= player_character.spellSaveDC %></td>
-        <td><%= player_character.spellAttackBonus %></td>
+
         <td><%= link_to 'Show', player_character %></td>
         <td><%= link_to 'Edit', edit_player_character_path(player_character) %></td>
         <td><%= link_to 'Destroy', player_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -109,3 +41,5 @@
 <br>
 
 <%= link_to 'New Player character', new_player_character_path %>
+
+<% end %>

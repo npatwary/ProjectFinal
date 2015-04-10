@@ -7,7 +7,7 @@
 #  name               :string
 #  attackBonus        :integer
 #  damage             :string
-#  type               :string
+#  typeDnD            :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

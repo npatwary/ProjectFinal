@@ -54,7 +54,6 @@
 
 class PlayerCharacter < ActiveRecord::Base
 
-
 	belongs_to :creator,
 				class_name: "User",
 				foreign_key: "creator_id"
@@ -63,14 +62,16 @@ class PlayerCharacter < ActiveRecord::Base
 				class_name: "Game",
 				foreign_key: "game_id"
 
-	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore"
-	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow"
-	has_many :skills, foreign_key: "playercharacter_id", class_name: "Skill"
-	has_many :attack_weapons, foreign_key: "playercharacter_id", class_name: "AttackWeapon"
-	has_many :armor_and_shields, foreign_key: "playercharacter_id", class_name: "ArmorAndShield"
-	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth"
-	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization"
+	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore", dependent: :destroy
+	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow", dependent: :destroy
+	has_many :skills, foreign_key: "playercharacter_id", class_name: "Skill", dependent: :destroy
+	has_many :attack_weapons, foreign_key: "playercharacter_id", class_name: "AttackWeapon", dependent: :destroy
+	has_many :armor_and_shields, foreign_key: "playercharacter_id", class_name: "ArmorAndShield", dependent: :destroy
+	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth", dependent: :destroy
+	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization", dependent: :destroy
 
-	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :attack_weapons, :armor_and_shields, :wealth, :allies_and_organizations
-
+	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :wealth
+	accepts_nested_attributes_for :attack_weapons, allow_destroy: true
+	accepts_nested_attributes_for :armor_and_shields, allow_destroy: true
+	accepts_nested_attributes_for :allies_and_organizations, allow_destroy: true
 end

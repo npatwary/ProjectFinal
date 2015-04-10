@@ -11,5 +11,5 @@
 #
 
 class ArmorAndShield < ActiveRecord::Base
-  belongs_to :PlayerCharacter
+  belongs_to :PlayerCharacter, foreign_key: "playercharacter_id", class_name:"PlayerCharacter"
 end
