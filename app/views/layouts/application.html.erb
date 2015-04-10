@@ -8,8 +8,7 @@
 
 </head>
 <body style="margin: 100px 50px 50px 50px;">
-
-<%= render 'layouts/navigation' %>
+<%= render 'layouts/navigation' if logged_in? %>
 
 <% if flash[:success] %>
 <div class="alert alert-info" role="alert">
@@ -35,7 +34,7 @@
 </div>
 <% end %>
 
-<%= yield :content %>
+<%= yield %>
 
 </body>
 </html>
