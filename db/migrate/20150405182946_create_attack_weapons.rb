@@ -5,7 +5,7 @@ class CreateAttackWeapons < ActiveRecord::Migration
       t.string :name
       t.integer :attackBonus
       t.string :damage
-      t.string :type
+      t.string :typeDnD
 
       t.timestamps null: false
     end
