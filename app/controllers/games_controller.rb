@@ -52,7 +52,33 @@ class GamesController < ApplicationController
   		end
   	end
 
-  	private
+  	
+	def destroy
+		Game.destroy(params[:game_id]);
+		redirect_to games_path;
+	end
+    
+
+   def leaveGame
+		@userIDToLeaveGame = params[:user_id];
+		@game_to_remove    = Game.find(params[:game_id])
+        
+        puts @game_to_remove.id
+        
+        #PlayerCharacter.where("creator_id = ? AND game_id=?", params[:user_id],params[:game_id] ).update(game_id: "nul")
+	
+        @pc_to_remove      = PlayerCharacter.where("creator_id = ? AND game_id=?", params[:user_id],params[:game_id] )
+		
+		puts @pc_to_remove
+		# @pc_to_remove.update(game_id: '100')
+		
+		@game_to_remove.player_characters.delete(@pc_to_remove)
+
+
+		redirect_to user_path(@userIDToLeaveGame);
+	end
+
+	private
     # Confirms if the user is dungeon user.
 	 def is_dungeon_master_user
 	    game = Game.find_by id: params[:id]
@@ -62,10 +88,5 @@ class GamesController < ApplicationController
 	 end
 
 	
-	def destroy
-		Game.destroy(params[:game_id]);
-		redirect_to games_path;
-	end
-
 
 end

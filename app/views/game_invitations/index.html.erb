@@ -76,7 +76,7 @@
      <td><%= game_invitation.id %></td>
      <td><%= link_to "Accept", join_game_path({game_id: game_invitation.game.id, game_inv_id: game_invitation.id} ) %></td> 
 
-	<td><%= link_to "Reject", game_invitations_path(game_inv_id: game_invitation.id), method: :delete %></td>
+	   <td><%= link_to "Reject", game_invitations_path(game_inv_id: game_invitation.id), method: :delete %></td>
   </tr>
   <% end %>
   </table>

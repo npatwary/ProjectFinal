@@ -102,6 +102,14 @@ class GameInvitationsController < ApplicationController
 		redirect_to game_path(game)
 	end
 
+    
+   def destroy
+		@invitation_id = params[:game_inv_id];
+        GameInvitation.destroy(params[:game_inv_id]);
+        redirect_to game_invitations_path
+	end
+
+
 
 	private
     # Confirms if the user is dungeon user.
@@ -112,10 +120,5 @@ class GameInvitationsController < ApplicationController
 	    end 
 	 end
 
-	def destroy
-		@invitation_id = params[:game_inv_id];
-        GameInvitation.destroy(params[:game_inv_id]);
-        redirect_to game_invitations_path
-	end
-
+	
 end

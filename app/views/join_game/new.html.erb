@@ -1,13 +1,12 @@
 
 
-
 <h1>Select Game Attributes for <%= label_tag @accepted_game.name %> </h1>
 
 <br>
 <br>
 
 
-<%= form_tag(game_invitations_path, :method=>'delete' ) do %>
+<%= form_tag(join_game_path, :method=> 'post' ) do %>
 
  
  <h4> <%= label_tag 'Select Player Character'   %>  </h4>  

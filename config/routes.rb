@@ -37,6 +37,10 @@ Rails.application.routes.draw do
   get '/games/:id/edit' => 'games#edit', as:'edit_game'
   patch '/games/:id', to: 'games#update'
   put '/games/:id', to: 'games#update'
+  
+  delete '/games/:id', to: 'games#leaveGame'
+
+
 
   post '/games' => 'games#create'
 
@@ -49,11 +53,14 @@ Rails.application.routes.draw do
   
   delete 'game_invitations' => 'game_invitations#destroy'
 
-  get '/join_game/:game_id/new' => 'join_game#new', as:'join_game'
+  
 
-  get '/join_game/user_input_debug'  =>'join_game#user_input', as: 'debug'
-  post '/join_game/user_input_debug'  =>'join_game#user_input'  
- #  patch '/join_game/:game_id/new' =>'join_game#put'
+  get '/join_game/:game_id/new' => 'join_game#new', as:'join_game'
+  post '/join_game/:game_id/new' => 'join_game#user_input'
+    
+
+  
+
   delete '/game_invitations' =>'join_game#user_input'
 
   

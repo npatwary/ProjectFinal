@@ -11,11 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150407221434) do
-=======
+
 ActiveRecord::Schema.define(version: 20150408181447) do
->>>>>>> nurTask1
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
