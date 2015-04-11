@@ -7,11 +7,15 @@
 #  name               :string
 #  attackBonus        :integer
 #  damage             :string
-#  type               :string
+#  typeDnD            :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 
 class AttackWeapon < ActiveRecord::Base
-  belongs_to :PlayerCharacter
+
+  belongs_to :player_character,
+				class_name: "PlayerCharacter",
+				foreign_key: "playercharacter_id"
+
 end

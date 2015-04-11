@@ -60,28 +60,6 @@
 </div>
 
 
-<h1>Pending Game Invitations Received</h1>
-<div>
-<table class="table">
-  <tr>
-    <th>Game Name</th>
-    <th>Dungeon Master</th>
-    <th>Game Password</th>
-    <th colspan=2 > &nbsp;&nbsp;</th>
-  </tr>
-  <% @game_invitations_received.each do |game_invitation| %>
-  <tr>
-  	 <td><%= game_invitation.game.name %></td>
-	   <td><%= game_invitation.dungeon_master.user_name %></td>
-	   <td><%= game_invitation.game_password %></td>
-     <td><%= game_invitation.game.id %></td>
-     <td><%= game_invitation.id %></td>
-     <td><%= link_to "Accept", join_game_path({game_id: game_invitation.game.id, game_inv_id: game_invitation.id} ) %></td> 
-
-	   <td><%= link_to "Reject", game_invitations_path(game_inv_id: game_invitation.id), method: :delete %></td>
-  </tr>
-  <% end %>
-  </table>
 
   <div class="col-sm-12">
   <hr>

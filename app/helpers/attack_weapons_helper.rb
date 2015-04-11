@@ -1,0 +1,2 @@
+module AttackWeaponsHelper
+end
