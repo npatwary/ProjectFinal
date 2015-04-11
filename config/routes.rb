@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get '/attack_weapons' => 'attack_weapons#index', as: 'attack_weapons'
+
+  get '/armor_and_shields/:player_character_id/index' => 'armor_and_shields#index', as:'armor_and_shields_buy'
+  get '/armor_and_shields/:player_character_id/sell_index' => 'armor_and_shields#sell_index', as:'armor_and_shields_sell'
+  post '/armor_and_shields' => 'armor_and_shields#create'
+  delete '/armor_and_shields' => 'armor_and_shields#destroy'
   #get 'sessions/new'
 
   resources :player_characters
