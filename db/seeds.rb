@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#do not use system_user for logging. for lookup table management only
+
 user1 = User.create(user_name:"testuser1",email:"testuser1@gmail.com",password:"pwd123",password_confirmation:"pwd123")
 user2 = User.create(user_name:"testuser2",email:"testuser2@gmail.com",password:"pwd234",password_confirmation:"pwd234")
 user3 = User.create(user_name:"testuser3",email:"testuser3@gmail.com",password:"pwd234",password_confirmation:"pwd234")
@@ -24,8 +27,13 @@ PlayerCharacter.create(name:"The Great Giant", creator:user3,game:game1)
 PlayerCharacter.create(name:"Salamander - The Dragon Slayer", creator:user2,game:game1)
 
 #player_characters belonging to user1 playinging in game2 and game3
-PlayerCharacter.create(name:"Luffy - The Rubberman", creator:user1,game:game2)
+player1 = PlayerCharacter.create(name:"Luffy - The Rubberman", creator:user1,game:game2)
 PlayerCharacter.create(name:"Zoro - The fighter", creator:user1,game:game3)
 
+
 player = PlayerCharacter.create(name:"BigChree", classDnD:"Wizard", level:3, background:"background", race:"asian", alignment:"straight", experiencePoints:99, inspiration:"yes", proficiencyBonus:2, armorClass:5, initiative:3, speed:35, currentHitPoints:50, maxHitPoints:100, temporaryHitPoints:50, totalHitDice:"1D5", hitDice:"10D7", deathSaveSuccesses:1, deathSaveFailures:1, personalityTraits:"Loud", ideals:"simplicity", bonds:"and stocks", flaws:"always right", attacksDescription:"Spells", passiveWisdom:"charisma", otherProficienciesAndLanguages:"english", maxEquipmentCarryCapacity:250, currentEquipmentCarryCapacity:150, featuresAndTraits:"really upbeat", age:22, height:"5 feet", weight:"150", eyes:"blue", skin:"light", hair:"dark", characterAppearance:"rough", characterBackstory:"A lone wolf", additionalFeaturesAndTraits:"knows how to cook", treasure:"1,000,000 gp", spellCastingAbility:"Wisdom", spellSaveDC:"yup", spellAttackBonus:"55")
+
+
+#Wealth
+Wealth.create(gold:50,silver:50,electrum:50,platinum:50,copper:50,player_character:player1)
 

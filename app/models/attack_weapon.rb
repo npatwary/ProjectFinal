@@ -13,5 +13,9 @@
 #
 
 class AttackWeapon < ActiveRecord::Base
-  belongs_to :PlayerCharacter, foreign_key: "playercharacter_id", class_name:"PlayerCharacter"
+
+  belongs_to :player_character,
+				class_name: "PlayerCharacter",
+				foreign_key: "playercharacter_id"
+
 end
