@@ -75,7 +75,7 @@ class GamesController < ApplicationController
 		@game_to_remove.player_characters.delete(@pc_to_remove)
 
 
-		redirect_to user_path(@userIDToLeaveGame);
+		redirect_to games_path(@userIDToLeaveGame);
 	end
 
 	private

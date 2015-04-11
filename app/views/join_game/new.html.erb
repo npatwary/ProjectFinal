@@ -43,63 +43,6 @@
 
 
 
-
-
-<hr>
-<p> ---------------------Please ignore below this line-----------------------</p>
-
-<br>
-<br>
-<%= @accepted_game.name  %>
-<%= @accepted_invited.game_password  %>
-<br>
-<%= @invitation_id %>
-<%= @game_id %>
-
-
-<br>
-<br>
-<h4> Listing all invited games </h4>
-
-<table>
-<tr>
-    <th>Invited games</th>
-    <th>Password</th>
- </tr>
-<% @game_invitations_received.each do |game_invitation| %>
-  <tr>
-  	<td><%= game_invitation.game.name %> </td>
-    <td><%= game_invitation.game_password %></td>
-    <br> 
-  </tr>
- <% end %>
-</table>
-
-<h4> Listing all player characters </h4> 
-<% @player_characters.each do |player_character| %>
-    <%= player_character.name %> <br>
- <% end %>
- 
-<h4> Listing current user player characters </h4> 
-<% @user_player_characters.each do |user_player_character| %>
-    <%= user_player_character.name %> <br>
- <% end %>
-
-  <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-  </ul>
-</div>
-
-
-
   <div class="col-sm-12">
   <hr>
   <%= link_to "Go to User Home page",user_path(current_user) %>

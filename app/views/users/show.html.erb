@@ -25,15 +25,20 @@
         <th>Game Name</th>
         <th>Invited Users</th>
         <th> &nbsp;&nbsp;</th>
+     
       </tr>
-      <% @user.game_invitations_sent.each do |game_invitation| %>
-      <tr>
-        <td><%= game_invitation.game.name %></td>
-      <td><%= game_invitation.user_player.user_name %></td>
-      <td><%= link_to "Cancel", root_path %></td>
-      </tr>
-      <% end %>
-    </table>
+    
+          <% @user.game_invitations_sent.each do |game_invitation| %>
+              <tr>
+                <% if(game_invitation.game!=nil && game_invitation.user_player!=nil) %>
+                    <td><%= game_invitation.game.name %></td>
+                    <td><%= game_invitation.user_player.user_name %></td>
+                    <td><%= link_to "Cancel", root_path %></td>
+                <% end %>    
+              </tr>
+          <% end %>
+    
+      </table>
   </div>
 </div>
 
@@ -52,11 +57,13 @@
     </tr>
     <% @user.game_invitations_received.each do |game_invitation| %>
     <tr>
-      <td><%= game_invitation.game.name %></td>
-      <td><%= game_invitation.dungeon_master.user_name %></td>
-      <td><%= game_invitation.game_password %></td>
-      <td><%= link_to "Accept", root_path %></td>
-      <td><%= link_to "Reject", root_path %></td>
+      <% if(game_invitation.game!=nil && game_invitation.dungeon_master!=nil && game_invitation!=nil) %>
+          <td><%= game_invitation.game.name %></td>
+          <td><%= game_invitation.dungeon_master.user_name %></td>
+          <td><%= game_invitation.game_password %></td>
+          <td><%= link_to "Accept", root_path %></td>
+          <td><%= link_to "Reject", root_path %></td>
+      <% end %>
     </tr>
     <% end %>
     </table>
