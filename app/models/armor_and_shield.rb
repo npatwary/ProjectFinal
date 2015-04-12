@@ -6,6 +6,8 @@
 #  playercharacter_id :integer
 #  name               :string
 #  disadvantage       :string
+#  cost               :integer
+#  unit               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -17,7 +19,7 @@ class ArmorAndShield < ActiveRecord::Base
 				class_name: "PlayerCharacter",
 				foreign_key: "playercharacter_id"
 
-				attr_accessor :cost, :armor_type, :armor_class, :unit, :ref_string
+				attr_accessor  :armor_type, :armor_class, :ref_string
 
 	def self.getArmorAndShieldMap
 		 armorAndShieldMap = {}

@@ -8,6 +8,8 @@
 #  attackBonus        :integer
 #  damage             :string
 #  typeDnD            :string
+#  cost               :integer
+#  unit               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -17,7 +19,7 @@ class AttackWeapon < ActiveRecord::Base
   belongs_to :player_character,
 				class_name: "PlayerCharacter",
 				foreign_key: "playercharacter_id"
-attr_accessor :cost,  :ref_string
+attr_accessor   :ref_string
 
 def self.getAttackWeaponMap
 		

@@ -4,7 +4,8 @@ class CreateArmorAndShields < ActiveRecord::Migration
       t.references :playercharacter, index: true
       t.string :name
       t.string :disadvantage
-
+      t.integer :cost
+      t.string :unit
       t.timestamps null: false
     end
     add_foreign_key :armor_and_shields, :player_characters

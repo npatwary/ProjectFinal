@@ -97,6 +97,47 @@ class ArmorAndShieldsController < ApplicationController
       end #end of outermost if  
   end #end of #create method
       
+  #listing list of armor and shield for selling for a player character
+  def sell_index
+    player_character = PlayerCharacter.find_by id: params[:player_character_id]
+    @player_owned_armor_and_shields = player_character.armor_and_shields 
+    @player_character_id = params[:player_character_id]
+  end
+
+  #delete the selected armor and shield objects
+  def destroy
+    refStringList = params[:ref_ids]# #get list of refStings for the selected weapons in the index view
+    wealth = Wealth.find_by playercharacter_id: params[:player_character_id]
+    player_character = PlayerCharacter.find_by id: params[:player_character_id]
+    all_armors_and_shield_sold_successfully = true
+
+    refStringList.each do |id|
+      armor_and_shieldObject = ArmorAndShield.find(id)
+      if armor_and_shieldObject.unit == "pp"
+        wealth.platinum += armor_and_shieldObject.cost
+      elsif armor_and_shieldObject.unit == "gp"
+        wealth.gold += armor_and_shieldObject.cost
+      elsif armor_and_shieldObject.unit == "ep"
+        wealth.electrum += armor_and_shieldObject.cost
+       elsif armor_and_shieldObject.unit == "sp"
+        wealth.silver += armor_and_shieldObject.cost
+       else 
+        wealth.copper += armor_and_shieldObject.cost 
+      end
+      armor_and_shieldObject.player_character = player_character
+      all_armors_and_shield_sold_successfully = false unless armor_and_shieldObject.destroy
+    end #end of each iterator
+    all_armors_and_shield_sold_successfully = false unless wealth.save
+
+    if all_armors_and_shield_sold_successfully
+      flash[:success] = "Selected armors and shields successfully sold!"
+        redirect_to player_character_path(player_character)
+    else
+        flash[:alert] = "Sell is not successful .. please try again!"
+        redirect_to armor_and_shields_sell_path(player_character)
+      end
+  end
+
   private
   def player_has_sufficient_wealth?(refStringList,wealth)  
     player_wealth_in_copper = getWealthInCopper(wealth)

@@ -1,0 +1,26 @@
+<h1>ARMOR And SHIELD For Sale</h1>
+
+<%= form_tag("/armor_and_shields", method: "delete") do %>
+<%= hidden_field_tag(:player_character_id,  @player_character_id) %>
+<table class="table">
+	<tr>
+		<th>&nbsp;</th>
+		<th> Armor Name </th>
+		<th> Disadvantage </th>
+		<th> Cost</th>
+	</tr>
+<% @player_owned_armor_and_shields.each do |arm| %>
+
+<tr>
+	<td><%= check_box_tag "ref_ids[]",arm.id %></td>
+    <td><%= arm.name %></td>
+    <td><%= arm.disadvantage %></td>
+   <td><%= "#{arm.cost}#{arm.unit}" %></td>   
+
+</tr>
+<% end %>
+</table>
+<%= submit_tag("Sell Armor & Shields") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+<% end %>
+
+<hr>
