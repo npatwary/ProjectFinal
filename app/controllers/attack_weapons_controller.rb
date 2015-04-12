@@ -19,7 +19,9 @@ class AttackWeaponsController < ApplicationController
     refStringList.each do |refString|
       attack_weaponObject = AttackWeapon.getAttackWeapon(refString)
       
-
+      # handling the logic assuming that we deal in gold only for the moment
+      #TODO: handle all kinds of wealth
+      
       if wealth.gold >= attack_weaponObject.cost 
 
           wealth.gold = wealth.gold - attack_weaponObject.cost
