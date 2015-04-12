@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150408181447) do
 
   create_table "ability_scores", force: :cascade do |t|
@@ -175,6 +174,9 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["user_name"], name: "index_users_on_user_name", unique: true
 
   create_table "wealths", force: :cascade do |t|
     t.integer  "playercharacter_id"

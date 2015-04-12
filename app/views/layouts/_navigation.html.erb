@@ -8,33 +8,32 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Dungeons & Dragons Helper Site</a>
+      <a class="navbar-brand" href="#">D&D Helper Site</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">User Home</a></li>
+        <li><%= link_to 'Home', user_path(current_user)%></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Characters <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">View My Characters</a></li>
-            <li><a href="#">Create New Character</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><%= link_to 'View Characters', player_characters_path %></li>
+            <li><%= link_to "Create Character", new_player_character_path %></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Games <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Create Game</a></li>
-            <li><a href="#">View Games</a></li>
-            <li><a href="#">Game Invitations</a></li>
+            <li><%= link_to "Create Game",new_game_path %></li>
+            <li><%= link_to 'View Games', games_path %></li>
+            <li><%= link_to 'Game Invitations', game_invitations_path  %></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">About</a></li>
-        
+        <li class="disabled"><a href="#"><b>Hello, <%= current_user.user_name %></b></a></li>
+        <li><%= link_to "Log out", logout_path, method: "delete" %></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
