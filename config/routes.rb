@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get '/attack_weapons' => 'attack_weapons#index', as: 'attack_weapons'
+  get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
+ post '/attack_weapons' => 'attack_weapons#create'
+delete '/attack_weapons' => 'attack_weapons#destroy'
 
   get '/armor_and_shields/:player_character_id/index' => 'armor_and_shields#index', as:'armor_and_shields_buy'
   get '/armor_and_shields/:player_character_id/sell_index' => 'armor_and_shields#sell_index', as:'armor_and_shields_sell'
