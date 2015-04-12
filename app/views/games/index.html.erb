@@ -26,10 +26,11 @@
       <td>(me)</td>
       <% player_characters = '' 
         game.player_characters.each do |player_character|
+          characterInfo = "#{player_character.name}(#{player_character.creator.user_name})"
           if player_characters.length == 0 
-            player_characters = player_character.name
+            player_characters = characterInfo
           else
-            player_characters = "#{player_characters};#{player_character.name}"
+            player_characters = "#{player_characters};#{characterInfo}"
           end
         end
           %>
@@ -45,14 +46,17 @@
             <td><%= game.dungeon_master.user_name%></td>
             <% player_characters = '' 
                     game.player_characters.each do |player_character|
+                          characterInfo = "#{player_character.name}(#{player_character.creator.user_name})"
+                          characterInfo =  "<span style='font-weight:bold;'>#{characterInfo}</span>" if current_user == player_character.creator
+
                           if player_characters.length == 0 
-                            player_characters = player_character.name
+                            player_characters = characterInfo
                           else
-                            player_characters = "#{player_characters};#{player_character.name}"
+                            player_characters = "#{player_characters};#{characterInfo}"
                           end
                     end
                 %>
-            <td><%= player_characters %></td>
+            <td><%= raw player_characters %></td>
             <td><%= link_to "View", game_path(game),class: 'btn'  %></td>
             <td>&nbsp;</td>
             <td><%= link_to "Leave", game_path(:id => game.id, :user_id => game.user_id, :game_id => game.id), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn' %></td>
