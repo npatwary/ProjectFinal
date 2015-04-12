@@ -74,4 +74,5 @@ class PlayerCharacter < ActiveRecord::Base
 	accepts_nested_attributes_for :attack_weapons, allow_destroy: true
 	accepts_nested_attributes_for :armor_and_shields, allow_destroy: true
 	accepts_nested_attributes_for :allies_and_organizations, allow_destroy: true
+
 end

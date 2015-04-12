@@ -2,6 +2,7 @@ require 'test_helper'
 
 class PlayerCharactersControllerTest < ActionController::TestCase
   setup do
+    log_in(users(:one))
     @player_character = player_characters(:one)
   end
 
@@ -31,6 +32,7 @@ class PlayerCharactersControllerTest < ActionController::TestCase
 
   test "should get edit" do
     get :edit, id: @player_character
+    puts
     assert_response :success
   end
 

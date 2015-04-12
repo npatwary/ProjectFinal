@@ -28,14 +28,10 @@
         <td><%= player_character.alignment %></td>
         <td><%= player_character.experiencePoints %></td>
 
-        <td><%= link_to 'Show', player_character %></td>
+        <td><%= link_to 'Details', player_character %></td>
         <td><%= link_to 'Edit', edit_player_character_path(player_character) %></td>
-        <td><%= link_to 'Destroy', player_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', player_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Player character', new_player_character_path %>

@@ -1,10 +1,10 @@
 class PlayerCharactersController < ApplicationController
   before_action :set_player_character, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in_user, only: [:index,:new,:create,:show, :update, :destroy]
   # GET /player_characters
   # GET /player_characters.json
   def index
-    @player_characters = PlayerCharacter.all
+    @player_characters = current_user.player_characters
   end
 
   # GET /player_characters/1
@@ -14,7 +14,7 @@ class PlayerCharactersController < ApplicationController
 
   # GET /player_characters/new
   def new
-    @player_character = PlayerCharacter.new
+    @player_character = PlayerCharacter.new()
   end
 
   # GET /player_characters/1/edit
@@ -24,7 +24,7 @@ class PlayerCharactersController < ApplicationController
   # POST /player_characters
   # POST /player_characters.json
   def create
-    @player_character = PlayerCharacter.new(player_character_params)
+    @player_character = current_user.player_characters.new(player_character_params)
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build
       render :new
