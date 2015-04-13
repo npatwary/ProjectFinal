@@ -13,4 +13,10 @@
 
 class AbilityScore < ActiveRecord::Base
   belongs_to :playercharacter, inverse_of: :abilityscores, foreign_key: "playercharacter_id", class_name:"PlayerCharacter"
+
+  validates :score,presence: true, numericality: 
+		{ only_integer: true, greater_than_or_equal_to: 1,less_than_or_equal_to: 30}
+  validates :modifier,presence: true, numericality: 
+		{ only_integer: true, greater_than_or_equal_to: -5,less_than_or_equal_to: 10}
+  
 end

@@ -3,6 +3,13 @@
   <div class="panel-heading">
     <h3 class="panel-title">Log In</h3>
   </div>
+
+  <% if flash[:danger] %>
+  <div id="error_explanation">
+  <p> <%= flash[:danger] %></p>
+  </div>
+  <% end %>
+  
   <div class = "panel-body">
     <%= form_for(:session, url: login_path) do |f| %>
     <div class="row">
