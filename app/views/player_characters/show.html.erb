@@ -1,6 +1,9 @@
 
 <p id="notice"><%= notice %></p>
 
+    <ul>
+      <li style = 'list-style:none;' ><%= link_to "Buy Attack Weapons",attack_weapons_buy_path(@player_character)%> | <%= link_to "Buy armorAndShields",armor_and_shields_buy_path(@player_character)%> | <%= link_to "Sell Attack Weapons",attack_weapons_sell_path(@player_character) %> | <%= link_to "Sell ArmorAndShields",armor_and_shields_sell_path(@player_character) %></li>
+    </ul>
 <div>
   <div class="col-md-4">
       <p>

@@ -141,6 +141,7 @@ class ArmorAndShieldsController < ApplicationController
   private
   def player_has_sufficient_wealth?(refStringList,wealth)  
     player_wealth_in_copper = getWealthInCopper(wealth)
+    logger.info "Total wealth in copper : #{player_wealth_in_copper}"
     total_armor_and_shield_cost = 0
     refStringList.each do |refString|
       armor_and_shieldObject = ArmorAndShield.getArmorAndShield(refString)
@@ -150,7 +151,7 @@ class ArmorAndShieldsController < ApplicationController
               : armor_and_shieldObject.unit == "ep" ? 50
               : armor_and_shieldObject.unit == "sp" ? 10
               : 1
-
+        logger.info "Selected wealth factor : #{factor}"
         armor_and_shield_cost_in_copper  = armor_and_shieldObject.cost * factor
         total_armor_and_shield_cost += armor_and_shield_cost_in_copper
     end

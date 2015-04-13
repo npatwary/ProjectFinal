@@ -1,40 +1,43 @@
 
 
-<h1>Select Game Attributes for <%= label_tag @accepted_game.name %> </h1>
+<h1>Join <%= label_tag @accepted_game.name %> </h1>
 
 <br>
 <br>
 
+<% if @user_player_characters.length > 0 %>
+  <%= form_tag(join_game_path, :method=> 'post' ) do %>
 
-<%= form_tag(join_game_path, :method=> 'post' ) do %>
+   
+   <h4> <%= label_tag 'Select Player Character'   %>  </h4>  
+    
+    
+    <div class="form_row">
+            <% @user_player_characters.each do |pc| %>
+            <br><%= radio_button_tag 'pc_id', pc.id, @pc == pc %>
+            <%= label_tag "#{pc.name}", pc.name.humanize %>
+          <% end %>
+    </div>
 
- 
- <h4> <%= label_tag 'Select Player Character'   %>  </h4>  
-  
-  
-  <div class="form_row">
-          <% @user_player_characters.each do |pc| %>
-          <br><%= radio_button_tag 'pc_id', pc.id, @pc == pc %>
-          <%= label_tag "#{pc.name}", pc.name.humanize %>
-        <% end %>
+  <br>
+
+  <div class="col-sm-10">
+        <strong>Insert key</strong>
+        <%= password_field_tag :passkey %>
   </div>
 
-<br>
+  <br>
+       
+       <br> <br>
+       <%= hidden_field_tag "inv_id", @invitation_id   %>
+       <%= hidden_field_tag "game_id", @game_id  %>
 
-<div class="col-sm-10">
-      <strong>Insert key</strong>
-      <%= password_field_tag :passkey %>
-</div>
-
-<br>
-     
-     <br> <br>
-     <%= hidden_field_tag "inv_id", @invitation_id   %>
-     <%= hidden_field_tag "game_id", @game_id  %>
-
-          <%= submit_tag "Join"  %>
-          <%= submit_tag "Cancel" %> 
-    
+            <%= submit_tag "Join"  %>
+            <%= submit_tag "Cancel" %> 
+      
+  <% end %>
+<% else %>
+  <p> You have no player character created or free at the moment. Create a new player character to join the game. </p>
 <% end %>
 
 

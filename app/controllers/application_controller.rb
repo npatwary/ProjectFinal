@@ -37,11 +37,11 @@ class ApplicationController < ActionController::Base
   
 
   def getWealthInCopper(wealthObject)
-    return (wealthObject.gold*10) + (wealthObject.platinum*100) + (wealthObject.copper) + (wealthObject.silver*10) + (wealthObject.electrum*50) 
+    return (wealthObject.gold*100) + (wealthObject.platinum*1000) + (wealthObject.copper) + (wealthObject.silver*10) + (wealthObject.electrum*50) 
   end
 
   def getWealthInSilver(wealthObject)
-    return (wealthObject.gold) + (wealthObject.platinum*10) + (wealthObject.copper/10) + (wealthObject.silver) + (wealthObject.electrum/5) 
+    return (wealthObject.gold*10) + (wealthObject.platinum*100) + (wealthObject.copper/10) + (wealthObject.silver) + (wealthObject.electrum/5) 
   end
   
 

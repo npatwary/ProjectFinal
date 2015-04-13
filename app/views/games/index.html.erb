@@ -1,11 +1,4 @@
 <% provide(:title, 'Games-Index') %>
-<div style="float:right"> Hello, <%= current_user.user_name %> </div>
-<ul class="nav nav-pills" role="tablist">
-  <li><%= link_to 'User Home', user_path(current_user)%></li>
-  <li class="active"><%= link_to 'Games', games_path %></li>
-  <li><%= link_to 'Player Characters', player_characters_path %></li>
-  <li><%= link_to 'Game Invitations', game_invitations_path %></li>
-</ul>
 
 <div style="margin-top: 10px;">
   <div class="panel panel-default">

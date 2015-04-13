@@ -1,8 +1,9 @@
 <% provide(:title, "Game-Show") %>
-<ul>
-	<li>Edit Game</li>
-	<li><%= link_to "Invite Users",new_game_invitation_path(@game) %></li>
-</ul>
+<% if dungeon_master?(@game.dungeon_master) %>
+  <ul>
+  	<li style = "list-style:none;"><%= link_to "Edit Game",edit_game_path(@game)%> | <%= link_to "Invite Users",new_game_invitation_path(@game) %></li>
+  </ul>
+<% end %>
 <h2> Game Details: </h2>
 <table width="100%" border="1">
   <tr>

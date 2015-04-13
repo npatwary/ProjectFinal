@@ -3,9 +3,9 @@
 <h2> Edit Game </h2>
 
 <%= form_for(@game) do |f| %>
- 	<table width="100%" border="1">
+ 	<table class="table">
  		<tr>
-    		<td>Game Name</td><td><%= f.text_field :name%></td>
+    		<td>Game Name</td><td><%= f.label :name, @game.name%></td>
 		</tr>
 		<tr>
     		<td>Game Map</td><td><%= f.file_field :map%></td>
@@ -14,14 +14,14 @@
     		<td>Game History</td><td><%= f.text_field :game_history%></td>
 		</tr>
 		<tr>
-    		<td>Game Password</td><td><%= f.text_field :game_password%></td>
+    		<td>Game Password</td><td><%= f.label :game_password, @game.game_password%></td>
 		</tr>
  	</table>
 
  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
  	<p>
-   <%= f.submit "Edit" %> &nbsp;<%= link_to '<button type="button">Cancel</button>'.html_safe, games_path %>
+   <%= f.submit "Update" %> &nbsp;<%= link_to '<button type="button">Cancel</button>'.html_safe, games_path %>
 	</p>
 
 	

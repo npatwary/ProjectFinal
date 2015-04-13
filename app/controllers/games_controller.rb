@@ -45,8 +45,17 @@ class GamesController < ApplicationController
 
 	 def update
   		@game = Game.find(params[:id])
-  		if @game.update(params.require(:game).permit(:name, :map, :game_history, :game_password))
-  			redirect_to games_url(@game)
+  		game_history = params[:game][:game_history]
+  		uploaded_io =  params[:game][:map]
+  		game_map = nil
+		unless uploaded_io.nil?
+			sanitized_filename = sanitize_filename(uploaded_io.original_filename)
+		  	sanitized_filename = "#{current_user.user_name}_#{@game.name}_#{sanitized_filename}"
+			upload(sanitized_filename,uploaded_io)
+			game_map = sanitized_filename
+		end
+  		if @game.update(game_history: game_history,map: game_map )
+  			redirect_to game_path(@game)
   		else
   			redirect_to games_url
   		end

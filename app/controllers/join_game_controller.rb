@@ -7,7 +7,7 @@ class JoinGameController < ApplicationController
   	#@game = Game.new;
   	@game_invitations_received = current_user.game_invitations_received
   	@player_characters = PlayerCharacter.all;
-  	@user_player_characters  = current_user.player_characters.where("isUsed=?",false);
+  	@user_player_characters  = current_user.player_characters.where("isUsed=? or isUsed is null",false);
   	# @user_player_characters  = current_user.player_characters.where("isUsed = false", params[:game_id]);
   end
   
