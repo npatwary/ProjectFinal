@@ -15,7 +15,10 @@
 require 'test_helper'
 
 class AttackWeaponTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  	def setup
+		@attack_weapon = attack_weapons(:one)
+	end
+	test "attack weapon is valid" do 
+		assert @attack_weapon.valid?
+	end
 end

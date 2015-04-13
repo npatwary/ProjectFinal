@@ -55,7 +55,10 @@
 require 'test_helper'
 
 class PlayerCharacterTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+ 	def setup
+		@player_character = player_characters(:one)
+	end
+	test "player_character should be valid " do 
+ 		assert @player_character.valid?
+ 	end
 end

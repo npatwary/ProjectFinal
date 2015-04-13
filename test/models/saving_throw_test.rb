@@ -14,7 +14,10 @@
 require 'test_helper'
 
 class SavingThrowTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+	def setup
+		@saving_throw = saving_throws(:one)
+	end
+	test "saving throw valid" do 
+		assert @saving_throw.valid?
+	end
 end

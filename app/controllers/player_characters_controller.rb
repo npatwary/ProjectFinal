@@ -1,6 +1,6 @@
 class PlayerCharactersController < ApplicationController
   before_action :set_player_character, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:index,:new,:create,:show, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
   # GET /player_characters
   # GET /player_characters.json
   def index
@@ -25,6 +25,7 @@ class PlayerCharactersController < ApplicationController
   # POST /player_characters.json
   def create
     @player_character = current_user.player_characters.new(player_character_params)
+    # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build
       render :new
@@ -37,6 +38,7 @@ class PlayerCharactersController < ApplicationController
     elsif params[:remove_armor_and_shield]
       render :new
     else
+      # normal create function
       respond_to do |format|
         if @player_character.save
           format.html { redirect_to @player_character, notice: 'Player character was successfully created.' }
@@ -52,6 +54,7 @@ class PlayerCharactersController < ApplicationController
   # PATCH/PUT /player_characters/1
   # PATCH/PUT /player_characters/1.json
   def update
+    # if user want to add/remove wweapons or shields
     if params[:add_attack_weapon]
       # rebuild the attack weapon attributes that doesn't have an id
       unless params[:player_character][:attack_weapons_attributes].blank?

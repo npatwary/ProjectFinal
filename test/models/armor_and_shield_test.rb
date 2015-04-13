@@ -13,7 +13,10 @@
 require 'test_helper'
 
 class ArmorAndShieldTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  	def setup
+		@armor_and_shield = armor_and_shields(:one)
+	end
+	test "armor and shields is valid" do 
+		assert @armor_and_shield.valid?
+	end
 end

@@ -14,7 +14,10 @@
 require 'test_helper'
 
 class AbilityScoreTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  	def setup
+		@ability_score = ability_scores(:one)
+	end
+	test "ability score is valid" do 
+		assert @ability_score.valid?
+	end
 end

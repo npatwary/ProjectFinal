@@ -15,7 +15,10 @@
 require 'test_helper'
 
 class SkillTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  	def setup
+		@skill = skills(:one)
+	end
+	test "skill is valid" do 
+		assert @skill.valid?
+	end
 end

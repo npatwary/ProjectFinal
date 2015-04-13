@@ -14,7 +14,10 @@
 require 'test_helper'
 
 class AlliesAndOrganizationTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  	def setup
+		@allies_and_organization = allies_and_organizations(:one)
+	end
+	test "allies and organizations is valid" do 
+		assert @allies_and_organization.valid?
+	end
 end
