@@ -1,28 +1,21 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version '2.2.0'
 
-Things you may want to cover:
+System dependencies 'bundle install'
 
-* Ruby version
+project-dragon-repo
 
-* System dependencies
+1. Run 'make m' to migrate, reset, and seed the database
+2. Run 'make s' to run server on localhost:3000/
+3. Sign up as a new user or use a testuser from seed.rb
+	Example
+	username: testuser1
+	password: pwd123
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+Test Suite
+1. Run 'rake db:migrate RAILS_ENV=test' to setup test database
+2. Run 'rake test'
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.

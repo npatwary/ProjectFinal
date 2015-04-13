@@ -2,10 +2,10 @@
 <p id="notice"><%= notice %></p>
     <% unless @player_character.game.nil?%>
     <ul>
-      <li style = 'list-style:none;' ><%= link_to "Buy Attack Weapons",attack_weapons_buy_path(@player_character)%> | <%= link_to "Buy armorAndShields",armor_and_shields_buy_path(@player_character)%> | <%= link_to "Sell Attack Weapons",attack_weapons_sell_path(@player_character) %> | <%= link_to "Sell ArmorAndShields",armor_and_shields_sell_path(@player_character) %></li>
+      <li style = 'list-style:none;' align="center" ><%= link_to "Buy Attack Weapons",attack_weapons_buy_path(@player_character)%> | <%= link_to "Buy armorAndShields",armor_and_shields_buy_path(@player_character)%> | <%= link_to "Sell Attack Weapons",attack_weapons_sell_path(@player_character) %> | <%= link_to "Sell ArmorAndShields",armor_and_shields_sell_path(@player_character) %></li>
     </ul>
     <% end %>
-<div>
+
   <div class="col-md-4">
       <p>
         <strong>Name:</strong>
@@ -323,37 +323,37 @@
         <h4>Character Description</h4>
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
-              <p>
-                <strong>Features And Traits:</strong>
-                <%= @player_character.featuresAndTraits %>
-              </p>
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Features And Traits:</strong></div>
+              <div class="panel-body">
+                <textarea class="form-control" size="10x10" readonly><%= @player_character.featuresAndTraits %></textarea>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <p>
-                <strong>Other Proficiencies And Languages:</strong>
-                <%= @player_character.otherProficienciesAndLanguages %>
-              </p>
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Other Proficiencies And Languages:</strong></div>
+              <div class="panel-body">
+                <textarea class="form-control" size="10x10" readonly><%= @player_character.otherProficienciesAndLanguages %></textarea>
+              </div>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
-            <div class="form-group">
-              <p>
-                <strong>Character Appearance:</strong>
-                <%= @player_character.characterAppearance %>
-              </p>
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Character Appearance:</strong></div>
+              <div class="panel-body">
+                <textarea class="form-control" size="10x10" readonly><%= @player_character.characterAppearance %></textarea>
+              </div>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="form-group">
-              <p>
-                <strong>Character Backstory:</strong>
-                <%= @player_character.characterBackstory %>
-              </p>
+            <div class="panel panel-default">
+              <div class="panel-heading"><strong>Character Backstory:</strong></div>
+              <div class="panel-body">
+                <textarea class="form-control" size="10x10" readonly><%= @player_character.characterBackstory %></textarea>
+              </div>
             </div>
           </div>
         </div>

@@ -4,7 +4,7 @@ class CreateSkills < ActiveRecord::Migration
       t.references :playercharacter, index: true
       t.string :name
       t.boolean :proficient
-      t.integer :modifier
+      t.integer :modifier, :default => 0
       t.string :ability
 
       t.timestamps null: false

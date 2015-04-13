@@ -69,8 +69,7 @@ class PlayerCharacter < ActiveRecord::Base
 				class_name: "User",
 				foreign_key: "creator_id"
 
-
-
+	belongs_to :game
 
 	has_many :ability_scores, foreign_key: "playercharacter_id", class_name: "AbilityScore", dependent: :destroy
 	has_many :saving_throws, foreign_key: "playercharacter_id", class_name: "SavingThrow", dependent: :destroy
@@ -79,12 +78,6 @@ class PlayerCharacter < ActiveRecord::Base
 	has_many :armor_and_shields, foreign_key: "playercharacter_id", class_name: "ArmorAndShield", dependent: :destroy
 	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth", dependent: :destroy
 	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization", dependent: :destroy
-
-
-
-	belongs_to :game			
-
-	
 
 	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :wealth
 	accepts_nested_attributes_for :attack_weapons, allow_destroy: true
