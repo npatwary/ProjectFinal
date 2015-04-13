@@ -231,17 +231,19 @@
   <hr>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <h4>Attack Weapons</h4>
         <div class="row">
-          <div class="col-md-6"><%= f.label :Name, class: "control-label" %></div>
+          <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
           <div class="col-md-2"><%= f.label :Bonus, class: "control-label" %></div>
           <div class="col-md-2"><%= f.label :Damage, class: "control-label" %></div>
           <div class="col-md-2"><%= f.label :Type, class: "control-label" %></div>
+          <div class="col-md-1"><%= f.label :Cost, class: "control-label" %></div>
+          <div class="col-md-1"><%= f.label :Unit, class: "control-label" %></div>
         </div>
         <%= f.fields_for :attack_weapons do |attackWeaponsForm| %>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="input-group">
               <span class="input-group-addon">
                 <%= attackWeaponsForm.check_box :_destroy %>
@@ -252,6 +254,8 @@
           <div class="col-md-2"><%= attackWeaponsForm.text_field :attackBonus, class: "form-control", size: 3 %></div>
           <div class="col-md-2"><%= attackWeaponsForm.text_field :damage, class: "form-control", size: 3  %></div>
           <div class="col-md-2"><%= attackWeaponsForm.text_field :typeDnD, class: "form-control", size: 3 %></div>
+          <div class="col-md-1"><%= attackWeaponsForm.number_field :cost, class: "form-control", size: 3, in:0..1000 %></div>
+          <div class="col-md-1"><%= attackWeaponsForm.text_field :unit, class: "form-control", size: 3 %></div>
         </div>
         <% end %>
         <div class="btn-group btn-group-justified" role="group">
@@ -263,15 +267,21 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+    </div>
+    <div class="row">
+      <div class="col-md-12">
         <h4>Armor And Shields</h4>
           <div class="row">
-            <div class="col-md-6"><%= f.label :Name, class: "control-label" %></div>
-            <div class="col-md-6"><%= f.label :Disadvantage, class: "control-label" %></div>
+            <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Disadvantage, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Class, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Type, class: "control-label" %></div>
+            <div class="col-md-1"><%= f.label :Cost, class: "control-label" %></div>
+            <div class="col-md-1"><%= f.label :unit, class: "control-label" %></div>
           </div>
         <%= f.fields_for :armor_and_shields do |armorAndShieldsForm| %>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="input-group">
                 <span class="input-group-addon">
                   <%= armorAndShieldsForm.check_box :_destroy %>
@@ -279,7 +289,11 @@
                 <%= armorAndShieldsForm.text_field :name, class: "form-control" %>
               </div>
             </div>
-            <div class="col-md-6"><%= armorAndShieldsForm.text_field :disadvantage, class: "form-control" %></div> 
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :disadvantage, class: "form-control" %></div> 
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :armor_class, class: "form-control" %></div> 
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :armor_type, class: "form-control" %></div> 
+            <div class="col-md-1"><%= armorAndShieldsForm.number_field :cost, class: "form-control" %></div> 
+            <div class="col-md-1"><%= armorAndShieldsForm.text_field :unit, class: "form-control" %></div> 
           </div>
         <% end %>
         <div class="btn-group btn-group-justified" role="group">

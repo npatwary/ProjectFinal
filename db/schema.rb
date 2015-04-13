@@ -15,11 +15,11 @@ ActiveRecord::Schema.define(version: 20150408181447) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
-    t.integer  "score"
-    t.integer  "modifier"
+    t.integer  "score",              default: 0
+    t.integer  "modifier",           default: 0
     t.integer  "playercharacter_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "ability_scores", ["playercharacter_id"], name: "index_ability_scores_on_playercharacter_id"
@@ -152,9 +152,9 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "modifier",           default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "saving_throws", ["playercharacter_id"], name: "index_saving_throws_on_playercharacter_id"
@@ -163,10 +163,10 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier"
+    t.integer  "modifier",           default: 0
     t.string   "ability"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"

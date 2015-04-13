@@ -37,10 +37,10 @@ skill_abilities = ['Dex', 'Wis', 'Int','Str', 'Cha', 'Int', 'Wis', 'Cha', 'Int',
 ability_names.each do |name| player3.ability_scores.create(name: name) end
 ability_names.each do |name| player3.saving_throws.create(name: name) end
 Hash[skill_names.zip(skill_abilities)].each do |n, a| player3.skills.create(name: n, ability: a) end
-player3.attack_weapons.create
-player3.armor_and_shields.create
+player3.attack_weapons.create(name: 'Squirt Gun', attackBonus: 5, damage: 99, typeDnD: 'wet', cost:100, unit:'gp' )
+player3.armor_and_shields.create(name: 'Blademail', disadvantage: 'Stealth', cost: 100, unit:'gp')
 player3.create_wealth
-player3.allies_and_organizations.create
+player3.allies_and_organizations.create(name: 'Zeus', description: 'God of Mt. Olympus')
 ## Full Character and related objects ##
 
 PlayerCharacter.create(isUsed:"false", name:"The Great Giant", creator:user1)
