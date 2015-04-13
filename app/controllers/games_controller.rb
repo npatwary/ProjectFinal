@@ -54,7 +54,8 @@ class GamesController < ApplicationController
 			upload(sanitized_filename,uploaded_io)
 			game_map = sanitized_filename
 		end
-  		if @game.update(game_history: game_history,map: game_map )
+		@game.map = game_map unless game_map.nil?
+  		if @game.update(game_history: game_history)
   			redirect_to game_path(@game)
   		else
   			redirect_to games_url
