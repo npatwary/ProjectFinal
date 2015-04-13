@@ -1,0 +1,29 @@
+<h1>Attack Weapon For Sale</h1>
+
+<%= form_tag("/attack_weapons", method: "delete") do %>
+<%= hidden_field_tag(:player_character_id,  @player_character_id) %>
+<table class="table">
+	<tr>
+		<th>&nbsp;</th>
+		<th> Weapon Name </th>
+		<th> Damage </th>
+		<th> Cost</th>
+	</tr>
+	
+<% @player_owned_attack_weapons.each do |weapon| %>
+
+<tr>
+	<td><%= check_box_tag "ref_ids[]",weapon.id %></td>
+    <td><%= weapon.name %></td>
+    <td><%= weapon.damage %></td>
+   <td><%= "#{weapon.cost}#{weapon.unit}" %></td>   
+
+</tr>
+<% end %>
+</table>
+<%= submit_tag("Sell Attack Weapons") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+<% end %>
+
+<hr>
+
+

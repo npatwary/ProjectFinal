@@ -8,7 +8,7 @@
 		<th> Weapon Name </th>
 		<th> Weapon Type </th>
 		<th> Damage </th>
-		<th> Cost in GP</th>
+		<th> Cost </th>
 		
 	</tr>
 
@@ -20,7 +20,7 @@
     <td><%= weapon.name %></td>
     <td><%= weapon.typeDnD %></td>
     <td><%= weapon.damage %></td>
-    <td><%= weapon.cost %></td>
+    <td><%= "#{weapon.cost}#{weapon.unit}" %></td>
   
 
 </tr>

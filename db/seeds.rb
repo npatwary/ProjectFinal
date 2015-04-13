@@ -54,6 +54,6 @@ PlayerCharacter.create(name:"Zoro - The fighter", creator:user1,game:game3)
 
 
 #Wealth
-Wealth.create(gold:500, copper:1000, silver: 500, electrum: 100, player_character:player2)
-Wealth.create(gold:5000, copper:1000, silver: 500, electrum: 400,  platinum: 0, player_character:player3)
+Wealth.create(gold:500, copper:1000, silver: 500, electrum: 100,platinum: 10, player_character:player2)
+Wealth.create(gold:5000, copper:1000, silver: 500, electrum: 400,  platinum: 100, player_character:player3)
 
