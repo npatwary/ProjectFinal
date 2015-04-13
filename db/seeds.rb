@@ -27,11 +27,21 @@ GameInvitation.create(game_password:"axxxxxxx",game:game3,dungeon_master:user3,u
 player1 = PlayerCharacter.create(name:"The Great Giant", creator:user3,game:game1)
 player2 = PlayerCharacter.create(name:"Salamander - The Dragon Slayer", creator:user2,game:game1)
 
-
-player3 = PlayerCharacter.create(name:"BigChree", classDnD:"Wizard", level:3, background:"background", race:"asian", alignment:"straight", experiencePoints:99, inspiration:"yes", proficiencyBonus:2, armorClass:5, initiative:3, speed:35, currentHitPoints:50, maxHitPoints:100, temporaryHitPoints:50, totalHitDice:"1D5", hitDice:"10D7", deathSaveSuccesses:1, deathSaveFailures:1, personalityTraits:"Loud", ideals:"simplicity", bonds:"and stocks", flaws:"always right", attacksDescription:"Spells", passiveWisdom:"charisma", otherProficienciesAndLanguages:"english", maxEquipmentCarryCapacity:250, currentEquipmentCarryCapacity:150, featuresAndTraits:"really upbeat", age:22, height:"5 feet", weight:"150", eyes:"blue", skin:"light", hair:"dark", characterAppearance:"rough", characterBackstory:"A lone wolf", additionalFeaturesAndTraits:"knows how to cook", treasure:"1,000,000 gp", spellCastingAbility:"Wisdom", spellSaveDC:"yup", spellAttackBonus:"55", creator:user2,game:game3)
-
-
-
+## Full Character sheet ##
+# Setup PlayerCharacter
+player3 = PlayerCharacter.create(name:"BigChree", classDnD:"Wizard", level:3, background:"background", race:"asian", alignment:"straight", experiencePoints:99, inspiration:"yes", proficiencyBonus:2, armorClass:5, initiative:3, speed:35, currentHitPoints:50, maxHitPoints:100, temporaryHitPoints:50, totalHitDice:"1D5", hitDice:"10D7", deathSaveSuccesses:1, deathSaveFailures:1, personalityTraits:"Loud", ideals:"simplicity", bonds:"and stocks", flaws:"always right", attacksDescription:"Spells", passiveWisdom:"charisma", otherProficienciesAndLanguages:"english", maxEquipmentCarryCapacity:250, currentEquipmentCarryCapacity:150, featuresAndTraits:"really upbeat", age:22, height:"5 feet", weight:"150", eyes:"blue", skin:"light", hair:"dark", characterAppearance:"rough", characterBackstory:"A lone wolf", additionalFeaturesAndTraits:"knows how to cook", treasure:"1,000,000 gp", spellCastingAbility:"Wisdom", spellSaveDC:"yup", spellAttackBonus:"55", creator:user1,game:game3)
+# Setup related objects to PlayerCharacter
+ability_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
+skill_names = ['Acrobatics', 'Animal Handling', 'Arcana', 'Athletics', 'Deception', 'History', 'Insight', 'Intimidation', 'Investigation', 'Medicine', 'Nature', 'Perception', 'Performance', 'Religion', 'Sleight of Hand', 'Stealth', 'Survival']
+skill_abilities = ['Dex', 'Wis', 'Int','Str', 'Cha', 'Int', 'Wis', 'Cha', 'Int', 'Wis', 'Int', 'Wis', 'Cha', 'Cha', 'Int', 'Dex', 'Dex', 'Wis']
+ability_names.each do |name| player3.ability_scores.create(name: name) end
+ability_names.each do |name| player3.saving_throws.create(name: name) end
+Hash[skill_names.zip(skill_abilities)].each do |n, a| player3.skills.create(name: n, ability: a) end
+player3.attack_weapons.create
+player3.armor_and_shields.create
+player3.create_wealth
+player3.allies_and_organizations.create
+## Full Character and related objects ##
 
 PlayerCharacter.create(isUsed:"false", name:"The Great Giant", creator:user1)
 PlayerCharacter.create(isUsed:"false", name:"Salamander - The Dragon Slayer", creator:user1)
@@ -39,9 +49,6 @@ PlayerCharacter.create(isUsed:"false", name:"Salamander - The Dragon Slayer", cr
 
 Game.create(name:"testgamepc",game_password:"apcxxxx",dungeon_master:user1, 
 	player_characters: PlayerCharacter.create([{isUsed:"false", name:"Monk", creator:user3}, {isUsed:"false", name:"Mice", creator:user2}]) )
-
-player = PlayerCharacter.create(name:"BigChree", classDnD:"Wizard", level:3, background:"background", race:"asian", alignment:"straight", experiencePoints:99, inspiration:"yes", proficiencyBonus:2, armorClass:5, initiative:3, speed:35, currentHitPoints:50, maxHitPoints:100, temporaryHitPoints:50, totalHitDice:"1D5", hitDice:"10D7", deathSaveSuccesses:1, deathSaveFailures:1, personalityTraits:"Loud", ideals:"simplicity", bonds:"and stocks", flaws:"always right", attacksDescription:"Spells", passiveWisdom:"charisma", otherProficienciesAndLanguages:"english", maxEquipmentCarryCapacity:250, currentEquipmentCarryCapacity:150, featuresAndTraits:"really upbeat", age:22, height:"5 feet", weight:"150", eyes:"blue", skin:"light", hair:"dark", characterAppearance:"rough", characterBackstory:"A lone wolf", additionalFeaturesAndTraits:"knows how to cook", treasure:"1,000,000 gp", spellCastingAbility:"Wisdom", spellSaveDC:"yup", spellAttackBonus:"55")
-
 
 #Wealth
 Wealth.create(gold:50,silver:50,electrum:50,platinum:50,copper:50,player_character:player1)
