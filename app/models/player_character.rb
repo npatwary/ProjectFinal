@@ -54,6 +54,17 @@
 
 class PlayerCharacter < ActiveRecord::Base
 
+	
+	validates :name, presence: true
+	validates :classDnD, presence: true
+	validates :level, presence: true,numericality: 
+		{ only_integer: true, greater_than_or_equal_to: 1,less_than_or_equal_to: 20}
+
+	validates :background,presence: true
+	validates :race, presence: true
+
+
+
 	belongs_to :creator,
 				class_name: "User",
 				foreign_key: "creator_id"
