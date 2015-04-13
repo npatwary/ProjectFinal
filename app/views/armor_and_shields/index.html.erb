@@ -1,5 +1,5 @@
 <h1>ARMOR And SHIELD</h1>
-"
+
 <%= form_tag("/armor_and_shields") do %>
 <%= hidden_field_tag(:player_character_id,  @player_character_id) %>
 <table class="table">
@@ -8,7 +8,7 @@
 		<th> Armor Name </th>
 		<th> Armor Type </th>
 		<th> Disadvantage </th>
-		<th> Cost </th>
+		<th> Cost in GP</th>
 		<th> Class </th>
 	</tr>
 <% @armor_and_shields.each do |arm| %>

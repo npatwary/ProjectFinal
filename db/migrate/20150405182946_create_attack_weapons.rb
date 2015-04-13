@@ -6,7 +6,8 @@ class CreateAttackWeapons < ActiveRecord::Migration
       t.integer :attackBonus
       t.string :damage
       t.string :typeDnD
-
+      t.integer :cost
+      t.string :unit
       t.timestamps null: false
     end
     add_foreign_key :attack_weapons, :player_characters

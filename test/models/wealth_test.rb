@@ -4,11 +4,11 @@
 #
 #  id                 :integer          not null, primary key
 #  playercharacter_id :integer
-#  copper             :integer
-#  silver             :integer
-#  electrum           :integer
-#  gold               :integer
-#  platinum           :integer
+#  copper             :integer          default("0")
+#  silver             :integer          default("0")
+#  electrum           :integer          default("0")
+#  gold               :integer          default("0")
+#  platinum           :integer          default("0")
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

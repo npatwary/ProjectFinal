@@ -2,11 +2,11 @@ class CreateWealths < ActiveRecord::Migration
   def change
     create_table :wealths do |t|
       t.references :playercharacter, index: true
-      t.integer :copper
-      t.integer :silver
-      t.integer :electrum
-      t.integer :gold
-      t.integer :platinum
+      t.integer :copper,:default => 0
+      t.integer :silver,:default => 0
+      t.integer :electrum,:default => 0
+      t.integer :gold,:default => 0
+      t.integer :platinum,:default => 0
 
       t.timestamps null: false
     end

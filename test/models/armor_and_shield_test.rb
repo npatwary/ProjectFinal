@@ -6,6 +6,8 @@
 #  playercharacter_id :integer
 #  name               :string
 #  disadvantage       :string
+#  cost               :integer
+#  unit               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #

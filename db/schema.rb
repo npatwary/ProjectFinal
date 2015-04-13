@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.string   "disadvantage"
+    t.integer  "cost"
+    t.string   "unit"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -51,6 +53,8 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "attackBonus"
     t.string   "damage"
     t.string   "typeDnD"
+    t.integer  "cost"
+    t.string   "unit"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
@@ -180,13 +184,13 @@ ActiveRecord::Schema.define(version: 20150408181447) do
 
   create_table "wealths", force: :cascade do |t|
     t.integer  "playercharacter_id"
-    t.integer  "copper"
-    t.integer  "silver"
-    t.integer  "electrum"
-    t.integer  "gold"
-    t.integer  "platinum"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "copper",             default: 0
+    t.integer  "silver",             default: 0
+    t.integer  "electrum",           default: 0
+    t.integer  "gold",               default: 0
+    t.integer  "platinum",           default: 0
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "wealths", ["playercharacter_id"], name: "index_wealths_on_playercharacter_id"
