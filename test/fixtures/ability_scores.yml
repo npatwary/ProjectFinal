@@ -4,8 +4,8 @@
 #
 #  id                 :integer          not null, primary key
 #  name               :string
-#  score              :integer          default("0")
-#  modifier           :integer          default("0")
+#  score              :integer          default("1")
+#  modifier           :integer          default("1")
 #  playercharacter_id :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

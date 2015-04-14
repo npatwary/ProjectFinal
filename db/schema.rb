@@ -15,8 +15,8 @@ ActiveRecord::Schema.define(version: 20150408181447) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
-    t.integer  "score",              default: 0
-    t.integer  "modifier",           default: 0
+    t.integer  "score",              default: 1
+    t.integer  "modifier",           default: 1
     t.integer  "playercharacter_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -99,11 +99,11 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.boolean  "isUsed"
     t.string   "name"
     t.string   "classDnD"
-    t.integer  "level"
+    t.integer  "level",                          default: 1
     t.string   "background"
     t.string   "race"
     t.string   "alignment"
-    t.integer  "experiencePoints"
+    t.integer  "experiencePoints",               default: 0
     t.string   "inspiration"
     t.integer  "proficiencyBonus"
     t.integer  "armorClass"
@@ -139,8 +139,8 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.string   "spellCastingAbility"
     t.string   "spellSaveDC"
     t.string   "spellAttackBonus"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "creator_id"
     t.integer  "game_id"
   end
@@ -152,7 +152,7 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier",           default: 0
+    t.integer  "modifier",           default: 1
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
   end
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier",           default: 0
+    t.integer  "modifier",           default: 1
     t.string   "ability"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
