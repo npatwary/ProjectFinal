@@ -2,8 +2,8 @@ class CreateAbilityScores < ActiveRecord::Migration
   def change
     create_table :ability_scores do |t|
       t.string :name
-      t.integer :score, :default => 0
-      t.integer :modifier, :default => 0
+      t.integer :score, :default => 1
+      t.integer :modifier, :default => 1
       t.references :playercharacter, index: true
 
       t.timestamps null: false

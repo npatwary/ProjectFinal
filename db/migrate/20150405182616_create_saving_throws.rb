@@ -4,7 +4,7 @@ class CreateSavingThrows < ActiveRecord::Migration
       t.references :playercharacter, index: true
       t.string :name
       t.boolean :proficient
-      t.integer :modifier, :default => 0
+      t.integer :modifier, :default => 1
 
       t.timestamps null: false
     end
