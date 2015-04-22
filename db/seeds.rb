@@ -56,6 +56,7 @@ Wealth.create(gold:50,silver:50,electrum:50,platinum:50,copper:50,player_charact
 
 
 
+
 #player_characters belonging to user1 playinging in game2 and game3
 player4 = PlayerCharacter.create(name:"Luffy - The Rubberman",classDnD:"Fighter", level:1, background:"background", race:"asian", creator:user3,game:game2,isUsed:"true")
 PlayerCharacter.create(name:"Zoro - The fighter", classDnD:"Fighter", level:1, background:"background", race:"asian",creator:user2,isUsed:"false")
