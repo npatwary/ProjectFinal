@@ -6,11 +6,11 @@
 #  isUsed                         :boolean
 #  name                           :string
 #  classDnD                       :string
-#  level                          :integer
+#  level                          :integer          default("1")
 #  background                     :string
 #  race                           :string
 #  alignment                      :string
-#  experiencePoints               :integer
+#  experiencePoints               :integer          default("0")
 #  inspiration                    :string
 #  proficiencyBonus               :integer
 #  armorClass                     :integer
@@ -51,6 +51,7 @@
 #  creator_id                     :integer
 #  game_id                        :integer
 #
+
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
