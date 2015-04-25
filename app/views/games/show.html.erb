@@ -23,16 +23,17 @@
 </tr>
 <tr>
     <td>Game Players</td>
-    <% player_characters = '' 
+    <td><% player_characters = '' 
       @game.player_characters.each do |player_character|
-        if player_characters.length == 0 
-          player_characters = player_character.name
-        else
-          player_characters = "#{player_characters};#{player_character.name}"
-        end
-      end
-        %>
-   	<td><%= player_characters %></td>	
+        if player_characters.length == 0 %>
+        <a href=<%= player_character_path(player_character.id)%> > <%= player_character.name %> </a> 
+         <!--player_characters = player_character.name -->
+        <% else %>
+        <!-- player_characters = "#{player_characters};#{player_character.name}"-->
+        <a href=<%= player_character_path(player_character.id)%> > <%= player_character.name %> </a> 
+       <% end
+      end %></td>
+   	
  </tr>
 
 </table>
@@ -55,5 +56,8 @@
 
 
 
+<br>
+<br>
 <hr>
+
 <%= link_to "Go to User Home page",user_path(current_user) %>

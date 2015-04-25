@@ -413,5 +413,7 @@
   </div>
 <hr>
 
-<%= link_to 'Edit Character', edit_player_character_path(@player_character), class: "btn btn-default" %> 
+<% if current_user.id == @player_character.creator_id %>
+  <%= link_to 'Edit Character', edit_player_character_path(@player_character), class: "btn btn-default" %> 
+<% end %>
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
