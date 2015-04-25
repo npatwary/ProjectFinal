@@ -4,11 +4,11 @@ class CreatePlayerCharacters < ActiveRecord::Migration
       t.boolean :isUsed
       t.string :name
       t.string :classDnD
-      t.integer :level
+      t.integer :level, :default => 1
       t.string :background
       t.string :race
       t.string :alignment
-      t.integer :experiencePoints
+      t.integer :experiencePoints, :default => 0
       t.string :inspiration
       t.integer :proficiencyBonus
       t.integer :armorClass

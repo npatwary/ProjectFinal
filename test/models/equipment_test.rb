@@ -1,24 +1,29 @@
 # == Schema Information
 #
-# Table name: skills
+# Table name: equipment
 #
 #  id                 :integer          not null, primary key
 #  playercharacter_id :integer
 #  name               :string
-#  proficient         :boolean
-#  modifier           :integer          default("1")
-#  ability            :string
+#  description        :string
+#  cost               :integer
+#  unit               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
 
 require 'test_helper'
 
-class SkillTest < ActiveSupport::TestCase
-  	def setup
-		@skill = skills(:one)
+class EquipmentTest < ActiveSupport::TestCase
+ 
+ def setup
+		@equipment = equipment(:one)
 	end
-	test "skill is valid" do 
-		assert @skill.valid?
+
+	test "equipment is valid" do 
+		assert @equipment.valid?
+	
 	end
 end
+
+

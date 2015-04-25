@@ -1,37 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<h1>View Characters</h1>
+<div style="margin-top: 10px;">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><h1>View Characters</h1></div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Level</th>
+            <th>Background</th>
+            <th>Race</th>
+            <th>Alignment</th>
+            <th>Experiencepoints</th>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Class</th>
-      <th>Level</th>
-      <th>Background</th>
-      <th>Race</th>
-      <th>Alignment</th>
-      <th>Experiencepoints</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <tbody>
+          <% @player_characters.each do |player_character| %>
+            <tr>
+              <td><%= player_character.name %></td>
+              <td><%= player_character.classDnD %></td>
+              <td><%= player_character.level %></td>
+              <td><%= player_character.background %></td>
+              <td><%= player_character.race %></td>
+              <td><%= player_character.alignment %></td>
+              <td><%= player_character.experiencePoints %></td>
 
-  <tbody>
-    <% @player_characters.each do |player_character| %>
-      <tr>
-        <td><%= player_character.name %></td>
-        <td><%= player_character.classDnD %></td>
-        <td><%= player_character.level %></td>
-        <td><%= player_character.background %></td>
-        <td><%= player_character.race %></td>
-        <td><%= player_character.alignment %></td>
-        <td><%= player_character.experiencePoints %></td>
-
-        <td><%= link_to 'Details', player_character %></td>
-        <td><%= link_to 'Edit', edit_player_character_path(player_character) %></td>
-        <td><%= link_to 'Delete', player_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+              <td><%= link_to 'Details', player_character %></td>
+              <td><%= link_to 'Edit', edit_player_character_path(player_character) %></td>
+              <td><%= link_to 'Delete', player_character, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

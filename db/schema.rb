@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408181447) do
+ActiveRecord::Schema.define(version: 20150421191744) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
-    t.integer  "score"
-    t.integer  "modifier"
+    t.integer  "score",              default: 1
+    t.integer  "modifier",           default: 1
     t.integer  "playercharacter_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "ability_scores", ["playercharacter_id"], name: "index_ability_scores_on_playercharacter_id"
@@ -61,6 +61,18 @@ ActiveRecord::Schema.define(version: 20150408181447) do
 
   add_index "attack_weapons", ["playercharacter_id"], name: "index_attack_weapons_on_playercharacter_id"
 
+  create_table "equipment", force: :cascade do |t|
+    t.integer  "playercharacter_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "cost"
+    t.string   "unit"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "equipment", ["playercharacter_id"], name: "index_equipment_on_playercharacter_id"
+
   create_table "game_invitations", force: :cascade do |t|
     t.string   "game_password"
     t.datetime "created_at",        null: false
@@ -99,11 +111,11 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.boolean  "isUsed"
     t.string   "name"
     t.string   "classDnD"
-    t.integer  "level"
+    t.integer  "level",                          default: 1
     t.string   "background"
     t.string   "race"
     t.string   "alignment"
-    t.integer  "experiencePoints"
+    t.integer  "experiencePoints",               default: 0
     t.string   "inspiration"
     t.integer  "proficiencyBonus"
     t.integer  "armorClass"
@@ -139,8 +151,8 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.string   "spellCastingAbility"
     t.string   "spellSaveDC"
     t.string   "spellAttackBonus"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "creator_id"
     t.integer  "game_id"
   end
@@ -152,9 +164,9 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "modifier",           default: 1
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "saving_throws", ["playercharacter_id"], name: "index_saving_throws_on_playercharacter_id"
@@ -163,10 +175,10 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.integer  "playercharacter_id"
     t.string   "name"
     t.boolean  "proficient"
-    t.integer  "modifier"
+    t.integer  "modifier",           default: 1
     t.string   "ability"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"

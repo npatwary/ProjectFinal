@@ -1,12 +1,13 @@
 # == Schema Information
 #
-# Table name: ability_scores
+# Table name: equipment
 #
 #  id                 :integer          not null, primary key
-#  name               :string
-#  score              :integer          default("1")
-#  modifier           :integer          default("1")
 #  playercharacter_id :integer
+#  name               :string
+#  description        :string
+#  cost               :integer
+#  unit               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
@@ -15,12 +16,12 @@
 
 one:
   name: MyString
-  score: 1
-  modifier: 1
-  playercharacter_id: 
+  description: MyString
+  cost: 1
+  unit: MyString
 
 two:
   name: MyString
-  score: 1
-  modifier: 1
-  playercharacter_id: 
+  description: MyString
+  cost: 1
+  unit: MyString

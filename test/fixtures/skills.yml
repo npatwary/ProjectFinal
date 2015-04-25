@@ -6,7 +6,7 @@
 #  playercharacter_id :integer
 #  name               :string
 #  proficient         :boolean
-#  modifier           :integer
+#  modifier           :integer          default("1")
 #  ability            :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null

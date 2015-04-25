@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
-  before_action :logged_in_user, only: [:show]
+  before_action :logged_in_user, only: [:show,:index]
   before_action :correct_user,   only: [:show]
+  before_action :already_logged_in,   only: [:new]
   
 	def new
 		@user = User.new
@@ -17,7 +18,7 @@ class UsersController < ApplicationController
 		@user = User.new(params.require(:user).permit(:user_name,:email,:password,:password_confirmation))
   		if @user.save
   			log_in @user
-  			flash[:success] = "Welcome to Dungeons and Dragons !"
+  			#flash[:success] = "Welcome to Dungeons and Dragons !"
   			redirect_to user_path(@user)
   		else
   			render 'new'
@@ -55,6 +56,10 @@ class UsersController < ApplicationController
 		redirect_to user_path(@userIDToLeaveGame);
 	end
 
-
+	def already_logged_in
+    	if logged_in?
+      		redirect_to user_path(current_user)
+      	end
+    end
 
 end

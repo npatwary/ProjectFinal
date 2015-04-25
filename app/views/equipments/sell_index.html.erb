@@ -1,0 +1,29 @@
+<h1>Equipment For Sale</h1>
+
+<%= form_tag("/equipments", method: "delete") do %>
+<%= hidden_field_tag(:player_character_id,  @player_character_id) %>
+<table class="table">
+	<tr>
+		<th>&nbsp;</th>
+		<th> Equipment Name </th>
+		<th> Description </th>
+		<th> Cost</th>
+	</tr>
+	
+<% @player_owned_equipments.each do |equipment| %>
+
+<tr>
+	<td><%= check_box_tag "ref_ids[]",equipment.id %></td>
+    <td><%= equipment.name %></td>
+    <td><%= equipment.description %></td>
+   <td><%= "#{equipment.cost}#{equipment.unit}" %></td>   
+
+</tr>
+<% end %>
+</table>
+<%= submit_tag("Sell Equipments") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+<% end %>
+
+<hr>
+
+

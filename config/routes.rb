@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
 
 
+get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
+  get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'
+ 
+ post '/equipments' => 'equipments#create'
+delete '/equipments' => 'equipments#destroy' 
+
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 
   get '/attack_weapons/:player_character_id/sell_index' => 'attack_weapons#sell_index', as: 'attack_weapons_sell'

@@ -6,11 +6,11 @@
 #  isUsed                         :boolean
 #  name                           :string
 #  classDnD                       :string
-#  level                          :integer
+#  level                          :integer          default("1")
 #  background                     :string
 #  race                           :string
 #  alignment                      :string
-#  experiencePoints               :integer
+#  experiencePoints               :integer          default("0")
 #  inspiration                    :string
 #  proficiencyBonus               :integer
 #  armorClass                     :integer
@@ -61,4 +61,35 @@ class PlayerCharacterTest < ActiveSupport::TestCase
 	test "player_character should be valid " do 
  		assert @player_character.valid?
  	end
+
+ 	test "name can't be blank" do 
+		@player_character.name = " "
+		assert_not @player_character.valid?
+	end
+
+ 	test "classDnD can't be blank" do 
+		@player_character.classDnD = " "
+		assert_not @player_character.valid?
+	end
+
+	test "level can't be blank" do 
+		@player_character.level = " "
+		assert_not @player_character.valid?
+	end
+
+	test "race can't be blank" do 
+		@player_character.race = " "
+		assert_not @player_character.valid?
+	end
+
+	test "background can't be blank" do 
+		@player_character.background = " "
+		assert_not @player_character.valid?
+	end	
+
+	test "level should be in between 1 and 20" do
+		@player_character.level= "a"
+		assert_not @player_character.valid?
+	end
+ 	
 end
