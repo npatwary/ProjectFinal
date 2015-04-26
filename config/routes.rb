@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-
+  get '/classes' => 'player_character_classes#index', as:'classes'
+  post '/classes' => 'player_character_classes#index'
+  get '/class/show' => 'player_character_classes#show', as: 'class'
+  post '/class/show' => 'player_character_classes#show'
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 

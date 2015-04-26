@@ -14,7 +14,16 @@ class PlayerCharactersController < ApplicationController
 
   # GET /player_characters/new
   def new
-    @player_character = PlayerCharacter.new()
+    @player_character = PlayerCharacter.new();
+    @pcClasses       = PlayerCharacterClass.all;
+
+    @pcClass         = PlayerCharacterClass.find(2);
+    @st_table        = SavingThroughsTableForClass.all;
+    @skill_table     = SkillsTableForClass.all;
+         
+    @savingThrougs = @pcClass.savingThroughs; 
+    @skills        = @pcClass.proficientSkills;
+    @equipment     = @pcClass.equipment;
   end
 
   # GET /player_characters/1/edit
@@ -23,6 +32,9 @@ class PlayerCharactersController < ApplicationController
 
   # POST /player_characters
   # POST /player_characters.json
+
+
+
   def create
     @player_character = current_user.player_characters.new(player_character_params)
     # if user want to add/remove weapons or shields, else do normal create function

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408181447) do
+ActiveRecord::Schema.define(version: 20150424011151) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -95,6 +95,25 @@ ActiveRecord::Schema.define(version: 20150408181447) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "player_character_classes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "hitDice"
+    t.integer  "currentHitPoint"
+    t.string   "maximumHitPoint"
+    t.text     "armorProficiency"
+    t.text     "weaponProficiency"
+    t.text     "toolsProfiency"
+    t.text     "savingThroughs"
+    t.text     "proficientSkills"
+    t.integer  "numberOfAllowedSkills"
+    t.text     "equipment"
+    t.integer  "spellcastAbility"
+    t.integer  "spellSaveDC"
+    t.integer  "spellAttackBonus"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "player_characters", force: :cascade do |t|
     t.boolean  "isUsed"
     t.string   "name"
@@ -148,6 +167,18 @@ ActiveRecord::Schema.define(version: 20150408181447) do
   add_index "player_characters", ["creator_id"], name: "index_player_characters_on_creator_id"
   add_index "player_characters", ["game_id"], name: "index_player_characters_on_game_id"
 
+  create_table "saving_throughs_table_for_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "saving_throughs_tablefor_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "saving_throws", force: :cascade do |t|
     t.integer  "playercharacter_id"
     t.string   "name"
@@ -170,6 +201,12 @@ ActiveRecord::Schema.define(version: 20150408181447) do
   end
 
   add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"
+
+  create_table "skills_table_for_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name"

@@ -24,6 +24,12 @@
         <div class="field">
           <%= f.label :class%><br>
           <%= f.text_field :classDnD, class: "form-control"%>
+            <select id="selectedClass" name="class_id" onchange="myFunction()">
+                <option value="">Select Class</option>
+                     <% @pcClasses.each do |cls| %>
+                <option value=<%=cls.id%> >  <%=cls.name%> </option>
+         <%end%>
+  </select>
         </div>
         <div class="field">
           <%= f.label :level %><br>
@@ -59,8 +65,8 @@
         <%= f.fields_for :ability_scores do |abilityScoreForm| %>
           <div class="col-md-2">
             <%= abilityScoreForm.object.name %><br>
-            <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
-            <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier' %><br>
+            <%= abilityScoreForm.number_field :score, :value => "15", class: "form-control", placeholder: 'Score'%><br>
+            <%= abilityScoreForm.text_field :modifier, :value => "-2", class: "form-control", placeholder: 'Modifier' %><br>
             <%= abilityScoreForm.hidden_field :name %>
           </div>
         <% end %>
@@ -317,7 +323,10 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-      <h4>Equipment</h4>
+      <h4>Equipment (select equipment according to the following instruction) </h4>
+        <% for a in @equipment %>
+          <%= a %> <br>
+        <%end%>
       </div>
     </div>
     <hr>

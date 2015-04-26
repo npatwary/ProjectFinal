@@ -1,0 +1,32 @@
+
+<h1> From class index page</h1>
+
+<head>
+
+</head>
+
+
+<%= form_tag(class_path, :method=> 'post', :id =>'myForm') do %>
+	<select id="selectedClass" name="class_id" onchange="myFunction()">
+	       <option value="">Select Class</option>
+	        <% @pcClasses.each do |cls| %>
+	  		<option value=<%=cls.id%> >  <%=cls.name%> </option>
+	       <%end%>
+	</select>
+
+	<br>
+	<br>
+	<%= submit_tag "Submit" %>
+<%end%>
+
+<script>
+
+	function myFunction() {
+	    var e = document.getElementById("selectedClass");
+	    var index = e.options[e.selectedIndex].value;
+		document.getElementById("myForm").submit();
+		
+	}
+</script>
+
+<hr>

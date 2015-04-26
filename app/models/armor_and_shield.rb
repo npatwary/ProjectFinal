@@ -23,7 +23,7 @@ class ArmorAndShield < ActiveRecord::Base
 				attr_accessor  :armor_type, :armor_class, :ref_string
 
 	def self.getArmorAndShieldMap
-		 armorAndShieldMap = {}
+		armorAndShieldMap = {}
 		#unit may be: cp, pp, ep, gp, sp
 		armorAndShieldMap["ref1"] = ArmorAndShield.new(name:"Padded", disadvantage:"stealth", cost:5, unit:"gp", armor_class:"11+Dex modifier",armor_type: "Light", ref_string:"ref1")
 		armorAndShieldMap["ref2"] = ArmorAndShield.new(name:"Leather", disadvantage:"no", cost:10, unit:"gp",armor_class:"11+Dex modifier",armor_type: "Light", ref_string:"ref2")
