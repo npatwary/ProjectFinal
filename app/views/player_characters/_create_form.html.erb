@@ -1,0 +1,401 @@
+<%= form_for(setup_playercharacter(@player_character)) do |f| %>
+  <% if @player_character.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@player_character.errors.count, "error") %> prohibited this player_character from being saved:</h2>
+
+      <ul>
+      <% @player_character.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="form-group">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="col-md-4">
+        <div class="field">
+          <%= f.label :class%><br>
+          <%= f.text_field :classDnD, class: "form-control"%>
+        </div>
+        <div class="field">
+          <%= f.label :level %><br>
+          <%= f.number_field :level, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <%= f.label :background %><br>
+          <%= f.text_field :background, class: "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :race %><br>
+          <%= f.text_field :race, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="field">
+          <%= f.label :alignment %><br>
+          <%= f.text_field :alignment, class: "form-control" %>
+        </div>
+        <div class="field">
+          <%= f.label :experiencePoints %><br>
+          <%= f.number_field :experiencePoints, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group">
+      <div class="col-md-12">
+        <h4>Ability Scores</h4>
+        <%= f.fields_for :ability_scores do |abilityScoreForm| %>
+          <div class="col-md-2">
+            <%= abilityScoreForm.object.name %><br>
+            <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
+            <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier' %><br>
+            <%= abilityScoreForm.hidden_field :name %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Skills</h4>
+        <%= f.fields_for :skills do |skillsForm| %>
+          <div class="form-inline">
+            <%= skillsForm.number_field :modifier, class: "form-control" %>
+            <%= skillsForm.check_box :proficient, class: "form-control" %>
+            <%= skillsForm.object.name %>
+            (<%= skillsForm.object.ability%>)
+            <%= skillsForm.hidden_field :name %>
+            <%= skillsForm.hidden_field :ability %>
+          </div>
+        <% end %>
+        <h4>Character Bonus</h4>
+        <div class="form-inline">
+          <%= f.text_field :inspiration, class: "form-control" %>
+          <%= f.label :Inspiration, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :proficiencyBonus, class: "form-control" %>
+          <%= f.label :'Proficiency Bonus', class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :passiveWisdom, class: "form-control" %>
+          <%= f.label :'Passive Wisdom', class: "control-label" %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h4>Saving Throws</h4>
+          <%= f.fields_for :saving_throws do |savingThrowForm| %>
+            <div class="form-inline">
+              <%= savingThrowForm.text_field :modifier, class: "form-control" %>
+              <%= savingThrowForm.check_box :proficient, class: "form-control" %>
+              <%= savingThrowForm.object.name %>
+              <%= savingThrowForm.hidden_field :name %>
+            </div>
+          <% end %>
+        <h4>Attributes</h4>
+        <div class="form-inline">
+          <%= f.number_field :armorClass, class: "form-control"  %>
+          <%= f.label :'Armor Class', class: "control-label"  %>    
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :initiative, class: "form-control"  %>
+          <%= f.label :Initiative, class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :speed, class: "form-control"  %>
+          <%= f.label :Speed, class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :currentHitPoints, class: "form-control"  %>
+          <%= f.label :'Current Hit Points', class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :maxHitPoints, class: "form-control"  %>
+          <%= f.label :'Max Hit Points', class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :temporaryHitPoints, class: "form-control"  %>
+          <%= f.label :'Temporary Hit Points', class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :totalHitDice, class: "form-control"  %>
+          <%= f.label :'Total Hit Dice', class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :hitDice, class: "form-control"  %>
+          <%= f.label :'Hit Dice', class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :deathSaveSuccesses, class: "form-control"  %>
+          <%= f.label :'Death Save Successes', class: "control-label"  %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :deathSaveFailures, class: "form-control"  %>
+          <%= f.label :'Death Save Failures', class: "control-label"  %>
+        </div>
+        <h4>Wealth</h4>
+        <%= f.fields_for :wealth do |wealthForm| %>
+          <div class="form-inline">
+            <%= wealthForm.number_field :copper, class: "form-control" %>
+            <%= wealthForm.label :copper, class: "control-label" %><br>
+            <%= wealthForm.number_field :silver, class: "form-control" %>
+            <%= wealthForm.label :silver, class: "control-label" %><br>
+            <%= wealthForm.number_field :electrum, class: "form-control" %>
+            <%= wealthForm.label :electrum, class: "control-label" %><br>
+            <%= wealthForm.number_field :gold, class: "form-control" %>
+            <%= wealthForm.label :gold, class: "control-label" %><br>
+            <%= wealthForm.number_field :platinum, class: "form-control" %>
+            <%= wealthForm.label :platinum, class: "control-label" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <h4>Personality</h4>
+        <div class="form-group">
+          <%= f.label :'Personality Traits', class: "control-label" %>
+          <%= f.text_area :personalityTraits, class: "form-control", size:"10x2" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Ideals, class: "control-label" %>
+          <%= f.text_area :ideals, class: "form-control", size:"10x2" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Bonds, class: "control-label" %>
+          <%= f.text_area :bonds, class: "form-control", size:"10x2" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :Flaws, class: "control-label" %>
+          <%= f.text_area :flaws, class: "form-control", size:"10x2" %>
+        </div>
+        <h4>Physical Features</h4>
+        <div class="form-inline">
+          <%= f.number_field :age, class: "form-control" %>
+          <%= f.label :age, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :height, class: "form-control" %>
+          <%= f.label :height, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :weight, class: "form-control" %>
+          <%= f.label :weight, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :eyes, class: "form-control" %>
+          <%= f.label :eyes, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :skin, class: "form-control" %>
+          <%= f.label :skin, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :hair, class: "form-control" %>
+          <%= f.label :hair, class: "control-label" %>
+        </div>
+        <h4>Equipment Carry Capacity</h4>
+        <div class="form-inline">
+          <%= f.number_field :currentEquipmentCarryCapacity, class: "form-control" %>
+          <%= f.label :Current, class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.number_field :maxEquipmentCarryCapacity, class: "form-control" %>
+          <%= f.label :Max, class: "control-label" %>
+        </div>
+        <h4>Spell Casting</h4>
+        <div class="form-inline">
+          <%= f.text_field :spellCastingAbility, class: "form-control" %>
+          <%= f.label :'Spell Casting Ability', class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :spellSaveDC, class: "form-control" %>
+          <%= f.label :'Spell Save DC', class: "control-label" %>
+        </div>
+        <div class="form-inline">
+          <%= f.text_field :spellAttackBonus, class: "form-control" %>
+          <%= f.label :'Spell Attack Bonus', class: "control-label" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Attack Weapons</h4>
+        <div class="row">
+          <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+          <div class="col-md-2"><%= f.label :Bonus, class: "control-label" %></div>
+          <div class="col-md-2"><%= f.label :Damage, class: "control-label" %></div>
+          <div class="col-md-2"><%= f.label :Type, class: "control-label" %></div>
+          <div class="col-md-1"><%= f.label :Cost, class: "control-label" %></div>
+          <div class="col-md-1"><%= f.label :Unit, class: "control-label" %></div>
+        </div>
+        <%= f.fields_for :attack_weapons do |attackWeaponsForm| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <%= attackWeaponsForm.check_box :_destroy %>
+              </span>
+              <%= attackWeaponsForm.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+          <div class="col-md-2"><%= attackWeaponsForm.text_field :attackBonus, class: "form-control", size: 3 %></div>
+          <div class="col-md-2"><%= attackWeaponsForm.text_field :damage, class: "form-control", size: 3  %></div>
+          <div class="col-md-2"><%= attackWeaponsForm.text_field :typeDnD, class: "form-control", size: 3 %></div>
+          <div class="col-md-1"><%= attackWeaponsForm.number_field :cost, class: "form-control", size: 3, in:0..1000 %></div>
+          <div class="col-md-1"><%= attackWeaponsForm.text_field :unit, class: "form-control", size: 3 %></div>
+        </div>
+        <% end %>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit 'Delete Checked Weapons', :name => "remove_attack_weapon", class: "btn btn-default"  %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= f.submit 'Add Weapon', :name => "add_attack_weapon", class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Armor And Shields</h4>
+          <div class="row">
+            <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Disadvantage, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Class, class: "control-label" %></div>
+            <div class="col-md-2"><%= f.label :Type, class: "control-label" %></div>
+            <div class="col-md-1"><%= f.label :Cost, class: "control-label" %></div>
+            <div class="col-md-1"><%= f.label :unit, class: "control-label" %></div>
+          </div>
+        <%= f.fields_for :armor_and_shields do |armorAndShieldsForm| %>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <%= armorAndShieldsForm.check_box :_destroy %>
+                </span>
+                <%= armorAndShieldsForm.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :disadvantage, class: "form-control" %></div> 
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :armor_class, class: "form-control" %></div> 
+            <div class="col-md-2"><%= armorAndShieldsForm.text_field :armor_type, class: "form-control" %></div> 
+            <div class="col-md-1"><%= armorAndShieldsForm.number_field :cost, class: "form-control" %></div> 
+            <div class="col-md-1"><%= armorAndShieldsForm.text_field :unit, class: "form-control" %></div> 
+          </div>
+        <% end %>
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit 'Delete Checked Armors', :name => "remove_armor_and_shield", class: "btn btn-default" %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= f.submit 'Add Armor And Shield', :name => "add_armor_and_shield", class: "btn btn-default" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :'Attacks Description', class: "control-label" %>
+        <%= f.text_area :attacksDescription, class: "form-control", size:"50x5" %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+      <h4>Equipment</h4>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Character Description</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :'Features And Traits', class: "control-label" %>
+              <%= f.text_area :featuresAndTraits, class: "form-control", size:"10x10" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :'Other Proficiencies And Languages', class: "control-label" %>
+              <%= f.text_area :otherProficienciesAndLanguages, class: "form-control", size:"10x10" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :'Character Appearance', class: "control-label" %>
+              <%= f.text_area :characterAppearance, class: "form-control", size:"10x10" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= f.label :'Character Backstory', class: "control-label" %>
+              <%= f.text_area :characterBackstory, class: "form-control", size:"10x10" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Allies And Organizations</h4>
+        <%= f.fields_for :allies_and_organizations do |alliesAndOrganizationsForm| %>
+          <div class="row">
+            <div class="col-md-6">
+            <%= alliesAndOrganizationsForm.label :name, class: "control-label" %>
+            <%= alliesAndOrganizationsForm.text_field :name, class: "form-control" %>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <%= alliesAndOrganizationsForm.label :description, class: "control-label" %><br>
+              <%= alliesAndOrganizationsForm.text_area :description, class: "form-control", size:"10x10" %>
+            </div>
+            <div class="col-md-6">
+              <%= alliesAndOrganizationsForm.label :Symbol, class: "control-label" %><br>
+              <%= alliesAndOrganizationsForm.text_area :symbolDnD, class: "form-control", size:"10x10" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Additional Features And Traits</h4>
+        <div class="form-group">
+          <%= f.text_area :additionalFeaturesAndTraits, class: "form-control", size:"50x10" %>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Treasure</h4>
+        <div class="form-group">
+          <%= f.text_area :treasure, class: "form-control", size:"50x10" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save Character", class: "btn btn-default" %>
+  </div>
+<% end %>
