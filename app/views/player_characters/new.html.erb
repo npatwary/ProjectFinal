@@ -3,3 +3,12 @@
 <%= render 'create_form' %>
 
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
+
+<script type="text/javascript">
+
+$("#player_character_background").change(function(){
+    alert("The text has been changed.");
+    escape_javascript(render 'create_form');
+});
+
+</script>

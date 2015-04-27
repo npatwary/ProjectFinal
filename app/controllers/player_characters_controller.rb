@@ -60,7 +60,6 @@ class PlayerCharactersController < ApplicationController
       # rebuild the attack weapon attributes that doesn't have an id
       unless params[:player_character][:attack_weapons_attributes].blank?
         for attribute in params[:player_character][:attack_weapons_attributes]
-          puts attribute
           unless attribute.last.has_key?(:id)
             @player_character.attack_weapons.build(attribute.last.except(:_destroy)) 
           end
