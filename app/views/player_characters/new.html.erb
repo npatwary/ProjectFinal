@@ -7,8 +7,12 @@
 <script type="text/javascript">
 
 $("#player_character_background").change(function(){
-    alert("The text has been changed.");
-    escape_javascript(render 'create_form');
+    var background = this.options[this.selectedIndex].value;
+    alert(background);
+    var traits =  <%= personalityTraits5EFor(@player_character.background) %>;
+    alert(traits);
+    ("#player_character_personalityTraits").options = traits;
+    
 });
 
 </script>
