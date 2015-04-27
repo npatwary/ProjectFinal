@@ -9,18 +9,19 @@
 $("#player_character_background").change(function(){
     var background = this.options[this.selectedIndex].value;
     alert(background);
-    
-    var request =  $.ajax(){
+	}
+);
+
+var request =  $.ajax({
     	type: "POST",
-    	url: "/player_characters",
+    	url: "/player_characters.json",
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
-    		autoPopulateRaceRelatedFields(data);
+    		
     	},
     	error: function(xmlHttpObj, httpStatus,errMsg){
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
     	}
-    }
-};
+    });
 
 </script>
