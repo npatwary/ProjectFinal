@@ -18,6 +18,7 @@ class PlayerCharactersController < ApplicationController
     @player_character = PlayerCharacter.new()
   end
 
+  def 
   # GET /player_characters/1/edit
   def edit
   end

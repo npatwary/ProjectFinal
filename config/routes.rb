@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+post '/races/:id' => 'races#show', as:'race_lookup'
 
 get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
   get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'

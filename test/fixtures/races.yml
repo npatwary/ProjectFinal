@@ -1,0 +1,53 @@
+# == Schema Information
+#
+# Table name: races
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  strength     :integer
+#  dexterity    :integer
+#  constitution :integer
+#  intelligence :integer
+#  wisdom       :integer
+#  charisma     :integer
+#  base_speed   :integer
+#  max_age      :integer
+#  alignment    :string
+#  language     :string
+#  tools        :string
+#  features     :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  base_speed: 1
+  max_age: 1
+  alignment: MyString
+  language: MyString
+  tools: MyString
+  features: MyString
+
+two:
+  name: MyString
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  base_speed: 1
+  max_age: 1
+  alignment: MyString
+  language: MyString
+  tools: MyString
+  features: MyString
