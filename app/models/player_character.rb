@@ -52,6 +52,7 @@
 #  game_id                        :integer
 #
 
+
 class PlayerCharacter < ActiveRecord::Base
 
 	

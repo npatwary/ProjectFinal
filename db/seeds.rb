@@ -66,3 +66,46 @@ PlayerCharacter.create(name:"Zoro - The fighter", classDnD:"Fighter", level:1, b
 Wealth.create(gold:500, copper:1000, silver: 500, electrum: 100,platinum: 10, player_character:player2)
 #Wealth.create(gold:5000, copper:1000, silver: 500, electrum: 400,  platinum: 100, player_character:player3)
 
+
+
+
+# Look up table for skills used for class selection
+SkillsTableForClass.create([{name: "Acrobatics"}, {name: "Animal Handling"},{name: "Arcana"},{name: "Athletics"},
+	{name: "Deception"}, {name: "History"},{name: "Insight"},{name: "Intimidation"},{name: "Investigation"},{name: "Medicine"},
+	{name: "Nature"},{name: "Perception"},{name: "Performance"},{name: "Religion"},{name: "Sleight of Hand"},
+	{name: "Stealth"},{name: "Survival"}]);
+
+# Lookup Table for saving throughs used for class selection
+SavingThroughsTableForClass.create([{name:"Strength"},{name:"Dexterity"},{name:"Constitution"},
+	        {name:"Intelligence"},{name:"Wisdom"},{name:"Charisma"}]);
+
+# Lookup Table for class features
+
+# Class 1: barbarian
+PlayerCharacterClass.create(name:"Barbarian", hitDice:"1d12",currentHitPoint:12, maximumHitPoint:12, armorProficiency: "Light Armor, medium Armor, shield",
+	weaponProficiency: "Simple Weapons, martial weapons", toolsProfiency: "None",savingThroughs: [1,3], proficientSkills: [2,4,8,11,12,17],
+	numberOfAllowedSkills:2,
+	equipment: ["(a) a greataxe or (b) any martial melle weapon",  
+		"(a) two hand axes or (b) any simple weapon", 
+		"An explorer pack and four Javenile"]);
+
+# Class 2: bard
+PlayerCharacterClass.create(name:"Bard", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor",
+	weaponProficiency: "Simple Weapons, hand crossbows, longswords, rapier, shortswords", toolsProfiency: "Any Three musical instruments",
+	savingThroughs: [2,6], proficientSkills: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17],numberOfAllowedSkills:3,
+	equipment: ["(a) a rapier, (b) a longsword, or (c) any simple weapon",  
+			        "(a) a diplomats pack, (b) or an entertainers pack", 
+			        "(a) lute or (b) any othre musical instruments)",
+					"Leather armor and a dagger"],
+	spellcastAbility: 6,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 3: Cleric
+PlayerCharacterClass.create(name:"Cleric", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor, medium armor, shield",
+	weaponProficiency: "All simple weapons", toolsProfiency: "None",
+	savingThroughs: [5,6], proficientSkills: [6,7,10,12,14], numberOfAllowedSkills:2,
+	equipment: ["(a) a mace, or (b) a warhammer (if proficient)",  
+			        "(a) scale mail, (b) lather armor, or (c) chain mail (if proficient)", 
+			        "(a) a light crossbow and 20 bolts, or (b) any simple weapon",
+					"(a) a priest pack or (b) an explorer pack"],
+	spellcastAbility: 5,spellSaveDC: 8,spellAttackBonus: 0);
+

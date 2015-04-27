@@ -52,6 +52,7 @@
 #  game_id                        :integer
 #
 
+
 require 'test_helper'
 
 class PlayerCharacterTest < ActiveSupport::TestCase

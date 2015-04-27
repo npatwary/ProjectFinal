@@ -12,6 +12,7 @@
 #  user_id       :integer
 #
 
+
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase

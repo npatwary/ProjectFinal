@@ -11,6 +11,7 @@
 #  user_player_id    :integer
 #
 
+
 class GameInvitation < ActiveRecord::Base
 	validate :user_cannot_be_both_dungeon_master_and_player_in_the_same_game, :no_valid_user_provided,:no_invalid_users_can_be_specified
 

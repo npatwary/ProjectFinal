@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
-
+  get '/classes' => 'player_character_classes#index', as:'classes'
+  post '/classes' => 'player_character_classes#index'
+  get '/class/show' => 'player_character_classes#show', as: 'class'
+  post '/class/show' => 'player_character_classes#show'
 
 get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
   get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'
@@ -29,6 +32,8 @@ delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
 
 
   resources :player_characters
+
+  post '/player_characters/new' => 'player_characters#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

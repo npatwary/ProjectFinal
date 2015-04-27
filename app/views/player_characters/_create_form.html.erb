@@ -1,4 +1,6 @@
-<%= form_for(setup_playercharacter(@player_character)) do |f| %>
+
+
+<%= form_for(setup_playercharacter(@player_character), :id=>"myForm") do |f| %>
   <% if @player_character.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@player_character.errors.count, "error") %> prohibited this player_character from being saved:</h2>
@@ -14,15 +16,28 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, :value => @checkName, class: "form-control" %>
       </div>
     </div>
     <div class="col-md-8">
       <div class="col-md-4">
-        <div class="field">
-          <%= f.label :class%><br>
-          <%= f.text_field :classDnD, class: "form-control"%>
-        </div>
+          <div class="field">
+            <%= f.label :class%>
+       
+            <select id="selectedClass" name="class_id" >
+                <option value= ""> Select Class </option>
+                <% @pcClasses.each do |cls| %>
+                <option value=<%=cls.id%> >  <%=cls.name%> </option>
+                <%end%>         
+            </select>
+        <%= f.submit 'Update', :name => "classSelect" %>
+      <br>
+      <%= f.text_field :classDnD, :value=> @selectedClass, class: "form-control"%>
+      </div>
+       <br>
+       <p>&nbsp;</p>
+
+
         <div class="field">
           <%= f.label :level %><br>
           <%= f.number_field :level, class: "form-control" %>
@@ -54,12 +69,14 @@
   <div class="form-group">
       <div class="col-md-12">
         <h4>Ability Scores</h4>
+        <% score_index = 0 %>
         <%= f.fields_for :ability_scores do |abilityScoreForm| %>
           <div class="col-md-2">
             <%= abilityScoreForm.object.name %><br>
-            <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
-            <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier' %><br>
+            <%= abilityScoreForm.number_field :score, :value => @abilityScoreVaules[score_index], class: "form-control", placeholder: 'Score'%><br>
+            <%= abilityScoreForm.number_field :modifier, :value=> @abilityScoreModifiers[score_index],  :readonly => true, class: "form-control", placeholder: 'Modifier' %><br>
             <%= abilityScoreForm.hidden_field :name %>
+            <%score_index = score_index+1 %>
           </div>
         <% end %>
       </div>
@@ -69,14 +86,29 @@
     <div class="row">
       <div class="col-md-4">
         <h4>Skills</h4>
+        <p>(select <strong> <%=@pcClass.numberOfAllowedSkills%> </strong> skills from available list)
+        <%= f.submit 'Update Params', :name => "updateSkills[#{"3"}]" %>
+        </p>
+        <%skill_index = 0; %>
+        <% ps_index = 0; %>
         <%= f.fields_for :skills do |skillsForm| %>
           <div class="form-inline">
-            <%= skillsForm.number_field :modifier, class: "form-control" %>
-            <%= skillsForm.check_box :proficient, class: "form-control" %>
+            <%= skillsForm.number_field :modifier, :value => @skills_points[skill_index],  :readonly => true, :id => skill_index, class: "form-control" %>
+            
+            <% if (skill_index == @pcClass.proficientSkills[ps_index].to_i-1) %>
+                <%= skillsForm.check_box :proficient, :id => skill_index, class: "form-control" %>
+                <%ps_index = ps_index+1 %>
+            <% else %>
+                <%= skillsForm.check_box :proficient,  disabled: true, checked: false, class: "form-control" %>
+             <%end%> 
+
+
             <%= skillsForm.object.name %>
             (<%= skillsForm.object.ability%>)
             <%= skillsForm.hidden_field :name %>
             <%= skillsForm.hidden_field :ability %>
+            <% skill_index = skill_index+1; %>
+            <%= skill_index; %>
           </div>
         <% end %>
         <h4>Character Bonus</h4>
@@ -85,7 +117,7 @@
           <%= f.label :Inspiration, class: "control-label" %>
         </div>
         <div class="form-inline">
-          <%= f.number_field :proficiencyBonus, class: "form-control" %>
+          <%= f.number_field :proficiencyBonus, :value => @proficiencyBonus, class: "form-control" %>
           <%= f.label :'Proficiency Bonus', class: "control-label" %>
         </div>
         <div class="form-inline">
@@ -95,12 +127,20 @@
       </div>
       <div class="col-md-4">
         <h4>Saving Throws</h4>
+        <%saving_throws_index=0%>
+        <% st_index=0; %>
           <%= f.fields_for :saving_throws do |savingThrowForm| %>
             <div class="form-inline">
-              <%= savingThrowForm.text_field :modifier, class: "form-control" %>
-              <%= savingThrowForm.check_box :proficient, class: "form-control" %>
+              <%= savingThrowForm.text_field :modifier, :value=>@savingThroughs[saving_throws_index], :readonly => true, class: "form-control" %>
+              <% if (saving_throws_index == @savingThrougs[st_index].to_i-1) %>
+                <%= savingThrowForm.check_box :proficient, checked: true, class: "form-control" %>
+                <%st_index = st_index+1 %>
+              <% else %>
+                <%= savingThrowForm.check_box :proficient, disabled: true, checked: false, class: "form-control" %>
+              <%end%> 
               <%= savingThrowForm.object.name %>
               <%= savingThrowForm.hidden_field :name %>
+              <%saving_throws_index=saving_throws_index+1%>
             </div>
           <% end %>
         <h4>Attributes</h4>
@@ -117,11 +157,11 @@
           <%= f.label :Speed, class: "control-label"  %>
         </div>
         <div class="form-inline">
-          <%= f.number_field :currentHitPoints, class: "form-control"  %>
+          <%= f.number_field :currentHitPoints, :value=> @pcClass.currentHitPoint, class: "form-control"  %>
           <%= f.label :'Current Hit Points', class: "control-label"  %>
         </div>
         <div class="form-inline">
-          <%= f.number_field :maxHitPoints, class: "form-control"  %>
+          <%= f.number_field :maxHitPoints, :value=> @pcClass.maximumHitPoint, class: "form-control"  %>
           <%= f.label :'Max Hit Points', class: "control-label"  %>
         </div>
         <div class="form-inline">
@@ -129,11 +169,11 @@
           <%= f.label :'Temporary Hit Points', class: "control-label" %>
         </div>
         <div class="form-inline">
-          <%= f.text_field :totalHitDice, class: "form-control"  %>
+          <%= f.text_field :totalHitDice,  class: "form-control"  %>
           <%= f.label :'Total Hit Dice', class: "control-label"  %>
         </div>
         <div class="form-inline">
-          <%= f.text_field :hitDice, class: "form-control"  %>
+          <%= f.text_field :hitDice, :value=> @pcClass.hitDice, class: "form-control"  %>
           <%= f.label :'Hit Dice', class: "control-label"  %>
         </div>
         <div class="form-inline">
@@ -214,15 +254,15 @@
         </div>
         <h4>Spell Casting</h4>
         <div class="form-inline">
-          <%= f.text_field :spellCastingAbility, class: "form-control" %>
-          <%= f.label :'Spell Casting Ability', class: "control-label" %>
+          <%= f.text_field :spellCastingAbility, :value=>@spellCastingAbility, class: "form-control" %>
+          <%= f.label :'Spell Casting Ability',  class: "control-label" %>
         </div>
         <div class="form-inline">
-          <%= f.text_field :spellSaveDC, class: "form-control" %>
+          <%= f.text_field :spellSaveDC, :value=> @spellSaveDC, class: "form-control" %>
           <%= f.label :'Spell Save DC', class: "control-label" %>
         </div>
         <div class="form-inline">
-          <%= f.text_field :spellAttackBonus, class: "form-control" %>
+          <%= f.text_field :spellAttackBonus, :value=>@spellAttackBonus, class: "form-control" %>
           <%= f.label :'Spell Attack Bonus', class: "control-label" %>
         </div>
       </div>
@@ -315,7 +355,10 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-      <h4>Equipment</h4>
+      <h4>Equipment (select equipment according to the following instruction) </h4>
+        <% for a in @pcClass.equipment %>
+          <%= a %> <br>
+        <%end%>
       </div>
     </div>
     <hr>
@@ -399,3 +442,77 @@
     <%= f.submit "Save Character", class: "btn btn-default" %>
   </div>
 <% end %>
+
+
+
+<%= javascript_tag do %>
+  function myFunction() {
+         var arr = $('input:checkbox.file-selection-id').map(function () {
+         return this.id;
+         }).get();
+         alert(arr)
+      var now = document.getElementById('skill_id').value;
+      alert(now)
+      var e = document.getElementById("selectedClass");
+      var index = e.options[e.selectedIndex].value;
+   }
+
+<% end %>
+
+<script>
+  
+function calc()
+{
+  if(document.getElementById("skill_chk_id").checked)
+     var now = document.getElementById('skill_id').value;
+     var arr = $('input:checkbox.form-control').filter(':checked').map(function () {
+    return this.id;
+     }).get();
+     alert(arr)
+     document.getElementById('skill_id').value = now + 2;
+  else
+    var now = document.getElementById('skill_id').value;
+     document.getElementById('skill_id').value = now - 2;
+}
+
+$('input[type="checkbox"][id="skill_chk_id"]').change(function() {
+     if(this.checked) {
+      alert(5)
+         // do something when checked
+     }
+ });
+
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+   // var form = document.getElementById("myForm");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+
+
+    function myFunction() {
+      var e = document.getElementById("selectedClass");
+      var index = e.options[e.selectedIndex].value;
+    document.getElementById("myForm").submit();
+    
+  }
+}
+
+</script>

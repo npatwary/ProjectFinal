@@ -15,8 +15,41 @@ class PlayerCharactersController < ApplicationController
 
   # GET /player_characters/new
   def new
-    @player_character = PlayerCharacter.new()
-  end
+    @player_character = PlayerCharacter.new();
+    @pcClasses       = PlayerCharacterClass.all;
+
+    @pcClass         = PlayerCharacterClass.find(1);
+    @st_table        = SavingThroughsTableForClass.all;
+    @skill_table     = SkillsTableForClass.all;
+         
+    @selectedClass   = @pcClass.name;
+
+    @savingThrougs = @pcClass.savingThroughs; 
+    @skills        = @pcClass.proficientSkills;
+    @equipment     = @pcClass.equipment;
+   
+    #byebug
+    
+    # initializing defauls values
+    @abilityScoreVaules = [15,14,13,12,10,8];
+    @proficiencyBonus = 2;
+    @abilityScoreModifiers = [2,2,1,1,0,-1];
+
+    @savingThroughs = @abilityScoreModifiers; 
+
+    @skills_points = [2,0,1,2,-1,1,0,-1,1,0,1,0,-1,-1,1,2,2];
+    
+
+if @pcClass.spellcastAbility.nil? 
+   @spellCastingAbility = "N/A";
+   @spellSaveDC         = "N/A";
+   @spellAttackBonus    = "N/A";
+  else
+   @spellCastingAbility = @st_table.find(@pcClass.spellcastAbility).name;
+   @spellSaveDC         = @pcClass.spellSaveDC + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+   @spellAttackBonus    = @pcClass.spellAttackBonus + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+ end  
+ end
 
   # GET /player_characters/1/edit
   def edit
@@ -24,8 +57,13 @@ class PlayerCharactersController < ApplicationController
 
   # POST /player_characters
   # POST /player_characters.json
+   
+  
   def create
     @player_character = current_user.player_characters.new(player_character_params)
+
+    @pcClasses       = PlayerCharacterClass.all;
+
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build
@@ -38,7 +76,171 @@ class PlayerCharactersController < ApplicationController
       render :new
     elsif params[:remove_armor_and_shield]
       render :new
+
+    elsif (params[:classSelect]&&params[:class_id])
+      @checkName  = "Sohrab";
+      
+      @proficiencyBonus = 2;
+
+    #byebug
+      @playerCharacter = params[:player_character];
+      @newAbilityScore = params[:player_character][:ability_scores_attributes];
+      
+      # reading ability scores
+      @abilityScoreVaules = [];
+      for n in (0..5) do
+        @abilityScoreVaules[n] =  @newAbilityScore[(n).to_s]['score'] ;
+      end
+      
+      # reading ability scores modifiers
+      @abilityScoreModifiers = [];
+      @am = [];
+      for m in (0..5) do
+        @abilityScoreModifiers[m] =  (@abilityScoreVaules[m].to_i-10)/2 ;
+        @am[m] = (@abilityScoreVaules[m].to_i-10)/2 ;
+      end
+     @savingThroughs = @abilityScoreModifiers;
+     # setting new skill points 
+     @skills_points = [@am[1],@am[4],@am[3],@am[0],@am[5],@am[3],@am[4],@am[5],@am[3],@am[4],@am[3],@am[4],@am[5],@am[5],@am[3],@am[1],@am[1],@am[4]]; 
+
+     
+     # set attributes according to calss selection
+     @@cl_id = params[:class_id]
+     @pcClass         = PlayerCharacterClass.find(params[:class_id]);
+     @st_table        = SavingThroughsTableForClass.all;
+     @skill_table     = SkillsTableForClass.all;
+         
+     @savingThrougs = @pcClass.savingThroughs; 
+     @skills        = @pcClass.proficientSkills;
+     @equipment     = @pcClass.equipment;
+     
+     @selectedClass   = @pcClass.name;
+     
+    if @pcClass.spellcastAbility.nil? 
+       @spellCastingAbility = "N/A";
+       @spellSaveDC         = "N/A";
+       @spellAttackBonus    = "N/A";
     else
+       @spellCastingAbility = @st_table.find(@pcClass.spellcastAbility).name;
+       @spellSaveDC         = @pcClass.spellSaveDC + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+       @spellAttackBonus    = @pcClass.spellAttackBonus + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+    end 
+  
+    @savingsParams = params[:player_character][:saving_throws_attributes];
+      
+    @proficientSavings = [];
+    n2 = 0;
+    @index = [];
+    for x1 in ["0","1","2","3","4","5"] do
+      if @savingsParams[x1]['proficient']== "1"
+        #@index[x.to_i] = @skillsParams[x]['proficient']; 
+        @index[n2] = x1.to_i;
+        @savingThroughs[x1.to_i] = @savingThroughs[x1.to_i] + @proficiencyBonus;
+        n2 = n2+1;
+      end
+    end 
+
+  
+ 
+    @skillsParams = params[:player_character][:skills_attributes];
+    @proficiencyBonus = 2;  
+
+      
+    n = 0;
+    @index = [];
+    
+    for x in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"] do
+      if @skillsParams[x]['proficient']== "1"
+        #@index[x.to_i] = @skillsParams[x]['proficient']; 
+        @index[n] = x.to_i;
+        @skills_points[x.to_i] = (@skills_points[x.to_i]).to_ + @proficiencyBonus;
+        n = n+1;
+      end
+    end
+     
+     
+  
+     render :new
+
+
+    else
+
+     @checkName  = "Sohrab";
+      
+      @proficiencyBonus = 2;
+
+    #byebug
+      @playerCharacter = params[:player_character];
+      @newAbilityScore = params[:player_character][:ability_scores_attributes];
+      
+      # reading ability scores
+      @abilityScoreVaules = [];
+      for n in (0..5) do
+        @abilityScoreVaules[n] =  @newAbilityScore[(n).to_s]['score'] ;
+      end
+      
+
+      # reading ability scores modifiers
+      @abilityScoreModifiers = [];
+      @am = [];
+      for m in (0..5) do
+        @abilityScoreModifiers[m] =  (@abilityScoreVaules[m].to_i-10)/2 ;
+        @am[m] = (@abilityScoreVaules[m].to_i-10)/2 ;
+      end
+     @savingThroughs = @abilityScoreModifiers;
+     # setting new skill points 
+     @skills_points = [@am[1],@am[4],@am[3],@am[0],@am[5],@am[3],@am[4],@am[5],@am[3],@am[4],@am[3],@am[4],@am[5],@am[5],@am[3],@am[1],@am[1],@am[4]]; 
+
+     
+     # set attributes according to calss selection
+     
+     @pcClass         = PlayerCharacterClass.find(@@cl_id);
+     @st_table        = SavingThroughsTableForClass.all;
+     @skill_table     = SkillsTableForClass.all;
+         
+     @savingThrougs = @pcClass.savingThroughs; 
+     @skills        = @pcClass.proficientSkills;
+     @equipment     = @pcClass.equipment;
+     
+    @selectedClass   = @pcClass.name;
+    @skillsParams = params[:player_character][:skills_attributes];
+      
+    @proficientSkills = [];
+    n = 0;
+    @index = [];
+    for x in ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16"] do
+      if @skillsParams[x]['proficient']== "1"
+        #@index[x.to_i] = @skillsParams[x]['proficient']; 
+        @index[n] = x.to_i;
+        @skills_points[x.to_i] = @skills_points[x.to_i] + @proficiencyBonus;
+        n = n+1;
+      end
+    end
+    
+   
+    @savingsParams = params[:player_character][:saving_throws_attributes];
+      
+    @proficientSavings = [];
+    n2 = 0;
+    @index = [];
+    for x1 in ["0","1","2","3","4","5"] do
+      if @savingsParams[x1]['proficient']== "1"
+        #@index[x.to_i] = @skillsParams[x]['proficient']; 
+        @index[n2] = x1.to_i;
+        @savingThroughs[x1.to_i] = @savingThroughs[x1.to_i] + @proficiencyBonus;
+        n2 = n2+1;
+      end
+    end 
+    
+   if @pcClass.spellcastAbility.nil? 
+       @spellCastingAbility = "N/A";
+       @spellSaveDC         = "N/A";
+       @spellAttackBonus    = "N/A";
+   else
+       @spellCastingAbility = @st_table.find(@pcClass.spellcastAbility).name;
+       @spellSaveDC         = @pcClass.spellSaveDC + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+       @spellAttackBonus    = @pcClass.spellAttackBonus + @abilityScoreModifiers[@pcClass.spellcastAbility.to_i-1]+@proficiencyBonus;
+   end  
       # normal create function
       respond_to do |format|
         if @player_character.save

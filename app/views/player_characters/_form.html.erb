@@ -1,3 +1,5 @@
+
+
 <%= form_for(setup_playercharacter(@player_character)) do |f| %>
   <% if @player_character.errors.any? %>
     <div id="error_explanation">
@@ -14,7 +16,7 @@
     <div class="col-md-4">
       <div class="form-group">
         <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
+        <%= f.text_field :name, :value => "paladin", class: "form-control" %>
       </div>
     </div>
     <div class="col-md-8">
