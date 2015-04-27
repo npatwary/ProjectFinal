@@ -66,3 +66,4 @@ PlayerCharacter.create(name:"Zoro - The fighter", classDnD:"Fighter", level:1, b
 Wealth.create(gold:500, copper:1000, silver: 500, electrum: 100,platinum: 10, player_character:player2)
 #Wealth.create(gold:5000, copper:1000, silver: 500, electrum: 400,  platinum: 100, player_character:player3)
 
+Cantrip.create(name:"Light", player_character:player3)

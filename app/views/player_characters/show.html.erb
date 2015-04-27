@@ -303,6 +303,26 @@
         </table>
       </div>
     </div>
+    <hr>
+
+    <h4>Spells</h4>
+      <h4>1.Cantrips</h4>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @player_character.cantrips.each do |cantrips| %>
+            <tr>
+                <%= cantrips.name %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        
+    <hr>
     <div class="row">
       <div class="col-md-12">
         <p>
@@ -390,6 +410,7 @@
       </div>
     </div>
     <hr>
+    
     <div class="row">
       <div class="col-md-12">
         <h4>Additional Features And Traits</h4>

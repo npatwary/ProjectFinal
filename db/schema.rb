@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150421191744) do
+ActiveRecord::Schema.define(version: 20150426013634) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -60,6 +60,15 @@ ActiveRecord::Schema.define(version: 20150421191744) do
   end
 
   add_index "attack_weapons", ["playercharacter_id"], name: "index_attack_weapons_on_playercharacter_id"
+
+  create_table "cantrips", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "playercharacter_id"
+  end
+
+  add_index "cantrips", ["playercharacter_id"], name: "index_cantrips_on_playercharacter_id"
 
   create_table "equipment", force: :cascade do |t|
     t.integer  "playercharacter_id"
@@ -182,6 +191,12 @@ ActiveRecord::Schema.define(version: 20150421191744) do
   end
 
   add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"
+
+  create_table "spells", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "user_name"

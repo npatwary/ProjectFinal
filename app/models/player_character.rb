@@ -79,11 +79,14 @@ class PlayerCharacter < ActiveRecord::Base
 	has_many :equipments, foreign_key: "playercharacter_id", class_name: "Equipment", dependent: :destroy
 	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth", dependent: :destroy
 	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization", dependent: :destroy
+	has_many :cantrips, foreign_key: "playercharacter_id", class_name: "Cantrip", dependent: :destroy
+
 
 	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :wealth
 	accepts_nested_attributes_for :attack_weapons, allow_destroy: true
 	accepts_nested_attributes_for :armor_and_shields, allow_destroy: true
 	accepts_nested_attributes_for :equipments, allow_destroy: true
 	accepts_nested_attributes_for :allies_and_organizations, allow_destroy: true
+	accepts_nested_attributes_for :cantrips, allow_destroy: true
 
 end

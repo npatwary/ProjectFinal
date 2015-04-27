@@ -20,7 +20,8 @@ module PlayerCharactersHelper
 	      end
 	    end
 	    player_character.attack_weapons.build if @player_character.attack_weapons.empty?
-	    player_character.armor_and_shields.build if @player_character.armor_and_shields.empty?    
+	    player_character.armor_and_shields.build if @player_character.armor_and_shields.empty?   
+	    player_character.cantrips.build if @player_character.cantrips.empty? 
 	    player_character.build_wealth if @player_character.wealth.nil?
 	    player_character.allies_and_organizations.build if @player_character.allies_and_organizations.empty?
 	    player_character

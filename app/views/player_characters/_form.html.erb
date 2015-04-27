@@ -229,6 +229,8 @@
     </div>
   </div>
   <hr>
+
+
   <div class="form-group">
     <div class="row">
       <div class="col-md-12">
@@ -251,7 +253,7 @@
               <%= attackWeaponsForm.text_field :name, class: "form-control" %>
             </div>
           </div>
-          <div class="col-md-2"><%= attackWeaponsForm.text_field :attackBonus, class: "form-control", size: 3 %></div>
+         <div class="col-md-2"><%= attackWeaponsForm.text_field :attackBonus, class: "form-control", size: 3 %></div>
           <div class="col-md-2"><%= attackWeaponsForm.text_field :damage, class: "form-control", size: 3  %></div>
           <div class="col-md-2"><%= attackWeaponsForm.text_field :typeDnD, class: "form-control", size: 3 %></div>
           <div class="col-md-1"><%= attackWeaponsForm.number_field :cost, class: "form-control", size: 3, in:0..1000 %></div>
@@ -268,6 +270,46 @@
         </div>
       </div>
     </div>
+
+
+
+
+    <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Add Spell</h4>
+        <div class="row">
+          <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+        </div>
+        <%= f.fields_for :cantrips do |cantripsForm| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <%= cantripsForm.check_box :_destroy %>
+              </span>
+              <%= cantripsForm.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+
+       </div>
+        <% end %>
+
+
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit 'Delete Checked Cantrips', :name => "remove_cantrip", class: "btn btn-default"  %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= f.submit 'Add Cantrip', :name => "add_cantrip", class: "btn btn-default"  %>
+          </div>
+         </div>
+      </div>
+    </div>
+
+
+
+
     <div class="row">
       <div class="col-md-12">
         <h4>Armor And Shields</h4>
@@ -306,6 +348,10 @@
         </div>
       </div>
     </div>
+
+
+
+
     <div class="row">
       <div class="col-md-12">
         <%= f.label :'Attacks Description', class: "control-label" %>
@@ -376,6 +422,31 @@
         <% end %>
       </div>
     </div>
+    <hr>
+<!--
+
+     "saleha" 
+     <h4>Spells</h4>
+      <h4>1.Cantrips</h4>
+       <div class="row">
+        <div class="col-md-4"><%= f.label :name, class: "control-label" %></div>
+       </div>
+      <%= f.fields_for :cantrips do |cantripsForm| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-addon">
+                  <%= cantripsForm.check_box :_destroy %>
+                </span>
+            <%= cantripsForm.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+
+      <div class="btn-group" role="group">
+          <%= f.submit 'Add Cantrip', :name => "add_cantrip", class: "btn btn-default" %>
+      </div>-->
     <hr>
     <div class="row">
       <div class="col-md-12">
