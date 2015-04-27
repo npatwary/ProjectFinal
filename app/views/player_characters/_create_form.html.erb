@@ -35,7 +35,8 @@
         </div>
         <div class="field">
           <%= f.label :race %><br>
-          <%= f.text_field :race, class: "form-control" %>
+          <!--<%= f.select :race, class: "form-control" %>-->
+          <%= f.collection_select :race, Race.all, :id, :name, {:include_blank => "Select a race"},{:class => "form-control",:onChange=>"raceSelectionHandler();"} %>
         </div>
       </div>
       <div class="col-md-4">
@@ -113,7 +114,7 @@
           <%= f.label :Initiative, class: "control-label"  %>
         </div>
         <div class="form-inline">
-          <%= f.number_field :speed, class: "form-control"  %>
+          <%= f.number_field :speed, class: "form-control",:readonly => true  %>
           <%= f.label :Speed, class: "control-label"  %>
         </div>
         <div class="form-inline">
@@ -326,13 +327,13 @@
           <div class="col-md-6">
             <div class="form-group">
               <%= f.label :'Features And Traits', class: "control-label" %>
-              <%= f.text_area :featuresAndTraits, class: "form-control", size:"10x10" %>
+              <%= f.text_area :featuresAndTraits, class: "form-control",:readonly => true, size:"10x10" %>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <%= f.label :'Other Proficiencies And Languages', class: "control-label" %>
-              <%= f.text_area :otherProficienciesAndLanguages, class: "form-control", size:"10x10" %>
+              <%= f.text_area :otherProficienciesAndLanguages, class: "form-control",:readonly => true, size:"10x10" %>
             </div>
           </div>
         </div>

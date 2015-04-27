@@ -3,3 +3,62 @@
 <%= render 'create_form' %>
 
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
+<script type="text/javascript" charset="utf-8">
+
+  function autoPopulateRaceRelatedFields(data){
+  	console.log("ajax race post successful!")
+  	console.log(data)
+  	console.log(data['max_age'])
+
+  	//auto populate html controls
+  	$('#player_character_speed').val(data['base_speed'])
+
+    var alignment = "";
+  	if(data['alignment'] != null){
+      alignment = data['alignment'];
+    }
+  	
+    $('#player_character_alignment').val(alignment);
+  	
+
+  	$('#player_character_featuresAndTraits').val(data['features'])
+
+  	var otherProficienciesAndLanguages = data['language'] + '\n'
+    if(data['tools'] != null){
+      otherProficienciesAndLanguages = otherProficienciesAndLanguages + data['tools'];
+    }
+  	$('#player_character_otherProficienciesAndLanguages').val(otherProficienciesAndLanguages);
+
+  }
+
+  function raceSelectionHandler()
+ {
+ 	
+ 	//alert($('#player_character_race').val());
+ 	selected_race_id = $('#player_character_race').val();
+    if(selected_race_id == ""){
+      //reset fields affected by race selection
+      $('#player_character_speed').val("");
+      $('#player_character_alignment').val("");
+      $('#player_character_featuresAndTraits').val("");
+      $('#player_character_otherProficienciesAndLanguages').val("");
+      return;
+    }
+    	
+
+    console.log("selected race is " + $('#player_character_race option:selected').text() + " with id: " + selected_race_id)
+ 	//alert($('#player_character_race option:selected').text());
+
+   var request =  $.ajax({
+    	type: "POST",
+    	url: "/races/"+selected_race_id,
+    	dataType: "json",
+    	success: function(data, httpStatus, xmlHttpObj){
+    		autoPopulateRaceRelatedFields(data);
+    	},
+    	error: function(xmlHttpObj, httpStatus,errMsg){
+    		console.log("Oops!!" + httpStatus + ":" + errMsg);
+    	}
+    });
+  }
+ </script>
