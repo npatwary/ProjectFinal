@@ -51,6 +51,15 @@ class PlayerCharactersController < ApplicationController
       end
     end
   end
+  def ajaxwindow
+    background = 
+    data[personalityTraits] = personalityTraits5EFor(background)
+    data[ideals] = ideals5EFor(background)
+    data[bonds] = bonds5EFor(background)
+    data[flaws] = flaws5EFor(background)
+    respond_to do |format|
+      format.json { render json: data }
+  end
 
   # PATCH/PUT /player_characters/1
   # PATCH/PUT /player_characters/1.json

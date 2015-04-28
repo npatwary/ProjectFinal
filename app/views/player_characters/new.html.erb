@@ -9,12 +9,10 @@
 $("#player_character_background").change(function(){
     var background = this.options[this.selectedIndex].value;
     alert(background);
-	}
-);
 
-var request =  $.ajax({
+	var request =  $.ajax({
     	type: "POST",
-    	url: "/player_characters.json",
+    	url: "/player_characters/ajaxwindow/"+background ,
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
     		
@@ -23,5 +21,6 @@ var request =  $.ajax({
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
     	}
     });
+})
 
 </script>
