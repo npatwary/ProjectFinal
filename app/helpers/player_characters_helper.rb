@@ -200,7 +200,7 @@ module PlayerCharactersHelper
 				    				"I come from a noble family, and one day I’ll reclaim my lands and title from those who stole them from me.",
 				    				"A powerful person killed someone I love. Some day soon, I’ll have my revenge.",
 				    				"I swindled and ruined a person who didn’t deserve it. I seek to atone for my misdeeds but might never be able to forgive myself."],
-				    'Criminal' => ["I’m trying to pay off an old debt Iowe to a generous benefactor.",
+				    'Criminal' => ["I’m trying to pay off an old debt I owe to a generous benefactor.",
 				    			   "My ill-gotten gains go to support my family.",
 				    			   "Something important was taken from me, and I aim to steal it back.",
 				    			   "I will become the greatest thiefthat ever lived.",

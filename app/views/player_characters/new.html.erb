@@ -15,7 +15,9 @@ $("#player_character_background").change(function(){
     	url: "/player_characters/ajaxwindow/"+background ,
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
-    		
+    		console.log(data);
+    		$("#player_character_personalityTraits").options = data.personalityTraits
+
     	},
     	error: function(xmlHttpObj, httpStatus,errMsg){
     		console.log("Oops!!" + httpStatus + ":" + errMsg);

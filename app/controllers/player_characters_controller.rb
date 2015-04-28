@@ -1,6 +1,8 @@
 class PlayerCharactersController < ApplicationController
   before_action :set_player_character, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+
+  include PlayerCharactersHelper
   # GET /player_characters
   # GET /player_characters.json
   def index
@@ -52,13 +54,15 @@ class PlayerCharactersController < ApplicationController
     end
   end
   def ajaxwindow
-    background = 
-    data[personalityTraits] = personalityTraits5EFor(background)
-    data[ideals] = ideals5EFor(background)
-    data[bonds] = bonds5EFor(background)
-    data[flaws] = flaws5EFor(background)
+    background = params[:background]
+    data = {  'personalityTraits' => personalityTraits5EFor(background),
+              'ideals' => ideals5EFor(background),
+              'bonds' => bonds5EFor(background),
+              'flaws' => flaws5EFor(background)
+            }
     respond_to do |format|
       format.json { render json: data }
+    end
   end
 
   # PATCH/PUT /player_characters/1

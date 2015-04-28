@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-
 get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
   get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'
  
@@ -27,7 +25,7 @@ delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
 
   get 'join_game/join_game_form'
 
-
+  post '/player_characters/ajaxwindow/:background' => 'player_characters#ajaxwindow'
   resources :player_characters
 
   # The priority is based upon order of creation: first created -> highest priority.
