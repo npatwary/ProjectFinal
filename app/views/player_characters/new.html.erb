@@ -12,11 +12,11 @@
 
       //update ability scores before sending post request
       var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Strength').text());
-      var dexterity_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Dexterity').text());
-      var constitution_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Constitution').text());
-      var intelligence_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Intelligence').text());
-      var wisdom_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Wisdom').text());
-      var charisma_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Charisma').text());
+      var dexterity_score = parseInt($('#player_character_ability_scores_attributes_1_score').val()) + parseInt($('#race_Dexterity').text());
+      var constitution_score = parseInt($('#player_character_ability_scores_attributes_2_score').val()) + parseInt($('#race_Constitution').text());
+      var intelligence_score = parseInt($('#player_character_ability_scores_attributes_3_score').val()) + parseInt($('#race_Intelligence').text());
+      var wisdom_score = parseInt($('#player_character_ability_scores_attributes_4_score').val()) + parseInt($('#race_Wisdom').text());
+      var charisma_score = parseInt($('#player_character_ability_scores_attributes_5_score').val()) + parseInt($('#race_Charisma').text());
 
       $('#player_character_ability_scores_attributes_0_score').val(strength_score);
       $('#player_character_ability_scores_attributes_1_score').val(dexterity_score);
@@ -74,11 +74,14 @@
   function updateAllFieldsRelatedWithAbilityScores(){
     //final ability score = ability score + ability_score_racial_increase + ability_score_class_increase
     var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Strength').text());
-    var dexterity_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Dexterity').text());
-    var constitution_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Constitution').text());
-    var intelligence_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Intelligence').text());
-    var wisdom_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Wisdom').text());
-    var charisma_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Charisma').text());
+    var dexterity_score = parseInt($('#player_character_ability_scores_attributes_1_score').val()) + parseInt($('#race_Dexterity').text());
+    var constitution_score = parseInt($('#player_character_ability_scores_attributes_2_score').val()) + parseInt($('#race_Constitution').text());
+    var intelligence_score = parseInt($('#player_character_ability_scores_attributes_3_score').val()) + parseInt($('#race_Intelligence').text());
+    var wisdom_score = parseInt($('#player_character_ability_scores_attributes_4_score').val()) + parseInt($('#race_Wisdom').text());
+    var charisma_score = parseInt($('#player_character_ability_scores_attributes_5_score').val()) + parseInt($('#race_Charisma').text());
+
+      console.log(strength_score);
+      console.log(dexterity_score);
 
     //update score modifiers
       updateScoreModifiers(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
