@@ -4,6 +4,30 @@
 
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
 <script type="text/javascript" charset="utf-8">
+  
+  $(document).ready(function(){
+  $("#new_player_character").submit(function(){
+      //alert($('#race_Strength').text())
+      //alert("here");
+
+      //update ability scores before sending post request
+      var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Strength').text());
+      var dexterity_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Dexterity').text());
+      var constitution_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Constitution').text());
+      var intelligence_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Intelligence').text());
+      var wisdom_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Wisdom').text());
+      var charisma_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Charisma').text());
+
+      $('#player_character_ability_scores_attributes_0_score').val(strength_score);
+      $('#player_character_ability_scores_attributes_1_score').val(dexterity_score);
+      $('#player_character_ability_scores_attributes_2_score').val(constitution_score);
+      $('#player_character_ability_scores_attributes_3_score').val(intelligence_score);
+      $('#player_character_ability_scores_attributes_4_score').val(wisdom_score);
+      $('#player_character_ability_scores_attributes_5_score').val(charisma_score);
+
+      //return false;
+    });
+  });
 
   function autoPopulateRaceRelatedFields(data){
   	console.log("ajax race post successful!")
@@ -28,6 +52,82 @@
       otherProficienciesAndLanguages = otherProficienciesAndLanguages + data['tools'];
     }
   	$('#player_character_otherProficienciesAndLanguages').val(otherProficienciesAndLanguages);
+
+    //set racial increase of ability scores
+    $('#race_Strength').text(data['strength']);
+    $('#race_Dexterity').text(data['dexterity']);
+    $('#race_Constitution').text(data['constitution']);
+    $('#race_Intelligence').text(data['intelligence']);
+    $('#race_Wisdom').text(data['wisdom']);
+    $('#race_Charisma').text(data['charisma']);
+
+    //final ability score = ability score + ability_score_racial_increase + ability_score_class_increase
+    var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Strength').text());
+    var dexterity_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Dexterity').text());
+    var constitution_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Constitution').text());
+    var intelligence_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Intelligence').text());
+    var wisdom_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Wisdom').text());
+    var charisma_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Charisma').text());
+
+    //update score modifiers
+      updateScoreModifiers(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
+      updateSavingThrows(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
+      updateSkills(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
+
+  }
+
+  function updateScoreModifiers(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score){
+      
+
+      $('#player_character_ability_scores_attributes_0_modifier').val(getScoreModifier(strength_score));
+      $('#player_character_ability_scores_attributes_1_modifier').val(getScoreModifier(dexterity_score));
+      $('#player_character_ability_scores_attributes_2_modifier').val(getScoreModifier(constitution_score));
+      $('#player_character_ability_scores_attributes_3_modifier').val(getScoreModifier(intelligence_score));
+      $('#player_character_ability_scores_attributes_4_modifier').val(getScoreModifier(wisdom_score));
+      $('#player_character_ability_scores_attributes_5_modifier').val(getScoreModifier(charisma_score));
+  }
+
+  function updateSavingThrows(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score){
+
+      $('#player_character_saving_throws_attributes_0_modifier').val(getScoreModifier(strength_score));
+      $('#player_character_saving_throws_attributes_1_modifier').val(getScoreModifier(dexterity_score));
+      $('#player_character_saving_throws_attributes_2_modifier').val(getScoreModifier(constitution_score));
+      $('#player_character_saving_throws_attributes_3_modifier').val(getScoreModifier(intelligence_score));
+      $('#player_character_saving_throws_attributes_4_modifier').val(getScoreModifier(wisdom_score));
+      $('#player_character_saving_throws_attributes_5_modifier').val(getScoreModifier(charisma_score));
+  }
+
+  function updateSkills(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score){
+
+      $('#player_character_skills_attributes_0_modifier').val(getScoreModifier(dexterity_score));//acrobatics
+      $('#player_character_skills_attributes_1_modifier').val(getScoreModifier(wisdom_score));//animal handling
+      $('#player_character_skills_attributes_2_modifier').val(getScoreModifier(intelligence_score));//arcana
+      $('#player_character_skills_attributes_3_modifier').val(getScoreModifier(strength_score));//athletics
+      $('#player_character_skills_attributes_4_modifier').val(getScoreModifier(charisma_score));//deception
+      $('#player_character_skills_attributes_5_modifier').val(getScoreModifier(intelligence_score));//history
+
+      $('#player_character_skills_attributes_6_modifier').val(getScoreModifier(wisdom_score));//insight
+      $('#player_character_skills_attributes_7_modifier').val(getScoreModifier(charisma_score));//intimidation
+      $('#player_character_skills_attributes_8_modifier').val(getScoreModifier(intelligence_score));//investigation
+      $('#player_character_skills_attributes_9_modifier').val(getScoreModifier(wisdom_score));//medicine
+      $('#player_character_skills_attributes_10_modifier').val(getScoreModifier(intelligence_score));//nature
+      $('#player_character_skills_attributes_11_modifier').val(getScoreModifier(wisdom_score));//perception
+
+      $('#player_character_skills_attributes_12_modifier').val(getScoreModifier(charisma_score));//performance
+      $('#player_character_skills_attributes_13_modifier').val(getScoreModifier(charisma_score));//persuasion
+      $('#player_character_skills_attributes_14_modifier').val(getScoreModifier(intelligence_score));//religion
+      $('#player_character_skills_attributes_15_modifier').val(getScoreModifier(dexterity_score));//sleight of hand
+      $('#player_character_skills_attributes_16_modifier').val(getScoreModifier(dexterity_score));//stealth
+      $('#player_character_skills_attributes_17_modifier').val(getScoreModifier(wisdom_score));//survival
+  }
+
+  function getScoreModifier(score){
+
+    //subtract 10 from score
+    var retValue = score - 10;
+    //divide by 2 and round down
+    retValue = retValue / 2;
+    return Math.floor(retValue);
 
   }
 

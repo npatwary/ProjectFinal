@@ -57,8 +57,11 @@
         <h4>Ability Scores</h4>
         <%= f.fields_for :ability_scores do |abilityScoreForm| %>
           <div class="col-md-2">
-            <%= abilityScoreForm.object.name %><br>
-            <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
+            <%= abilityScoreForm.label :name, abilityScoreForm.object.name %><br>
+            <div class="input-group">
+              <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
+              <span class="input-group-addon" id="<%= 'race_' + abilityScoreForm.object.name %>" title="Racial Increase">0</span>
+            </div><br>
             <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier' %><br>
             <%= abilityScoreForm.hidden_field :name %>
           </div>
