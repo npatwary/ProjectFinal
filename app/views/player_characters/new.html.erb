@@ -173,5 +173,37 @@
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
     	}
     });
-  }
+   }
+
+
+   function classSelectionHandler()
+ {
+  
+  //alert($('#player_character_race').val());
+  selected_class_id = $('#player_character_classDnD').val();
+    if(selected_class_id == ""){
+      //reset fields affected by race selection
+      $('#player_character_speed').val("");
+      $('#player_character_alignment').val("");
+      $('#player_character_featuresAndTraits').val("");
+      $('#player_character_otherProficienciesAndLanguages').val("");
+      return;
+    }
+      
+
+    console.log("selected race is " + $('#player_character_race option:selected').text() + " with id: " + selected_class_id)
+  //alert($('#player_character_race option:selected').text());
+
+   var request =  $.ajax({
+      type: "POST",
+      url: "/races/"+selected_class_id,
+      dataType: "json",
+      success: function(data, httpStatus, xmlHttpObj){
+        autoPopulateRaceRelatedFields(data);
+      },
+      error: function(xmlHttpObj, httpStatus,errMsg){
+        console.log("Oops!!" + httpStatus + ":" + errMsg);
+      }
+    });
+   }
  </script>

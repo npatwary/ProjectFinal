@@ -21,7 +21,7 @@
       <div class="col-md-4">
         <div class="field">
           <%= f.label :class%><br>
-          <%= f.text_field :classDnD, class: "form-control"%>
+           <%= f.collection_select :classDnD, Race.all, :id, :name, {:include_blank => "Select a Class"},{:class => "form-control",:onChange=>"classSelectionHandler();"} %>
         </div>
         <div class="field">
           <%= f.label :level %><br>
