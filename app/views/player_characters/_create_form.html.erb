@@ -59,10 +59,10 @@
           <div class="col-md-2">
             <%= abilityScoreForm.label :name, abilityScoreForm.object.name %><br>
             <div class="input-group">
-              <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
+              <%= abilityScoreForm.number_field :score, class: "form-control ability_score", placeholder: 'Score'%><br>
               <span class="input-group-addon" id="<%= 'race_' + abilityScoreForm.object.name %>" title="Racial Increase">0</span>
             </div><br>
-            <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier' %><br>
+            <%= abilityScoreForm.number_field :modifier, class: "form-control", placeholder: 'Modifier',:readonly => true %><br>
             <%= abilityScoreForm.hidden_field :name %>
           </div>
         <% end %>
@@ -75,7 +75,7 @@
         <h4>Skills</h4>
         <%= f.fields_for :skills do |skillsForm| %>
           <div class="form-inline">
-            <%= skillsForm.number_field :modifier, class: "form-control" %>
+            <%= skillsForm.number_field :modifier,:readonly => true, class: "form-control" %>
             <%= skillsForm.check_box :proficient, class: "form-control" %>
             <%= skillsForm.object.name %>
             (<%= skillsForm.object.ability%>)
@@ -101,7 +101,7 @@
         <h4>Saving Throws</h4>
           <%= f.fields_for :saving_throws do |savingThrowForm| %>
             <div class="form-inline">
-              <%= savingThrowForm.text_field :modifier, class: "form-control" %>
+              <%= savingThrowForm.text_field :modifier,:readonly => true, class: "form-control" %>
               <%= savingThrowForm.check_box :proficient, class: "form-control" %>
               <%= savingThrowForm.object.name %>
               <%= savingThrowForm.hidden_field :name %>

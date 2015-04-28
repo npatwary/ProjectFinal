@@ -27,6 +27,12 @@
 
       //return false;
     });
+
+    //add on change event for ability scores
+    $('.ability_score').change(function(){
+        updateAllFieldsRelatedWithAbilityScores();
+    });
+
   });
 
   function autoPopulateRaceRelatedFields(data){
@@ -61,6 +67,11 @@
     $('#race_Wisdom').text(data['wisdom']);
     $('#race_Charisma').text(data['charisma']);
 
+    updateAllFieldsRelatedWithAbilityScores();
+
+  }
+
+  function updateAllFieldsRelatedWithAbilityScores(){
     //final ability score = ability score + ability_score_racial_increase + ability_score_class_increase
     var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Strength').text());
     var dexterity_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) + parseInt($('#race_Dexterity').text());
@@ -73,7 +84,6 @@
       updateScoreModifiers(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
       updateSavingThrows(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
       updateSkills(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
-
   }
 
   function updateScoreModifiers(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score){
