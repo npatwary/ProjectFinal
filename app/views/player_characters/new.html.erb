@@ -8,16 +8,45 @@
 
 $("#player_character_background").change(function(){
     var background = this.options[this.selectedIndex].value;
-    alert(background);
-
 	var request =  $.ajax({
     	type: "POST",
     	url: "/player_characters/ajaxwindow/"+background ,
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
     		console.log(data);
-    		$("#player_character_personalityTraits").options = data.personalityTraits
-
+            /* Remove all options from the select list */
+            $('#player_character_personalityTraits').empty();
+            /* Insert the new options from data */
+            $.each(data.personalityTraits, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_personalityTraits").add(option);
+            });
+            $('#player_character_ideals').empty();
+            /* Insert the new options from data */
+            $.each(data.ideals, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_ideals").add(option);
+            });
+            $('#player_character_bonds').empty();
+            /* Insert the new options from data */
+            $.each(data.bonds, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_bonds").add(option);
+            });
+            $('#player_character_flaws').empty();
+            /* Insert the new options from data */
+            $.each(data.flaws, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_flaws").add(option);
+            });
     	},
     	error: function(xmlHttpObj, httpStatus,errMsg){
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
@@ -26,3 +55,9 @@ $("#player_character_background").change(function(){
 })
 
 </script>
+            var option = document.createElement("OPTION")
+            for(var i = 1; i < data.personalityTraits.length; i++) {
+                option.text = data.personalityTraits[i]
+                option.value = data.personalityTraits[i]
+                console.log(option);
+                $("#player_character_personalityTraits").add( option )

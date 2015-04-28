@@ -31,7 +31,7 @@
       <div class="col-md-4">
         <div class="field">
           <%= f.label :background %><br>
-          <%= f.select :background, options_for_select(backgrounds5E, f.object.background), {}, {class: "form-control"} %>
+          <%= f.select :background, options_for_select(backgrounds5E, f.object.background), {}, {class: "form-control", :include_blank => "Choose a Background"} %>
         </div>
         <div class="field">
           <%= f.label :race %><br>
