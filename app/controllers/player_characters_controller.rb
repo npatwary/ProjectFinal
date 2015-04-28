@@ -58,7 +58,8 @@ class PlayerCharactersController < ApplicationController
     data = {  'personalityTraits' => personalityTraits5EFor(background),
               'ideals' => ideals5EFor(background),
               'bonds' => bonds5EFor(background),
-              'flaws' => flaws5EFor(background)
+              'flaws' => flaws5EFor(background),
+              'backgroundFeature' => backgroundFeature5EFor(background)
             }
     respond_to do |format|
       format.json { render json: data }

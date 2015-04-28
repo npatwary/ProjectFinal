@@ -393,7 +393,7 @@ module PlayerCharactersHelper
 		unless background.nil?
 			return @@backgroundFeature5E[background]
 		else
-			nil
+			""
 	end
 	def personalityTraits5EFor(background)
 		unless background.nil?
