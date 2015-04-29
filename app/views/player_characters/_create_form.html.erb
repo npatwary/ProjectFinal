@@ -1,3 +1,4 @@
+<!-- 5E (DnD Fifth Edition) methods are found in player_character_helper.rb -->
 <%= form_for(setup_playercharacter(@player_character)) do |f| %>
   <% if @player_character.errors.any? %>
     <div id="error_explanation">
@@ -21,7 +22,7 @@
       <div class="col-md-4">
         <div class="field">
           <%= f.label :class%><br>
-          <%= f.text_field :classDnD, class: "form-control"%>
+          <%= f.text_field :classDnD, class: "form-control" %>
         </div>
         <div class="field">
           <%= f.label :level %><br>
@@ -31,18 +32,17 @@
       <div class="col-md-4">
         <div class="field">
           <%= f.label :background %><br>
-          <%= f.text_field :background, class: "form-control" %>
+          <%= f.select :background, options_for_select(backgrounds5E, f.object.background), {include_blank: "Choose a Background"}, {class: "form-control"} %>
         </div>
         <div class="field">
           <%= f.label :race %><br>
-          <!--<%= f.select :race, class: "form-control" %>-->
           <%= f.collection_select :race, Race.all, :id, :name, {:include_blank => "Select a race"},{:class => "form-control",:onChange=>"raceSelectionHandler();"} %>
         </div>
       </div>
       <div class="col-md-4">
         <div class="field">
           <%= f.label :alignment %><br>
-          <%= f.text_field :alignment, class: "form-control" %>
+          <%= f.select :alignment, options_for_select(alignment5E, f.object.alignment), {include_blank: "Choose Alignment"}, { class: "form-control"} %>
         </div>
         <div class="field">
           <%= f.label :experiencePoints %><br>
@@ -166,21 +166,23 @@
       </div>
       <div class="col-md-4">
         <h4>Personality</h4>
+        <div class="PersonalityIdealsBondsFlaws">
         <div class="form-group">
-          <%= f.label :'Personality Traits', class: "control-label" %>
-          <%= f.text_area :personalityTraits, class: "form-control", size:"10x2" %>
+          <%= f.label :'Personality Traits', class: "control-label" %><br>
+          <%= f.select :personalityTraits, options_for_select(personalityTraits5EFor(f.object.background)), {}, {class: "form-control"} %>
         </div>
         <div class="form-group">
-          <%= f.label :Ideals, class: "control-label" %>
-          <%= f.text_area :ideals, class: "form-control", size:"10x2" %>
+          <%= f.label :'Ideals', class: "control-label" %><br>
+          <%= f.select :ideals, options_for_select(ideals5EFor(f.object.background)), {}, {class: "form-control"} %>
         </div>
         <div class="form-group">
-          <%= f.label :Bonds, class: "control-label" %>
-          <%= f.text_area :bonds, class: "form-control", size:"10x2" %>
+          <%= f.label :'Bonds', class: "control-label" %><br>
+          <%= f.select :bonds, options_for_select(bonds5EFor(f.object.background)), {}, {class: "form-control"} %>
         </div>
         <div class="form-group">
-          <%= f.label :Flaws, class: "control-label" %>
-          <%= f.text_area :flaws, class: "form-control", size:"10x2" %>
+          <%= f.label :'Flaws', class: "control-label" %><br>
+          <%= f.select :flaws, options_for_select(flaws5EFor(f.object.background)), {}, {class: "form-control"} %>
+        </div>
         </div>
         <h4>Physical Features</h4>
         <div class="form-inline">

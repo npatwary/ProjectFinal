@@ -1,6 +1,8 @@
 class PlayerCharactersController < ApplicationController
   before_action :set_player_character, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy, :ajaxwindow]
+
+  include PlayerCharactersHelper
   # GET /player_characters
   # GET /player_characters.json
   def index
@@ -55,6 +57,18 @@ class PlayerCharactersController < ApplicationController
       end
     end
   end
+  def ajaxwindow
+    background = params[:background]
+    data = {  'personalityTraits' => personalityTraits5EFor(background),
+              'ideals' => ideals5EFor(background),
+              'bonds' => bonds5EFor(background),
+              'flaws' => flaws5EFor(background),
+              'backgroundFeature' => backgroundFeature5EFor(background)
+            }
+    respond_to do |format|
+      format.json { render json: data }
+    end
+  end
 
   # PATCH/PUT /player_characters/1
   # PATCH/PUT /player_characters/1.json
@@ -66,7 +80,6 @@ class PlayerCharactersController < ApplicationController
       # rebuild the attack weapon attributes that doesn't have an id
       unless params[:player_character][:attack_weapons_attributes].blank?
         for attribute in params[:player_character][:attack_weapons_attributes]
-          puts attribute
           unless attribute.last.has_key?(:id)
             @player_character.attack_weapons.build(attribute.last.except(:_destroy)) 
           end

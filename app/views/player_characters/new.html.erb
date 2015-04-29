@@ -3,6 +3,7 @@
 <%= render 'create_form' %>
 
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
+
 <script type="text/javascript" charset="utf-8">
   
   $(document).ready(function(){
@@ -168,10 +169,62 @@
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
     		autoPopulateRaceRelatedFields(data);
+        },
+        error: function(xmlHttpObj, httpStatus,errMsg){
+            console.log("Oops!!" + httpStatus + ":" + errMsg);
+        }
+    });
+}
+
+//** Background Javascript Methods **//
+$("#player_character_background").change(function(){
+    var background = this.options[this.selectedIndex].value;
+	var request =  $.ajax({
+    	type: "POST",
+    	url: "/player_characters/ajaxwindow/"+background ,
+    	dataType: "json",
+    	success: function(data, httpStatus, xmlHttpObj){
+    		console.log(data);
+            /* Remove all options from the select list */
+            $('#player_character_personalityTraits').empty();
+            /* Insert the new options from data */
+            $.each(data.personalityTraits, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_personalityTraits").add(option);
+            });
+            $('#player_character_ideals').empty();
+            /* Insert the new options from data */
+            $.each(data.ideals, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_ideals").add(option);
+            });
+            $('#player_character_bonds').empty();
+            /* Insert the new options from data */
+            $.each(data.bonds, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_bonds").add(option);
+            });
+            $('#player_character_flaws').empty();
+            /* Insert the new options from data */
+            $.each(data.flaws, function( index, value) {
+                var option = document.createElement("OPTION");
+                option.text = value;
+                option.value = value;
+                document.getElementById("player_character_flaws").add(option);
+            });
     	},
     	error: function(xmlHttpObj, httpStatus,errMsg){
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
     	}
     });
-  }
- </script>
+})
+//** Background **//
+
+</script>
+
