@@ -20,5 +20,6 @@
 #  updated_at   :datetime         not null
 #
 
+
 class Race < ActiveRecord::Base
 end
