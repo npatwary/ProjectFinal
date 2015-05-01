@@ -80,6 +80,8 @@ class PlayerCharacter < ActiveRecord::Base
 	has_one :wealth, foreign_key: "playercharacter_id", class_name: "Wealth", dependent: :destroy
 	has_many :allies_and_organizations, foreign_key: "playercharacter_id", class_name: "AlliesAndOrganization", dependent: :destroy
 	has_many :cantrips, foreign_key: "playercharacter_id", class_name: "Cantrip", dependent: :destroy
+	has_many :spells, foreign_key: "player_character_id", class_name: "Spell", dependent: :destroy
+
 
 
 	accepts_nested_attributes_for :ability_scores, :saving_throws, :skills, :wealth
@@ -88,5 +90,7 @@ class PlayerCharacter < ActiveRecord::Base
 	accepts_nested_attributes_for :equipments, allow_destroy: true
 	accepts_nested_attributes_for :allies_and_organizations, allow_destroy: true
 	accepts_nested_attributes_for :cantrips, allow_destroy: true
+	accepts_nested_attributes_for :spells, allow_destroy: true
+
 
 end

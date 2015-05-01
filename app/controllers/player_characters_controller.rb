@@ -44,6 +44,13 @@ class PlayerCharactersController < ApplicationController
     elsif params[:add_cantrip]
       @player_character.cantrips.build
       render :new
+    elsif params[:remove_cantrip]
+      render :new
+    elsif params[:add_spell]
+      @player_character.spells.build
+      render :new
+    elsif params[:remove_spell]
+      render :new
     else
       # normal create function
       respond_to do |format|
@@ -147,6 +154,32 @@ class PlayerCharactersController < ApplicationController
       end
       render :edit
 
+
+       elsif params[:add_spell]
+      # rebuild the cantrips attributes that doesn't have an id
+      unless params[:player_character][:spells_attributes].blank?
+        for attribute in params[:player_character][:spells_attributes]
+          @player_character.spells.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+        end
+      end
+      # add one more empty cantrips attribute
+      @player_character.spells.build
+      render :edit
+
+    elsif params[:remove_spell]
+      # collect all marked for delete attack_weapon ids
+      removed_spells = params[:player_character][:spells_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
+      # physically delete the attack_weapons from database
+      Spell.delete(removed_spells)
+      flash[:notice] = "Spell removed."
+      for attribute in params[:player_character][:spells_attributes]
+        # rebuild armor and shield attributes that doesn't have an id and its _destroy attribute is not 1
+        @player_character.spells.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
+      end
+      render :edit
+
+
+
     else
       respond_to do |format|
         if @player_character.update(player_character_params)
@@ -180,7 +213,7 @@ class PlayerCharactersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_character_params
-      params.require(:player_character).permit(:add_attack_weapon, :add_armor_and_shield, :add_cantrip, :remove_cantrip, :remove_armor_and_shield, :removed_attack_weapons, :isUsed, :name, :classDnD, :level, :background, :race, :alignment, :experiencePoints, :inspiration, :proficiencyBonus, :armorClass, :initiative, :speed, :currentHitPoints, :maxHitPoints, :temporaryHitPoints, :totalHitDice, :hitDice, :deathSaveSuccesses, :deathSaveFailures, :personalityTraits, :ideals, :bonds, :flaws, :attacksDescription, :passiveWisdom, :otherProficienciesAndLanguages, :maxEquipmentCarryCapacity, :currentEquipmentCarryCapacity, :featuresAndTraits, :age, :height, :weight, :eyes, :skin, :hair, :characterAppearance, :characterBackstory, :additionalFeaturesAndTraits, :treasure, :spellCastingAbility, :spellSaveDC, :spellAttackBonus, ability_scores_attributes: [:id, :name, :score, :modifier ], skills_attributes: [:id, :name, :proficient, :modifier, :ability], saving_throws_attributes: [:id, :name, :proficient, :modifier], wealth_attributes: [:id, :copper, :silver, :electrum, :gold, :platinum], attack_weapons_attributes: [:name, :attackBonus, :damage, :typeDnD, :cost, :unit, :id, :_destroy], armor_and_shields_attributes: [:name, :disadvantage, :cost, :unit, :id, :_destroy], allies_and_organizations_attributes: [:id, :name, :symbolDnD, :description], cantrips_attributes: [:name, :id, :_destroy])
+      params.require(:player_character).permit(:add_attack_weapon, :add_armor_and_shield, :add_cantrip, :add_spell,:remove_cantrip, :remove_spell,:remove_armor_and_shield, :removed_attack_weapons, :isUsed, :name, :classDnD, :level, :background, :race, :alignment, :experiencePoints, :inspiration, :proficiencyBonus, :armorClass, :initiative, :speed, :currentHitPoints, :maxHitPoints, :temporaryHitPoints, :totalHitDice, :hitDice, :deathSaveSuccesses, :deathSaveFailures, :personalityTraits, :ideals, :bonds, :flaws, :attacksDescription, :passiveWisdom, :otherProficienciesAndLanguages, :maxEquipmentCarryCapacity, :currentEquipmentCarryCapacity, :featuresAndTraits, :age, :height, :weight, :eyes, :skin, :hair, :characterAppearance, :characterBackstory, :additionalFeaturesAndTraits, :treasure, :spellCastingAbility, :spellSaveDC, :spellAttackBonus, ability_scores_attributes: [:id, :name, :score, :modifier ], skills_attributes: [:id, :name, :proficient, :modifier, :ability], saving_throws_attributes: [:id, :name, :proficient, :modifier], wealth_attributes: [:id, :copper, :silver, :electrum, :gold, :platinum], attack_weapons_attributes: [:name, :attackBonus, :damage, :typeDnD, :cost, :unit, :id, :_destroy], armor_and_shields_attributes: [:name, :disadvantage, :cost, :unit, :id, :_destroy], allies_and_organizations_attributes: [:id, :name, :symbolDnD, :description], cantrips_attributes: [:name, :id, :_destroy], spells_attributes: [:name, :id, :_destroy])
     end
     # def ability_score_params
     #   params.require(:ability_score).permit(:name, :score, :modifier)
