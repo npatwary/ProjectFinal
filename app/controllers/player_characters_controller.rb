@@ -57,6 +57,7 @@ class PlayerCharactersController < ApplicationController
       end
     end
   end
+  # POST /player_characters/ajaxwindow/:background
   def ajaxwindow
     background = params[:background]
     data = {  'personalityTraits' => personalityTraits5EFor(background),
