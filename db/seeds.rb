@@ -68,6 +68,8 @@ Wealth.create(gold:500, copper:1000, silver: 500, electrum: 100,platinum: 10, pl
 
 Cantrip.create(name:"Light", player_character:player3)
 
+Spell.create(name:"Animal Friendship", player_character:player3)
+
 #look up table for race selection
 Race.create(name:"Mountain Dwarf",strength:2,dexterity:0,constitution:2,intelligence:0,wisdom:0,charisma:0,base_speed:25,max_age:350,alignment:"lawful",language:"Languages: common, dwarvish",tools:"Tool Proficiency: with arisan tools of your choice -- smith, brewer or mason \n Stonecunning:always proficient with double the proficiency bonus on history checks related to stonework",features:"Dwarven Combat Training:battleaxe,handaxe, throwing hammer and warhammer \n MountainDwarven Armor Training:light or medium armour \n can move 25 feet even in heavy armor \n Darkvision: see 60 feet black-and-white in pitch-dark \n Dwarven resilience: Advantage on saving throws against poison, resistance against poison damage \n Dwarven Toughness: hit point maximum increases by 1 every time you level up")
 Race.create(name:"Human",strength:1,dexterity:1,constitution:1,intelligence:1,wisdom:1,charisma:1,base_speed:30,max_age:100,language:"Languages: common, dwarvish")

@@ -274,6 +274,76 @@
         </div>
       </div>
     </div>
+
+    <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Add Spell</h4>
+        <div class="row">
+          <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+        </div>
+        <%= f.fields_for :cantrips do |cantripsForm| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <%= cantripsForm.check_box :_destroy %>
+              </span>
+              <%= cantripsForm.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+
+       </div>
+        <% end %>
+
+
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit 'Delete Checked Cantrips', :name => "remove_cantrip", class: "btn btn-default"  %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= f.submit 'Add Cantrip', :name => "add_cantrip", class: "btn btn-default"  %>
+          </div>
+         </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Add Level-1 Spell</h4>
+        <div class="row">
+          <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
+        </div>
+        <%= f.fields_for :spells do |spellsForm| %>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <%= spellsForm.check_box :_destroy %>
+              </span>
+              <%= spellsForm.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+
+       </div>
+        <% end %>
+
+
+        <div class="btn-group btn-group-justified" role="group">
+          <div class="btn-group" role="group">
+            <%= f.submit 'Delete Checked Spells', :name => "remove_spell", class: "btn btn-default"  %>
+          </div>
+          <div class="btn-group" role="group">
+            <%= f.submit 'Add Level1 Spell', :name => "add_spell", class: "btn btn-default"  %>
+          </div>
+         </div>
+      </div>
+    </div>
+
+
+
+    
     <div class="row">
       <div class="col-md-12">
         <h4>Armor And Shields</h4>
