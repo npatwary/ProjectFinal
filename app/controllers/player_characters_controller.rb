@@ -156,24 +156,24 @@ class PlayerCharactersController < ApplicationController
 
 
        elsif params[:add_spell]
-      # rebuild the cantrips attributes that doesn't have an id
+      # rebuild the spells attributes that doesn't have an id
       unless params[:player_character][:spells_attributes].blank?
         for attribute in params[:player_character][:spells_attributes]
           @player_character.spells.build(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
         end
       end
-      # add one more empty cantrips attribute
+      # add one more empty spell attribute
       @player_character.spells.build
       render :edit
 
     elsif params[:remove_spell]
-      # collect all marked for delete attack_weapon ids
+      # collect all marked for delete spell ids
       removed_spells = params[:player_character][:spells_attributes].collect { |i, att| att[:id] if (att[:id] && att[:_destroy].to_i == 1) }
-      # physically delete the attack_weapons from database
+      # physically delete the spells from database
       Spell.delete(removed_spells)
       flash[:notice] = "Spell removed."
       for attribute in params[:player_character][:spells_attributes]
-        # rebuild armor and shield attributes that doesn't have an id and its _destroy attribute is not 1
+        # rebuild spellattributes that doesn't have an id and its _destroy attribute is not 1
         @player_character.spells.build(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
       end
       render :edit
