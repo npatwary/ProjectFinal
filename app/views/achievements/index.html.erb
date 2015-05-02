@@ -1,0 +1,10 @@
+<% provide(:title, 'Achievements') %>
+
+<% @achievements.each do |achmnt| %>
+	<div>
+		<li>User Name:<%= achmnt.user_name %></li>
+		<li>Game Name : <%= achmnt.game_name %></li>
+		<li>Description: <%= achmnt.description %></li>
+	</div>
+
+<% end %>
