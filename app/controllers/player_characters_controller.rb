@@ -13,7 +13,12 @@ class PlayerCharactersController < ApplicationController
   # GET /player_characters/1
   # GET /player_characters/1.json
   def show
-    @player_character = PlayerCharacter.find(params[:id])
+    if @player_character.creator_id != current_user.id
+      redirect_to show1_player_character_path
+    end 
+  end
+
+  def show1
   end
 
   # GET /player_characters/new
@@ -220,4 +225,5 @@ class PlayerCharactersController < ApplicationController
     # def ability_score_params
     #   params.require(:ability_score).permit(:name, :score, :modifier)
     # end
-  end
+
+    end
