@@ -9,6 +9,8 @@
 #  player_character_id :integer
 #
 
+
+
 class Spell < ActiveRecord::Base
 	belongs_to :player_character,
 				class_name: "PlayerCharacter",

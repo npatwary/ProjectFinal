@@ -1,7 +1,7 @@
 
 class PlayerCharactersController < ApplicationController
-  before_action :set_player_character, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:index, :show, :new, :edit, :create, :update, :destroy, :ajaxwindow]
+  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow]
 
   include PlayerCharactersHelper
   # GET /player_characters
@@ -14,6 +14,15 @@ class PlayerCharactersController < ApplicationController
   # GET /player_characters/1.json
   def show
     @player_character = PlayerCharacter.find(params[:id])
+    
+    @user_id = current_user.id;
+
+    @dm_id = params[:dm_id];
+   #@revealTable = HideAttributesTable.find(params[:id]); 
+
+    @revealTable = HideAttributesTable.find_by pc_id: 3; 
+    @ability_reveal= @revealTable.ability_reveal;
+    #byebug
   end
 
   # GET /player_characters/new
@@ -29,7 +38,10 @@ class PlayerCharactersController < ApplicationController
   # POST /player_characters
   # POST /player_characters.json
   def create
-    @player_character = current_user.player_characters.new(player_character_params)
+    @player_character = current_user.player_characters.new(player_character_params);
+    @new_player_character_id = PlayerCharacter.last.id; 
+    @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
+    @hideTable.save
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build
@@ -221,3 +233,4 @@ class PlayerCharactersController < ApplicationController
     #   params.require(:ability_score).permit(:name, :score, :modifier)
     # end
   end
+

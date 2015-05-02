@@ -1,0 +1,38 @@
+<h1>Class selction show page </h1>
+
+<h2> Selected Class: <%=@pcClass.name%> </h2>
+
+
+<br>
+<strong> Selected Class Saving Throughs </strong>
+<br>
+<% for a in @savingThrougs %>
+	<%= @st_table.find(a).name %> <br>
+<%end%>
+
+
+<br>
+<strong> Select <%=@pcClass.numberOfAllowedSkills %> skills from below: </strong>
+<br>
+<table>
+<% for a in @skills %>
+
+<tr>
+	<td><%= check_box_tag "skill_ids[]",@skill_table.find(a).id %></td>
+	<td>&nbsp;&nbsp;&nbsp;</td>
+    <td><%= @skill_table.find(a).name %></td>
+    
+</tr>
+<% end %>
+</table>
+
+<br>
+<strong>Class Equipment</strong>
+<br>
+<% for a in @equipment %>
+	<%= a %> <br>
+<%end%>
+
+<br>
+<hr>
+

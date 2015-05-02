@@ -1,18 +1,28 @@
 Rails.application.routes.draw do
 
+
+  get '/classes' => 'player_character_classes#index', as:'classes'
+  post '/classes' => 'player_character_classes#index'
+  get '/class/show' => 'player_character_classes#show', as: 'class'
+  post '/class/:id' => 'player_character_classes#show'
+
+
   post '/races/:id' => 'races#show', as:'race_lookup'
 
   get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
   get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'
  
-  post '/equipments' => 'equipments#create'
-  delete '/equipments' => 'equipments#destroy' 
+ post '/equipments' => 'equipments#create'
+ delete '/equipments' => 'equipments#destroy' 
+
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 
   get '/attack_weapons/:player_character_id/sell_index' => 'attack_weapons#sell_index', as: 'attack_weapons_sell'
   post '/attack_weapons' => 'attack_weapons#create'
   delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
+
+
 
   get '/armor_and_shields/:player_character_id/index' => 'armor_and_shields#index', as:'armor_and_shields_buy'
   get '/armor_and_shields/:player_character_id/sell_index' => 'armor_and_shields#sell_index', as:'armor_and_shields_sell'
@@ -25,8 +35,9 @@ Rails.application.routes.draw do
 
   get 'join_game/join_game_form'
 
-  post '/player_characters/ajaxwindow/:background' => 'player_characters#ajaxwindow'
+
   resources :player_characters
+  get '/player_characters/:id/otheruser' => 'player_characters#showOthers', as: 'otheruser'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -59,6 +70,8 @@ Rails.application.routes.draw do
   
   delete '/games/:id', to: 'games#leaveGame'
 
+
+
   post '/games' => 'games#create'
 
   delete '/games' => 'games#destroy'
@@ -70,8 +83,13 @@ Rails.application.routes.draw do
   
   delete 'game_invitations' => 'game_invitations#destroy'
 
+  
+
   get '/join_game/:game_id/new' => 'join_game#new', as:'join_game'
   post '/join_game/:game_id/new' => 'join_game#user_input'
+    
+
+  
 
   delete '/game_invitations' =>'join_game#user_input'
 
@@ -128,3 +146,4 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 end
+

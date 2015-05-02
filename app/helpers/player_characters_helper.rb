@@ -1,3 +1,4 @@
+
 module PlayerCharactersHelper
 	# Fifth Edition Dungeons and Dragons Dictionaries for abilities, skills, background, alignment, personality traits, ideals, bonds, flaws
 	@@ability_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
@@ -406,3 +407,6 @@ module PlayerCharactersHelper
 		background.nil? ? ["Choose a background for list of Flaws"] : @@flaws5E[background]
 	end
 end
+
+
+
