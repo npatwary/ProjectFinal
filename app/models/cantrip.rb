@@ -9,6 +9,7 @@
 #  playercharacter_id :integer
 #
 
+
 class Cantrip < ActiveRecord::Base
 	belongs_to :player_character,
 				class_name: "PlayerCharacter",

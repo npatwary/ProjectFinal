@@ -1,3 +1,4 @@
+
 module PlayerCharactersHelper
 	@@ability_names = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
   	@@skill_names = ['Acrobatics', 'Animal Handling', 'Arcana', 'Athletics', 'Deception', 'History', 'Insight', 'Intimidation', 'Investigation', 'Medicine', 'Nature', 'Perception', 'Performance','Persuasion', 'Religion', 'Sleight of Hand', 'Stealth', 'Survival']

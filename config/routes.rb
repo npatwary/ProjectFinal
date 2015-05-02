@@ -1,19 +1,26 @@
 Rails.application.routes.draw do
 
 
-post '/races/:id' => 'races#show', as:'race_lookup'
+  get '/classes' => 'player_character_classes#index', as:'classes'
+  post '/classes' => 'player_character_classes#index'
+  get '/class/show' => 'player_character_classes#show', as: 'class'
+  post '/class/:id' => 'player_character_classes#show'
 
-get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
+
+  post '/races/:id' => 'races#show', as:'race_lookup'
+
+  get '/equipments/:player_character_id/index' => 'equipments#index', as:'equipments_buy'
   get '/equipments/:player_character_id/sell_index' => 'equipments#sell_index', as: 'equipments_sell'
  
  post '/equipments' => 'equipments#create'
-delete '/equipments' => 'equipments#destroy' 
+ delete '/equipments' => 'equipments#destroy' 
+
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 
   get '/attack_weapons/:player_character_id/sell_index' => 'attack_weapons#sell_index', as: 'attack_weapons_sell'
   post '/attack_weapons' => 'attack_weapons#create'
-delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
+  delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
 
 
 
@@ -30,6 +37,7 @@ delete '/attack_weapons' => 'attack_weapons#destroy' #selling attack_weapon
 
 
   resources :player_characters
+  get '/player_characters/:id/otheruser' => 'player_characters#showOthers', as: 'otheruser'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

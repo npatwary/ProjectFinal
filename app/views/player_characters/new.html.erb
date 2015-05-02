@@ -1,10 +1,12 @@
 <h1>New Character</h1>
 
+
 <%= render 'create_form' %>
 
 <%= link_to 'View Characters', player_characters_path, class: "btn btn-default" %>
 <script type="text/javascript" charset="utf-8">
   
+
   $(document).ready(function(){
   $("#new_player_character").submit(function(){
       //alert($('#race_Strength').text())
@@ -144,7 +146,337 @@
 
   }
 
-  function raceSelectionHandler()
+function autoPopulateClassRelatedFields(data){
+    // set ability scores ability scores
+    console.log(data);
+    console.log(data['class']);
+  
+
+    var dataClass = data['class'];
+    //var data      = data['class'];
+    var data_race      = data['race'];
+    
+    console.log('Check values')
+    console.log(data_race)
+    console.log(dataClass)
+    var data = data['class'];
+    
+    setDefaultAbilityScores();
+    setDefaultAbilityScoresModifiers();
+    setSkillmodifiers(data);
+    
+    //allowedSkillsNumber = data['numberOfAllowedSkills'];
+    var htmlForSkill = "(Select <b>"+ data['numberOfAllowedSkills']+"</b> skills from the available list)";  
+    $('#numberOfAllowedSkillshtml').html(htmlForSkill);
+    
+    
+    var htmlForEquipment = data['equipment'];
+    var index = 0;
+    var allowedEquipments = "";
+
+    $(htmlForEquipment).each(function(){
+           allowedEquipments = allowedEquipments + '['+ (index+1) + ']  ' + htmlForEquipment[index]+'<br>';
+           index = index +1;
+        });
+    console.log(name);
+    
+    $('#equipmenthtml').html(allowedEquipments);
+
+
+    enableDisableSkillsCheckbox(data);
+    settingSavingThroughs(data);
+    $('#player_character_proficiencyBonus').val(2);
+    var constitutionModifier = parseInt($('#player_character_ability_scores_attributes_2_modifier').val());
+    $('#player_character_currentHitPoints').val(data['currentHitPoint']+constitutionModifier);
+    $('#player_character_maxHitPoints').val(data['currentHitPoint']+constitutionModifier); // current = maximum at level 1
+    // $('#player_character_temporaryHitPoints').val(data['']);
+    $('#player_character_totalHitDice').val(data['hitDice']);
+    $('#player_character_hitDice').val(data['hitDice']);
+     
+    var spellAbility = "";
+    var spellSave = 0;
+    var spellBonus = 0; 
+    if (data['spellcastAbility']!=null){
+        spellAbility = data['spellcastAbility'];
+        spellSave = data['spellSaveDC']+ parseInt($('#player_character_ability_scores_attributes_' + (data['spellcastAbility']-1)+'_modifier'));
+        var spellSave = parseInt($('#player_character_ability_scores_attributes_' + (data['spellcastAbility']-1)+'_modifier').val()) + data['spellSaveDC'];
+        spellBonus = data['spellAttackBonus']+2;
+        spellAbility = data['spellcastAbility'];
+   
+    } else{
+          var spellAbility = "N/A";
+          var spellSave = "N/A";
+          var spellBonus = "N/A"; 
+
+    }
+
+
+    var spellabilityName = getSpellAbilityFromID(spellAbility);
+    $('#player_character_spellCastingAbility').val(spellabilityName); 
+    $('#player_character_spellSaveDC').val(spellSave);
+    $('#player_character_spellAttackBonus').val(spellBonus);
+    
+    var raceProficieny = "(No race is selected)";
+    if (data_race==0){
+      console.log('No race is selected');
+      //var raceProficieny = "";
+    } else{
+      var languageProficiencyFromRace= data_race['language'];
+      var toolsProfiencyFromRace     = 'Tools: '+ data_race['tools'];
+      raceProficieny = languageProficiencyFromRace+'\n'+toolsProfiencyFromRace+'\n';
+    }
+    console.log(raceProficieny)
+    setToolsProficiency(data,raceProficieny); 
+    
+   }
+
+
+   function getSpellAbilityFromID(id){
+    var ability = "N/A"
+    //alert(id)
+    //alert(id==6)
+    //var id = id;
+    switch (id) {
+        case 1:
+            ability = "Strength" ;
+            break;
+        case 2:
+            ability = "Dexterity" ;
+            break;
+        case 3:
+            ability = "Constitution" ;
+            break;
+        case 4:
+            ability = "Intelligence" ;
+            break;
+        case 5:
+            ability = "Wisdom" ;
+            break;
+        case 6:
+            ability = "Charisma" ;
+            break;
+      }
+     // alert(ability)
+      return ability;
+
+   }
+
+   function setDefaultAbilityScores(){
+    // get defauls valuse for ability scores 
+      $('#player_character_ability_scores_attributes_0_score').val(15) ;
+      $('#player_character_ability_scores_attributes_1_score').val(14) ;
+      $('#player_character_ability_scores_attributes_2_score').val(13) ;
+      $('#player_character_ability_scores_attributes_3_score').val(12) ;
+      $('#player_character_ability_scores_attributes_4_score').val(10) ;
+      $('#player_character_ability_scores_attributes_5_score').val(8)  ;
+
+   }
+
+   function setDefaultAbilityScoresModifiers(){
+      var i;
+      for (i=0;i<6;i++){
+        var abilityName  =  '#player_character_ability_scores_attributes_'+i+'_score';
+        var modifierName =  '#player_character_ability_scores_attributes_'+i+'_modifier'; 
+        var abilityScore =  parseInt($(abilityName).val());
+        var modifier = getScoreModifier(abilityScore);
+        $(modifierName).val(modifier);
+    }
+
+   }
+
+function setSkillmodifiers(data){
+    var strength_score = parseInt($('#player_character_ability_scores_attributes_0_score').val()) ;
+    var dexterity_score = parseInt($('#player_character_ability_scores_attributes_1_score').val()) ;
+    var constitution_score = parseInt($('#player_character_ability_scores_attributes_2_score').val()) ;
+    var intelligence_score = parseInt($('#player_character_ability_scores_attributes_3_score').val()) ;
+    var wisdom_score = parseInt($('#player_character_ability_scores_attributes_4_score').val()) ;
+    var charisma_score = parseInt($('#player_character_ability_scores_attributes_5_score').val()) ;
+
+    updateSkills(strength_score,dexterity_score,constitution_score,intelligence_score,wisdom_score,charisma_score);
+                
+    }
+
+function enableDisableSkillsCheckbox(data){
+  console.log(data);
+  
+    var proficientSkills = data['proficientSkills'];
+    console.log(proficientSkills)
+    var i;
+    var skill_index = 0;
+    for (i=0;i<18;i++){
+      var skillsName   =  '#player_character_skills_attributes_'+i+'_proficient';       
+      $(skillsName).prop('checked', false);
+      if (i==proficientSkills[skill_index]-1){
+         $(skillsName).attr("disabled", false);
+         skill_index = skill_index + 1;
+       }
+       else{
+         $(skillsName).attr("disabled", true);
+         console.log(i)
+       }
+    }
+
+  }
+
+// checking number of skills being checked and updating skill values.  
+
+
+var i = 0;
+var name = "";
+//console.log(data)
+
+function getAllowedSkill(data){
+  class_data = data['class'];
+  return class_data['numberOfAllowedSkills']
+}
+
+
+
+for (i=0;i<18;i++){
+
+  //console.log(name)
+  var name ="#player_character_skills_attributes_"+i+ "_proficient"; 
+  //var number = getAllowedSkill(data);
+  //   alert(number)
+  $(name).click(function() {
+     // alert('clicked')
+     //alert(check)
+ 
+     //alert(data['numberOfAllowedSkills'])
+    updateTheSkillModifiers();
+    
+    
+    //var check = $(name).is(":checked")
+    //if (check==true) {
+    //  alert('checked')
+    // updateTheSkillModifiers();
+    //}  
+  });
+}
+
+var idSelector = function() { return this.id; };
+function updateTheSkillModifiers(){
+ 
+    var numberOfSkills = $('#numberOfSelectedSkills :checkbox:checked').length;
+    var selectedSkills = $("#numberOfSelectedSkills :checkbox:checked").map(idSelector).get();
+    
+
+    
+    var i = 0;
+    var abilityModofiers = [];
+    for (i=0;i<=5;i++){
+      abilityModofiers[i] = $('#player_character_ability_scores_attributes_'+i+'_modifier').val();
+    }
+    var am = abilityModofiers;
+    
+    var skills_points = [am[1],am[4],am[3],am[0],am[5],am[3],am[4],am[5],am[3],am[4],am[3],am[4],am[5],am[5],am[3],am[1],am[1],am[4]]; 
+    //alert(skills_points)
+    //alert(selectedSkills)
+    
+    var index = 0;
+    for (i=0;i<=18;i++){
+      var skill_id = '#player_character_skills_attributes_'+i+'_modifier';
+      var skill_selector_id = 'player_character_skills_attributes_'+i+'_proficient';
+      //alert(skill_selector_id)
+      
+      if (skill_selector_id==selectedSkills[index]){
+          $(skill_id).val(parseInt(skills_points[i])+2);
+          //alert(skill_id);
+          index = index +1;
+      } else{
+          $(skill_id).val(skills_points[i]);
+
+      }
+    }
+
+   return; 
+
+
+    for (i=0;i<=numberOfSkills;i++){
+      selectedSkill = selectedSkills[i];
+      var shortText = jQuery.trim(selectedSkill).substring(0, 36);
+      var previousValue = $('#'+shortText+'_modifier').val();
+      var check = $(selectedSkill).is(":checked");
+      alert(selectedSkill)
+      alert(check)
+      if (check==true) {
+        alert('checked')
+        $('#'+shortText+'_modifier').val(previousValue+2);
+      }  else{
+        $('#'+shortText+'_modifier').val(previousValue-2);
+      }
+
+      }
+    //  alert(shortText)
+    //alert(data['numberOfAllowedSkills'])
+    //if (numberOfSkills <= data['numberOfAllowedSkills']){
+    //    alert(numberOfSkills+' is selected')
+    //    alert(numberOfSkills+' is selected')
+    //   var i = 1;
+    //    var modifierName = "#player_character_skills_attributes_"+i+ "_modifier";
+    //} else{
+    //    alert('You can not select more than '+ data['numberOfAllowedSkills']+ 'skills');
+    //}
+    
+    
+}
+
+
+function increaseSkillmodifier(){
+  console.log('checked')
+}
+
+function settingSavingThroughs(data){
+    var strength_score = parseInt($('#player_character_ability_scores_attributes_0_modifier').val()) ;
+    var dexterity_score = parseInt($('#player_character_ability_scores_attributes_1_modifier').val()) ;
+    var constitution_score = parseInt($('#player_character_ability_scores_attributes_2_modifier').val()) ;
+    var intelligence_score = parseInt($('#player_character_ability_scores_attributes_3_modifier').val()) ;
+    var wisdom_score = parseInt($('#player_character_ability_scores_attributes_4_modifier').val()) ;
+    var charisma_score = parseInt($('#player_character_ability_scores_attributes_5_modifier').val()) ;
+
+    var abilityScoreArray = [strength_score, dexterity_score, constitution_score, intelligence_score, wisdom_score, charisma_score];
+    
+    var earnedSavingThroughs = data['savingThroughs'];
+
+    var i;
+    var skill_index = 0;
+    for (i=0;i<6;i++){
+      var savingThroughName =  '#player_character_saving_throws_attributes_'+i+'_proficient'; 
+      var savingThroughModifier = '#player_character_saving_throws_attributes_'+i+'_modifier';
+      $(savingThroughModifier).val(abilityScoreArray[i]);
+      $(savingThroughName).attr("disabled", true);      
+      if (i==earnedSavingThroughs[skill_index]-1){
+         $(savingThroughName).prop('checked', true);
+         $(savingThroughModifier).val(parseInt(abilityScoreArray[i])+2);
+         skill_index = skill_index + 1;
+       }
+       else{
+         $(savingThroughName).prop('checked', false);
+         console.log(i)
+       }
+    }
+}
+
+function setToolsProficiency(data,raceProficieny){
+  console.log(data);
+  
+  var armorProficiencysFromClass = "\nArmor and Shield: "+ data['armorProficiency'];
+  var weaponProficiencyFromClass = "\nWeapon: "+ data['weaponProficiency'];
+  var toolsProfiencyFromClass    = "\nTools: "+data['toolsProfiency'];
+
+  
+
+  var allProficiencies = 'From Class:'+ armorProficiencysFromClass+weaponProficiencyFromClass+toolsProfiencyFromClass+'\n'+'\nFrom Race:\n'+ raceProficieny;
+  
+  console.log(allProficiencies);
+  $('#player_character_otherProficienciesAndLanguages').val(allProficiencies);
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function raceSelectionHandler()
  {
  	
  	//alert($('#player_character_race').val());
@@ -168,6 +500,8 @@
     	dataType: "json",
     	success: function(data, httpStatus, xmlHttpObj){
     		autoPopulateRaceRelatedFields(data);
+        check = getAllowedSkill(data);
+        window.check = check;
     	},
     	error: function(xmlHttpObj, httpStatus,errMsg){
     		console.log("Oops!!" + httpStatus + ":" + errMsg);
@@ -175,35 +509,39 @@
     });
    }
 
+////////////////// Auto Populating Class Related Fields ///////////////////////////////////
 
-   function classSelectionHandler()
+function classSelectionHandler()
  {
   
   //alert($('#player_character_race').val());
   selected_class_id = $('#player_character_classDnD').val();
+
     if(selected_class_id == ""){
-      //reset fields affected by race selection
-      $('#player_character_speed').val("");
-      $('#player_character_alignment').val("");
-      $('#player_character_featuresAndTraits').val("");
-      $('#player_character_otherProficienciesAndLanguages').val("");
+       alert("You did not select any class!!");
       return;
     }
-      
+   var selectedRaceID = $('#player_character_race').val();   
 
     console.log("selected race is " + $('#player_character_race option:selected').text() + " with id: " + selected_class_id)
   //alert($('#player_character_race option:selected').text());
 
    var request =  $.ajax({
       type: "POST",
-      url: "/races/"+selected_class_id,
+      url: "/class/"+selected_class_id,
       dataType: "json",
+      data : {  race_id: selectedRaceID }, // will be accessible in $_POST['data1']
+  
       success: function(data, httpStatus, xmlHttpObj){
-        autoPopulateRaceRelatedFields(data);
+        autoPopulateClassRelatedFields(data);
       },
       error: function(xmlHttpObj, httpStatus,errMsg){
         console.log("Oops!!" + httpStatus + ":" + errMsg);
       }
     });
    }
+
+
+
+
  </script>

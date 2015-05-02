@@ -11,6 +11,8 @@
 #  user_player_id    :integer
 #
 
+
+
 require 'test_helper'
 
 class GameInvitationTest < ActiveSupport::TestCase

@@ -14,6 +14,8 @@
 #  updated_at         :datetime         not null
 #
 
+
+
 class AttackWeapon < ActiveRecord::Base
 
   belongs_to :player_character,

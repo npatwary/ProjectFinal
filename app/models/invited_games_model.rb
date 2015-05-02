@@ -10,5 +10,7 @@
 #  updated_at    :datetime         not null
 #
 
+
+
 class InvitedGamesModel < ActiveRecord::Base
 end

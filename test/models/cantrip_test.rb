@@ -9,6 +9,7 @@
 #  playercharacter_id :integer
 #
 
+
 require 'test_helper'
 
 class CantripTest < ActiveSupport::TestCase

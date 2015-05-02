@@ -1,4 +1,5 @@
 
+
 <p id="notice"><%= notice %></p>
     <% unless @player_character.game.nil?%>
     <ul>
@@ -48,13 +49,20 @@
 <hr>
 <div>
       <div class="col-md-12">
-        <h4>Ability Scores</h4>
-        <% @player_character.ability_scores.each do |abilityScore| %>
+        <h4>Ability Scores </h4>
+         <% @player_character.ability_scores.each do |abilityScore| %>
           <div class="col-md-2">
             <ul class="list-group">
               <li class="list-group-item"><%= abilityScore.name %></li>
-              <li class="list-group-item"><%= abilityScore.score %></li>
-              <li class="list-group-item"><%= abilityScore.modifier%></li>
+              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @ability_reveal) %>
+                <li class="list-group-item"><%= abilityScore.score %></li>
+                <li class="list-group-item"><%= abilityScore.modifier%></li>
+              <%else%>
+                 
+                  <li class="list-group-item">??????</li>
+                  <li class="list-group-item">??????</li>                
+              <%end%>     
+
             </ul>
           </div>
         <% end %>

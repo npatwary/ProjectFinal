@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427122044) do
+ActiveRecord::Schema.define(version: 20150502044204) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -108,12 +108,38 @@ ActiveRecord::Schema.define(version: 20150427122044) do
   add_index "games", ["name"], name: "index_games_on_name", unique: true
   add_index "games", ["user_id"], name: "index_games_on_user_id"
 
+  create_table "hide_attributes_tables", force: :cascade do |t|
+    t.integer  "pc_id"
+    t.boolean  "ability_reveal"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
   create_table "invited_games_models", force: :cascade do |t|
     t.string   "name"
     t.string   "dungeonMaster"
     t.string   "passKey"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "player_character_classes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "hitDice"
+    t.integer  "currentHitPoint"
+    t.string   "maximumHitPoint"
+    t.text     "armorProficiency"
+    t.text     "weaponProficiency"
+    t.text     "toolsProfiency"
+    t.text     "savingThroughs",        default: "--- []\n"
+    t.text     "proficientSkills",      default: "--- []\n"
+    t.text     "equipment",             default: "--- []\n"
+    t.integer  "numberOfAllowedSkills"
+    t.integer  "spellcastAbility"
+    t.integer  "spellSaveDC"
+    t.integer  "spellAttackBonus"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
   end
 
   create_table "player_characters", force: :cascade do |t|
@@ -187,6 +213,12 @@ ActiveRecord::Schema.define(version: 20150427122044) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "saving_throughs_table_for_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "saving_throws", force: :cascade do |t|
     t.integer  "playercharacter_id"
     t.string   "name"
@@ -209,6 +241,12 @@ ActiveRecord::Schema.define(version: 20150427122044) do
   end
 
   add_index "skills", ["playercharacter_id"], name: "index_skills_on_playercharacter_id"
+
+  create_table "skills_table_for_classes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "spells", force: :cascade do |t|
     t.string   "name"

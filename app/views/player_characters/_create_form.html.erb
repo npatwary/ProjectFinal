@@ -21,7 +21,7 @@
       <div class="col-md-4">
         <div class="field">
           <%= f.label :class%><br>
-           <%= f.collection_select :classDnD, Race.all, :id, :name, {:include_blank => "Select a Class"},{:class => "form-control",:onChange=>"classSelectionHandler();"} %>
+           <%= f.collection_select :classDnD, PlayerCharacterClass.all, :id, :name, {:include_blank => "Select a Class"},{:class => "form-control",:onChange=>"classSelectionHandler();"} %>
         </div>
         <div class="field">
           <%= f.label :level %><br>
@@ -71,8 +71,10 @@
   <hr>
   <div class="form-group">
     <div class="row">
-      <div class="col-md-4">
+      <div id="numberOfSelectedSkills" class="col-md-4">
         <h4>Skills</h4>
+        
+        <p id="numberOfAllowedSkillshtml"> </p>
         <%= f.fields_for :skills do |skillsForm| %>
           <div class="form-inline">
             <%= skillsForm.number_field :modifier,:readonly => true, class: "form-control" %>
@@ -320,6 +322,8 @@
     <div class="row">
       <div class="col-md-12">
       <h4>Equipment</h4>
+      <p>(Choose equipments according to the following suggestions) </p>
+      <p id="equipmenthtml"> </p>
       </div>
     </div>
     <hr>

@@ -1,3 +1,4 @@
+
 <%= form_for(setup_playercharacter(@player_character)) do |f| %>
   <% if @player_character.errors.any? %>
     <div id="error_explanation">
@@ -72,7 +73,7 @@
         <%= f.fields_for :skills do |skillsForm| %>
           <div class="form-inline">
             <%= skillsForm.number_field :modifier, class: "form-control" %>
-            <%= skillsForm.check_box :proficient, class: "form-control" %>
+            <%= skillsForm.check_box :proficient ,class: "form-control" %>
             <%= skillsForm.object.name %>
             (<%= skillsForm.object.ability%>)
             <%= skillsForm.hidden_field :name %>
