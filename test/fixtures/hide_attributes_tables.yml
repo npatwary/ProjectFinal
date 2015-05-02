@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: hide_attributes_tables
+#
+#  id             :integer          not null, primary key
+#  pc_id          :integer
+#  ability_reveal :boolean
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pc_id: 1
+  ability_reveal: false
+
+two:
+  pc_id: 1
+  ability_reveal: false

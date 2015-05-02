@@ -9,6 +9,8 @@
 #  player_character_id :integer
 #
 
+
+
 require 'test_helper'
 
 class SpellTest < ActiveSupport::TestCase

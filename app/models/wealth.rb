@@ -13,6 +13,9 @@
 #  updated_at         :datetime         not null
 #
 
+
+
+
 class Wealth < ActiveRecord::Base
     
   belongs_to :player_character,

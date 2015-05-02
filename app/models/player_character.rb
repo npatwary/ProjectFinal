@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: player_characters
@@ -51,6 +52,7 @@
 #  creator_id                     :integer
 #  game_id                        :integer
 #
+
 
 class PlayerCharacter < ActiveRecord::Base
 

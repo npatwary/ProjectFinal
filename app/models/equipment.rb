@@ -12,6 +12,8 @@
 #  updated_at         :datetime         not null
 #
 
+
+
 class Equipment < ActiveRecord::Base
 
   belongs_to :player_character,

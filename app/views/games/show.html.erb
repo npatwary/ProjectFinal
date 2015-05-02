@@ -26,17 +26,22 @@
     <td><% player_characters = '' 
       @game.player_characters.each do |player_character|
         if player_characters.length == 0 %>
-        <a href=<%= player_character_path(player_character.id)%> > <%= player_character.name %> </a> 
+        <%=link_to player_character.name, player_character_path(:id=>player_character.id, :dm_id => @game.dungeon_master.id), method: :get %>
          <!--player_characters = player_character.name -->
         <% else %>
         <!-- player_characters = "#{player_characters};#{player_character.name}"-->
-        <a href=<%= player_character_path(player_character.id)%> > <%= player_character.name %> </a> 
+        <%=link_to player_character.name, player_character_path(:id=>player_character.id, :dm_id => @game.dungeon_master.id), method: :getexit %>
+        
        <% end
       end %></td>
    	
  </tr>
 
+
+
 </table>
+
+
 <% if dungeon_master?(@game.dungeon_master) %>
 	<h2> Pending Game Invitation </h2>
 	<table width="100%">

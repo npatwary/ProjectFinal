@@ -10,6 +10,9 @@
 #  password_digest :string
 #
 
+
+
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase

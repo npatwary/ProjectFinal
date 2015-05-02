@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: player_character_classes
+#
+#  id                    :integer          not null, primary key
+#  name                  :string
+#  hitDice               :string
+#  currentHitPoint       :integer
+#  maximumHitPoint       :string
+#  armorProficiency      :text
+#  weaponProficiency     :text
+#  toolsProfiency        :text
+#  savingThroughs        :text             default("--- []\n")
+#  proficientSkills      :text             default("--- []\n")
+#  equipment             :text             default("--- []\n")
+#  numberOfAllowedSkills :integer
+#  spellcastAbility      :integer
+#  spellSaveDC           :integer
+#  spellAttackBonus      :integer
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
+
+
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: 
+  hitDice: MyString
+  currentHitPoint: 1
+  maximumHitPoint: MyString
+  spellcastAbilityID: 1
+  spellSaveDC: 1
+  spellAttackBonus: 1
+
+two:
+  name: 
+  hitDice: MyString
+  currentHitPoint: 1
+  maximumHitPoint: MyString
+  spellcastAbilityID: 1
+  spellSaveDC: 1
+  spellAttackBonus: 1
