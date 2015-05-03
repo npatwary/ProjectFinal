@@ -48,10 +48,12 @@ class PlayerCharactersController < ApplicationController
     @new_player_character_id = PlayerCharacter.last.id; 
 
 
-    @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
+   @hideTable = HideAttributesTable.create(pc_id:@new_player_character_id +1 , ability_reveal: true);
 
+#byebug
 
     @hideTable.save
+    #byebug
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build

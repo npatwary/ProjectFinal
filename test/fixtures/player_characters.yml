@@ -103,6 +103,8 @@ one:
   spellAttackBonus: MyString
   creator_id: 1
   game_id : 1
+  
+
 
 two:
   isUsed: false
