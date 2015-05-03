@@ -1,5 +1,4 @@
-
-
+  <%  $hiding_character = "??????" %>
 <p id="notice"><%= notice %></p>
     <% unless @player_character.game.nil?%>
     <ul>
@@ -53,8 +52,8 @@
           <% @player_character.ability_scores.each do |abilityScore| %>
           <div class="col-md-2">
             <ul class="list-group">
-              <li class="list-group-item"><%= abilityScore.name %></li>
-              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @ability_reveal) %>
+              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.ability_reveal) %>
+              <li class="list-group-item"><%= abilityScore.name %></li>              
                 <li class="list-group-item"><%= abilityScore.score %></li>
                 <li class="list-group-item"><%= abilityScore.modifier%></li>
               <%else%>
@@ -75,6 +74,7 @@
         <h4>Skills</h4>
         <ul class="list-group">
         <% @player_character.skills.each do |skill| %>
+         <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.skill_reveal) %>
           <% if skill.proficient %>
             <li class="list-group-item list-group-item-success">
           <% else %>
@@ -84,28 +84,49 @@
           <%= skill.name %>
           (<%= skill.ability%>)
           </li>
+        <% else %>
+          <% if skill.proficient %>
+            <li class="list-group-item list-group-item-success">
+          <% else %>
+            <li class="list-group-item">
+          <% end %>
+            <%= $hiding_character %>
+            <%= $hiding_character %>
+            <%= $hiding_character %>
+          </li>
+
+        <% end %>
         <% end %>
         </ul>
         <h4>Character Bonus</h4>
         <ul class="list-group">
-          <li class="list-group-item">
-            <strong>Inspiration:</strong>
-            <%= @player_character.inspiration %>
-          </li>
-          <li class="list-group-item">
-            <strong>Proficiency Bonus:</strong>
-            <%= @player_character.proficiencyBonus %>
-          </li>
-          <li class="list-group-item">
-            <strong>Passive Wisdom:</strong>
-            <%= @player_character.passiveWisdom %>
-          </li>
+             <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.characterbonus_reveal) %>
+             <li class="list-group-item">
+                <strong>Inspiration:</strong>
+                <%= @player_character.inspiration %>
+              </li>
+              <li class="list-group-item">
+                <strong>Proficiency Bonus:</strong>
+                <%= @player_character.proficiencyBonus %>
+              </li>
+              <li class="list-group-item">
+                <strong>Passive Wisdom:</strong>
+                <%= @player_character.passiveWisdom %>
+          <% else %>
+            <li class="list-group-item">
+                <strong>Inspiration:</strong>??????</li>
+              <li class="list-group-item">
+                <strong>Proficiency Bonus:</strong>??????</li>
+              <li class="list-group-item">
+                <strong>Passive Wisdom:</strong>?????? </li>
+          <% end %>         
         </ul>
       </div>
       <div class="col-md-4">
         <h4>Saving Throws</h4>
-        <ul class="list-group">
+          <ul class="list-group">
           <% @player_character.saving_throws.each do |savingThrow| %>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.savingthrow_reveal) %>
             <% if savingThrow.proficient %>
               <li class="list-group-item list-group-item-success">
             <% else %>
@@ -113,154 +134,309 @@
             <% end %>
             <%= savingThrow.modifier %>
             <%= savingThrow.name %>
+              </li>
+          <% else %>
+            <% if savingThrow.proficient %>
+              <li class="list-group-item list-group-item-success">
+            <% else %>
+              <li class="list-group-item">
+            <% end %>
+            <%= $hiding_character %>
+            <%= $hiding_character %>
             </li>
+          <% end %>
           <%end%>
         </ul>
         <h4>Attributes</h4>
         <ul class="list-group">
-          <li class="list-group-item">
-            <strong>Armorclass:</strong>
-            <%= @player_character.armorClass %>
-          </li>   
-          <li class="list-group-item">
-            <strong>Initiative:</strong>
-            <%= @player_character.initiative %>
-          </li>
-          <li class="list-group-item">
-            <strong>Speed:</strong>
-            <%= @player_character.speed %>
-          </li>
-          <li class="list-group-item">
-            <strong>Currenthitpoints:</strong>
-            <%= @player_character.currentHitPoints %>
-          </li>
-          <li class="list-group-item">
-            <strong>Maxhitpoints:</strong>
-            <%= @player_character.maxHitPoints %>
-          </li>
-          <li class="list-group-item">
-            <strong>Temporaryhitpoints:</strong>
-            <%= @player_character.temporaryHitPoints %>
-          </li>
-          <li class="list-group-item">
-            <strong>Total Hit Dice:</strong>
-            <%= @player_character.totalHitDice %>
-          </li>
-          <li class="list-group-item">
-            <strong>Hit Dice:</strong>
-            <%= @player_character.hitDice %>
-          </li>
-          <li class="list-group-item">
-            <strong>Death Save Successes:</strong>
-            <%= @player_character.deathSaveSuccesses %>
-          </li>
-          <li class="list-group-item">
-            <strong>Death Save Failures:</strong>
-            <%= @player_character.deathSaveFailures %>
-          </li>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.attribute_reveal) %>
+                <li class="list-group-item">
+                  <strong>Armorclass:</strong>
+                  <%= @player_character.armorClass %>
+                </li>   
+                <li class="list-group-item">
+                  <strong>Initiative:</strong>
+                  <%= @player_character.initiative %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Speed:</strong>
+                  <%= @player_character.speed %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Currenthitpoints:</strong>
+                  <%= @player_character.currentHitPoints %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Maxhitpoints:</strong>
+                  <%= @player_character.maxHitPoints %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Temporaryhitpoints:</strong>
+                  <%= @player_character.temporaryHitPoints %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Total Hit Dice:</strong>
+                  <%= @player_character.totalHitDice %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Hit Dice:</strong>
+                  <%= @player_character.hitDice %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Death Save Successes:</strong>
+                  <%= @player_character.deathSaveSuccesses %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Death Save Failures:</strong>
+                  <%= @player_character.deathSaveFailures %>
+                </li>
+            <% else %>
+                <li class="list-group-item">
+                  <strong>Armorclass:</strong>
+                  <%= $hiding_character %>
+                </li>   
+                <li class="list-group-item">
+                  <strong>Initiative:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Speed:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Currenthitpoints:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Maxhitpoints:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Temporaryhitpoints:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Total Hit Dice:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Hit Dice:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Death Save Successes:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Death Save Failures:</strong>
+                  <%= $hiding_character %>
+                </li>
+            <% end %>
         </ul>
         <h4>Wealth</h4>
         <ul class="list-group">
-          <% unless @player_character.wealth.nil? %>
-            <li class="list-group-item">
-              <strong>Copper:</strong>
-              <%= @player_character.wealth.copper %>
-            </li>
-            <li class="list-group-item">
-              <strong>Silver:</strong>
-              <%= @player_character.wealth.silver %>
-            </li>
-            <li class="list-group-item">
-              <strong>Electrum:</strong>
-              <%= @player_character.wealth.electrum %>
-            </li>
-            <li class="list-group-item">
-              <strong>Gold:</strong>
-              <%= @player_character.wealth.gold %>
-            </li>
-            <li class="list-group-item">
-              <strong>Platinum:</strong>
-              <%= @player_character.wealth.platinum %>
-            </li>
-          <% else %>
-            <li class="list-group-item">
-              <strong>You are Poor</strong>
-            </li>
-          <% end %>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.wealth_reveal) %>
+              <% unless @player_character.wealth.nil? %>
+                <li class="list-group-item">
+                  <strong>Copper:</strong>
+                  <%= @player_character.wealth.copper %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Silver:</strong>
+                  <%= @player_character.wealth.silver %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Electrum:</strong>
+                  <%= @player_character.wealth.electrum %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Gold:</strong>
+                  <%= @player_character.wealth.gold %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Platinum:</strong>
+                  <%= @player_character.wealth.platinum %>
+                </li>
+              <% else %>
+                <li class="list-group-item">
+                  <strong>You are Poor</strong>
+                </li>
+              <% end %>
+            <% else %>
+                <% unless @player_character.wealth.nil? %>
+                <li class="list-group-item">
+                  <strong>Copper:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Silver:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Electrum:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Gold:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item">
+                  <strong>Platinum:</strong>
+                  <%= $hiding_character %>
+                </li>
+              <% else %>
+                <li class="list-group-item">
+                  <strong><%= $hiding_character %></strong>
+                </li>
+              <% end %>
+            <% end %>
         </ul>
       </div>
       <div class="col-md-4">
         <h4>Personality</h4>
         <ul class="list-group">
-          <li class="list-group-item">
-            <strong>Personality Traits:</strong>
-            <%= @player_character.personalityTraits %>
-          </li>
-          <li class="list-group-item">
-            <strong>Ideals:</strong>
-            <%= @player_character.ideals %>
-          </li>
-          <li class="list-group-item">
-            <strong>Bonds:</strong>
-            <%= @player_character.bonds %>
-          </li>
-          <li class="list-group-item">
-            <strong>Flaws:</strong>
-            <%= @player_character.flaws %>
-          </li>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.personality_reveal) %>
+              <li class="list-group-item">
+                <strong>Personality Traits:</strong>
+                <%= @player_character.personalityTraits %>
+              </li>
+              <li class="list-group-item">
+                <strong>Ideals:</strong>
+                <%= @player_character.ideals %>
+              </li>
+              <li class="list-group-item">
+                <strong>Bonds:</strong>
+                <%= @player_character.bonds %>
+              </li>
+              <li class="list-group-item">
+                <strong>Flaws:</strong>
+                <%= @player_character.flaws %>
+              </li>
+          <% else %>
+              <li class="list-group-item">
+                <strong>Personality Traits:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Ideals:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Bonds:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Flaws:</strong>
+                <%= $hiding_character %>
+              </li>
+          <% end %>
         </ul>
         <h4>Physical Features</h4>
         <ul class="list-group">
-          <li class="list-group-item">
-            <strong>Age:</strong>
-            <%= @player_character.age %>
-          </li>
-          <li class="list-group-item">
-            <strong>Height:</strong>
-            <%= @player_character.height %>
-          </li>
-          <li class="list-group-item">
-            <strong>Weight:</strong>
-            <%= @player_character.weight %>
-          </li>
-          <li class="list-group-item">
-            <strong>Eyes:</strong>
-            <%= @player_character.eyes %>
-          </li>
-          <li class="list-group-item"> 
-            <strong>Skin:</strong>
-            <%= @player_character.skin %>
-          </li>
-          <li class="list-group-item"> 
-            <strong>Hair:</strong>
-            <%= @player_character.hair %>
-          </li>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.physicalfeature_reveal) %>
+              <li class="list-group-item">
+                <strong>Age:</strong>
+                <%= @player_character.age %>
+              </li>
+              <li class="list-group-item">
+                <strong>Height:</strong>
+                <%= @player_character.height %>
+              </li>
+              <li class="list-group-item">
+                <strong>Weight:</strong>
+                <%= @player_character.weight %>
+              </li>
+              <li class="list-group-item">
+                <strong>Eyes:</strong>
+                <%= @player_character.eyes %>
+              </li>
+              <li class="list-group-item"> 
+                <strong>Skin:</strong>
+                <%= @player_character.skin %>
+              </li>
+              <li class="list-group-item"> 
+                <strong>Hair:</strong>
+                <%= @player_character.hair %>
+              </li>
+          <% else %>
+              <li class="list-group-item">
+                <strong>Age:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Height:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Weight:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item">
+                <strong>Eyes:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item"> 
+                <strong>Skin:</strong>
+                <%= $hiding_character %>
+              </li>
+              <li class="list-group-item"> 
+                <strong>Hair:</strong>
+                <%= $hiding_character %>
+              </li>
+          <% end %>
         </ul>
         <h4>Equipment Carry Capacity</h4>
         <ul class="list-group">
-          <li class="list-group-item"> 
-            <strong>Current:</strong>
-            <%= @player_character.currentEquipmentCarryCapacity %>
-          </li>
-          <li class="list-group-item">
-            <strong>Max:</strong>
-            <%= @player_character.maxEquipmentCarryCapacity %>
-          </li>
-        </ul>
-        <h4>Spell Casting</h4>
-        <ul class="list-group">
-          <li class="list-group-item"> 
-            <strong>Spellcastingability:</strong>
-            <%= @player_character.spellCastingAbility %>
-          </li>
-          <li class="list-group-item"> 
-            <strong>Spellsavedc:</strong>
-            <%= @player_character.spellSaveDC %>
-          </li>
-          <li class="list-group-item"> 
-            <strong>Spellattackbonus:</strong>
-            <%= @player_character.spellAttackBonus %>
-          </li>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable. carry_reveal) %>
+              <li class="list-group-item"> 
+                <strong>Current:</strong>
+                <%= @player_character.currentEquipmentCarryCapacity %>
+              </li>
+              <li class="list-group-item">
+                <strong>Max:</strong>
+                <%= @player_character.maxEquipmentCarryCapacity %>
+              </li>
+          <% else %>
+              <li class="list-group-item"> 
+                    <strong>Current:</strong>
+                    <%= $hiding_character %>
+                  </li>
+                  <li class="list-group-item">
+                    <strong>Max:</strong>
+                    <%= $hiding_character %>
+                  </li>
+          <% end %>
+            </ul>
+            <h4>Spell Casting</h4>
+            <ul class="list-group">
+                <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.spellcast_reveal) %>
+                <li class="list-group-item"> 
+                  <strong>Spellcastingability:</strong>
+                  <%= @player_character.spellCastingAbility %>
+                </li>
+                <li class="list-group-item"> 
+                  <strong>Spellsavedc:</strong>
+                  <%= @player_character.spellSaveDC %>
+                </li>
+                <li class="list-group-item"> 
+                  <strong>Spellattackbonus:</strong>
+                  <%= @player_character.spellAttackBonus %>
+                </li>
+          <% else %>
+
+                <li class="list-group-item"> 
+                  <strong>Spellcastingability:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item"> 
+                  <strong>Spellsavedc:</strong>
+                  <%= $hiding_character %>
+                </li>
+                <li class="list-group-item"> 
+                  <strong>Spellattackbonus:</strong>
+                  <%= $hiding_character %>
+                </li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -282,10 +458,17 @@
           <tbody>
           <% @player_character.attack_weapons.each do |attackWeapon| %>
             <tr>
-              <td><%= attackWeapon.name %></td>
-              <td><%= attackWeapon.attackBonus %></td>
-              <td><%= attackWeapon.damage %></td>
-              <td><%= attackWeapon.typeDnD %></td>
+              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.attackweapon_reveal) %>
+                <td><%= attackWeapon.name %></td>
+                <td><%= attackWeapon.attackBonus %></td>
+                <td><%= attackWeapon.damage %></td>
+                <td><%= attackWeapon.typeDnD %></td>
+              <% else %>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td>
+              <% end %>
             </tr>
           <% end %>
           </tbody>
@@ -303,8 +486,13 @@
           <tbody>
             <% @player_character.armor_and_shields.each do |armorAndShields| %>
             <tr>
-              <td><%= armorAndShields.name %></td>
-              <td><%= armorAndShields.disadvantage %></td> 
+              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.armorshield_reveal) %>
+                <td><%= armorAndShields.name %></td>
+                <td><%= armorAndShields.disadvantage %></td> 
+              <% else %>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td> 
+              <% end %>
             </tr>
             <% end %>
           </tbody>
@@ -326,7 +514,11 @@
               <tbody>
                 <% @player_character.cantrips.each do |cantrips| %>
                   <tr>
+                     <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.spell_reveal) %>
                       <td><%= cantrips.name %></td> 
+                     <% else %>
+                      <td><%= $hiding_character %></td> 
+                     <% end %>
                   </tr>
                 <% end %>
               </tbody>
@@ -343,7 +535,11 @@
             <tbody>
               <% @player_character.spells.each do |spells| %>
               <tr>
-                <td><%= spells.name %></td>
+                <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.spell_reveal) %>
+                  <td><%= spells.name %></td>
+                <% else %>
+                  <td><%= $hiding_character %></td>
+                <% end %>
               </tr>
               <% end %>
             </tbody>
@@ -356,7 +552,11 @@
       <div class="col-md-12">
         <p>
           <strong>Attack Description:</strong>
-          <%= @player_character.attacksDescription %>
+          <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.attackdescription_reveal) %>
+            <%= @player_character.attacksDescription %>
+          <% else %>
+            <%= $hiding_character %>
+          <% end %>
         </p>
       </div>
     </div>
@@ -375,9 +575,15 @@
           <tbody>
             <% @player_character.equipments.each do |equipment| %>
             <tr>
-              <td><%= equipment.name %></td>
-              <td><%= equipment.cost %></td>
-              <td><%= equipment.unit %></td>  
+              <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.equipment_reveal) %>
+                <td><%= equipment.name %></td>
+                <td><%= equipment.cost %></td>
+                <td><%= equipment.unit %></td>  
+              <% else %>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td>
+                <td><%= $hiding_character %></td>  
+              <% end %>
             </tr>
             <% end %>
           </tbody>
@@ -393,7 +599,11 @@
             <div class="panel panel-default">
               <div class="panel-heading"><strong>Features And Traits:</strong></div>
               <div class="panel-body">
-                <textarea class="form-control" size="10x10" readonly><%= @player_character.featuresAndTraits %></textarea>
+                <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.characterdescription_reveal) %>
+                  <textarea class="form-control" size="10x10" readonly><%= @player_character.featuresAndTraits %></textarea>
+                <% else %>
+                  <textarea class="form-control" size="10x10" readonly><%= $hiding_character %></textarea>
+                <% end %>
               </div>
             </div>
           </div>
@@ -401,7 +611,11 @@
             <div class="panel panel-default">
               <div class="panel-heading"><strong>Other Proficiencies And Languages:</strong></div>
               <div class="panel-body">
-                <textarea class="form-control" size="10x10" readonly><%= @player_character.otherProficienciesAndLanguages %></textarea>
+                <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.characterdescription_reveal) %>
+                  <textarea class="form-control" size="10x10" readonly><%= @player_character.otherProficienciesAndLanguages %></textarea>
+                 <% else %>
+                  <textarea class="form-control" size="10x10" readonly><%= $hiding_character %></textarea>
+                <% end %>
               </div>
             </div>
           </div>
@@ -411,7 +625,11 @@
             <div class="panel panel-default">
               <div class="panel-heading"><strong>Character Appearance:</strong></div>
               <div class="panel-body">
-                <textarea class="form-control" size="10x10" readonly><%= @player_character.characterAppearance %></textarea>
+                <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.characterdescription_reveal) %>
+                  <textarea class="form-control" size="10x10" readonly><%= @player_character.characterAppearance %></textarea>
+                <% else %>
+                  <textarea class="form-control" size="10x10" readonly><%= $hiding_character %></textarea>
+                <% end %>
               </div>
             </div>
           </div>
@@ -419,7 +637,13 @@
             <div class="panel panel-default">
               <div class="panel-heading"><strong>Character Backstory:</strong></div>
               <div class="panel-body">
-                <textarea class="form-control" size="10x10" readonly><%= @player_character.characterBackstory %></textarea>
+                <textarea class="form-control" size="10x10" readonly>
+                  <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.characterdescription_reveal) %>
+                    <%= @player_character.characterBackstory %>
+                    <% else %>
+                  <%= $hiding_character %>
+                  <% end %>
+                </textarea>
               </div>
             </div>
           </div>
@@ -432,26 +656,49 @@
         <h4>Allies And Organizations</h4>
         <% @player_character.allies_and_organizations.each do |alliesAndOrganizations| %>
           <div class="row">
-            <div class="col-md-6">
-              <p>
-                <strong>Name:</strong>
-                <%= alliesAndOrganizations.name %>
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6">
-              <p>
-                <strong>Description:</strong><br>
-                <%= alliesAndOrganizations.description %>
-              </p>
-            </div>
-            <div class="col-md-6">
-              <p>
-                <strong>Symbol:</strong><br>
-                <% if alliesAndOrganizations.symbolDnD !=nil and alliesAndOrganizations.symbolDnD != '' %><%=  image_tag("/images/uploads/" + alliesAndOrganizations.symbolDnD, size: "200x200", alt: "Symbol")%><% end %>
-              </p>
-            </div>
+            <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.alliesandorganisation_reveal) %>
+                <div class="col-md-6">
+                  <p>
+                    <strong>Name:</strong>
+                    <%= alliesAndOrganizations.name %>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Description:</strong><br>
+                    <%= alliesAndOrganizations.description %>
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p>
+                    <strong>Symbol:</strong><br>
+                    <% if alliesAndOrganizations.symbolDnD !=nil and alliesAndOrganizations.symbolDnD != '' %><%=  image_tag("/images/uploads/" + alliesAndOrganizations.symbolDnD, size: "200x200", alt: "Symbol")%><% end %>
+                  </p>
+                </div>
+            <% else %>
+                <div class="col-md-6">
+                  <p>
+                    <strong>Name:</strong>
+                    <%= $hiding_character %>
+                  </p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <p>
+                    <strong>Description:</strong><br>
+                    <%= $hiding_character %>
+                  </p>
+                </div>
+                <div class="col-md-6">
+                  <p>
+                    <strong>Symbol:</strong><br>
+                    <%= $hiding_character %>
+                  </p>
+                </div>
+            <% end %>
           </div>
         <% end %>
       </div>
@@ -463,7 +710,11 @@
         <h4>Additional Features And Traits</h4>
         <div class="form-group">
           <p>
-            <%= @player_character.additionalFeaturesAndTraits %>
+           <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.additionalfeature_reveal) %>
+              <%= @player_character.additionalFeaturesAndTraits %>
+            <% else %>
+              <%= $hiding_character %>
+            <% end %>
           </p>
         </div>
       </div>
@@ -474,7 +725,11 @@
         <h4>Treasure</h4>
         <div class="form-group">
           <p>
-            <%= @player_character.treasure %>
+            <% if ((@user_id==@player_character.creator_id) || (@user_id==@dm_id.to_i) || @revealTable.treasure_reveal) %>
+              <%= @player_character.treasure %>
+            <% else %>
+              <%= $hiding_character %>
+            <% end %>
           </p>
         </div>
       </div>
