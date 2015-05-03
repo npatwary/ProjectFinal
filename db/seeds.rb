@@ -148,6 +148,104 @@ PlayerCharacterClass.create(name:"Cleric", hitDice:"1d8",currentHitPoint:8, maxi
 					"(a) a priest pack or (b) an explorer pack"],
 	spellcastAbility: 5,spellSaveDC: 8,spellAttackBonus: 0);
 
+# Class 3: Cleric
+PlayerCharacterClass.create(name:"Cleric", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor, medium armor, shield",
+	weaponProficiency: "All simple weapons", toolsProfiency: "None",
+	savingThroughs: [5,6], proficientSkills: [6,7,10,12,14], numberOfAllowedSkills:2,
+	equipment: ["(a) a mace, or (b) a warhammer (if proficient)",  
+			        "(a) scale mail, (b) lather armor, or (c) chain mail (if proficient)", 
+			        "(a) a light crossbow and 20 bolts, or (b) any simple weapon",
+					"(a) a priest pack or (b) an explorer pack"],
+	spellcastAbility: 5,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 4: Druid
+PlayerCharacterClass.create(name:"Druid", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor, medium armor, shield (will not wear armot or use shield made of metal)",
+	weaponProficiency: "Clubs, daggers, darts, javelins, maces,
+quarterstaffs, scimitars, sickles, slings, spears", toolsProfiency: "Herbalism kit",
+	savingThroughs: [4,5], proficientSkills: [2,3,7,10,11,12,15,18], numberOfAllowedSkills:2,
+	equipment: ["(a) a w ooden shield or (b) any simple weapon",  
+			        "(a) a scimitar or (b) any simple melee weapon", 
+			        "Leather armor, an explorer’s pack, and a druidic focus"],
+	spellcastAbility: 5,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 5: Fighter
+PlayerCharacterClass.create(name:"Fighter", hitDice:"1d10",currentHitPoint:10, maximumHitPoint:10, armorProficiency: "All armor, shield",
+	weaponProficiency: "Simple weapons, martial weapons", toolsProfiency: "None",
+	savingThroughs: [1,3], proficientSkills: [1,2,4,6,7,8,12,18], numberOfAllowedSkills:2,
+	equipment: ["(a) chain mail or (b) leather, longbow, and 20 arrows",  
+			        "(a) a martial weapon and a shield or (b) two martial weapons", 
+			        "(a) a light c rossbow and 20 bolts or (b) two handaxes",
+					"(a) a dungeoneer’s pack or (b) an explorer’s pack"],
+	spellcastAbility: 4,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 6: Monk
+PlayerCharacterClass.create(name:"Monk", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "None",
+	weaponProficiency: "Simple weapons, shortswords", toolsProfiency: "Choose one type o f artisan’s tools or one musical instrument",
+	savingThroughs: [1,2], proficientSkills: [1,4,6,7,15,17], numberOfAllowedSkills:2,
+	equipment: ["(a) a shortsword or (b) any simple weapon",  
+			        "(a) a dungeoneer’s pack or (b) an explorer’s pack", 
+			        "10 darts"]);
+
+# Class 7: Paladin
+PlayerCharacterClass.create(name:"Paladin", hitDice:"1d10",currentHitPoint:10, maximumHitPoint:10, armorProficiency: "All armor, shield",
+	weaponProficiency: "Simple weapons, martial weapons", toolsProfiency: "None",
+	savingThroughs: [5,6], proficientSkills: [4,7,8,14,15], numberOfAllowedSkills:2,
+	equipment: ["(a) a martial weapon and a shield or (b) two martial weapons",  
+			        "(a) five javelins or (b) any simple melee weapon", 
+			        "(a) a priest’s pack or (b) an explorer’s pack",
+					"Chain mail and a holy symbol"],
+	spellcastAbility: 6,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 8: Ranger
+PlayerCharacterClass.create(name:"Ranger", hitDice:"1d10",currentHitPoint:10, maximumHitPoint:10, armorProficiency: "Light Armor, medium armor, shield",
+	weaponProficiency: "Simple weapons, martial weapons", toolsProfiency: "None",
+	savingThroughs: [1,2], proficientSkills: [2,4,7,9,11,13,17,18], numberOfAllowedSkills:3,
+	equipment: ["(a) scale mail or (b) leather armor",  
+			        "(a) two shortswords or (b) two simple melee w eapons", 
+			        "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+					"A longbow and a quiver o f 20 arrows"],
+	spellcastAbility: 5,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 9: Rogue
+PlayerCharacterClass.create(name:"Rogue", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor",
+	weaponProficiency: "Simple weapons, hand crossbows, longswords, rapiers, shortswords", toolsProfiency: "Thieves’ tools",
+	savingThroughs: [2,4], proficientSkills: [1,4,5,7,8,9,12,13,14,16,17], numberOfAllowedSkills:4,
+	equipment: ["(a) a rapier or (b) a shortsword",  
+			        "(a) a shortbow and quiver of 20 arrows or (b) a shortsword", 
+			        "(a) a burglar’s pack, (b) a dungeoneer’s pack, or (c) an explorer’s pack",
+					"Leather armor, two daggers, and thieves’ tools"],
+	spellcastAbility: 4,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 10: Sorcerer
+PlayerCharacterClass.create(name:"Sorcerer", hitDice:"1d6",currentHitPoint:6, maximumHitPoint:6, armorProficiency: "None",
+	weaponProficiency: "Daggers, darts, slings, quarterstaffs, light crossbows", toolsProfiency: "None",
+	savingThroughs: [3,6], proficientSkills: [3,5,7,8,14,15], numberOfAllowedSkills:2,
+	equipment: ["(a) a light c rossbow and 20 bolts or (b) any simple weapon",  
+			        "(a) a component pouch or (b) an arcane focus", 
+			        "(a) a dungeoneer’s pack or (b) an explorer’s pack",
+					"Two daggers"],
+	spellcastAbility: 6,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 11: Warlock
+PlayerCharacterClass.create(name:"Warlock", hitDice:"1d8",currentHitPoint:8, maximumHitPoint:8, armorProficiency: "Light Armor",
+	weaponProficiency: "All simple weapons", toolsProfiency: "None",
+	savingThroughs: [5,6], proficientSkills: [3,5,6,8,9,11,15], numberOfAllowedSkills:2,
+	equipment: ["(a) a light c rossbow and 20 bolts or (b) any simple weapon",  
+			        "(a) a component pouch or (b) an arcane focus", 
+			        "(a) a scholar’s pack or (b) a dungeoneer’s pack",
+					"Leather armor, any simple w eapon, and two daggers"],
+	spellcastAbility: 6,spellSaveDC: 8,spellAttackBonus: 0);
+
+# Class 12: Wizard
+PlayerCharacterClass.create(name:"Wizard", hitDice:"1d6",currentHitPoint:6, maximumHitPoint:6, armorProficiency: "None",
+	weaponProficiency: "Daggers, darts, slings, quarterstaffs, light crossbows", toolsProfiency: "None",
+	savingThroughs: [4,6], proficientSkills: [3,6,7,9,10,15], numberOfAllowedSkills:2,
+	equipment: ["(a) a quarterstaff or (b) a dagger",  
+			        "(a) a component pouch or (b) an arcane focus", 
+			        "(a) a scholar’s pack or (b) an explorer’s pack",
+					"A spellbook"],
+	spellcastAbility: 4,spellSaveDC: 8,spellAttackBonus: 0);
+
 
 HideAttributesTable.create(pc_id:1,ability_reveal: true);
 HideAttributesTable.create(pc_id:2,ability_reveal: true);
