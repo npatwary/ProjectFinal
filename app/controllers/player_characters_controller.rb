@@ -20,9 +20,10 @@ class PlayerCharactersController < ApplicationController
     @dm_id = params[:dm_id];
    #@revealTable = HideAttributesTable.find(params[:id]); 
 
-    @revealTable = HideAttributesTable.find_by pc_id: 3; 
-    @ability_reveal= @revealTable.ability_reveal unless @revealTable.nil?;
-    #byebug
+    @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 
+
+
+
 
   end
 
