@@ -450,7 +450,8 @@
             </div>
             <div class="col-md-6">
               <%= alliesAndOrganizationsForm.label :Symbol, class: "control-label" %><br>
-              <%= alliesAndOrganizationsForm.text_area :symbolDnD, class: "form-control", size:"10x10" %>
+             <% if alliesAndOrganizationsForm.object != nil and alliesAndOrganizationsForm.object.symbolDnD !=nil and alliesAndOrganizationsForm.object.symbolDnD != '' %><%=  image_tag("/images/uploads/" + alliesAndOrganizationsForm.object.symbolDnD, size: "200x200", alt: "Symbol")%><% end %>
+              <%= alliesAndOrganizationsForm.file_field :symbolDnDImage%>
             </div>
           </div>
         <% end %>

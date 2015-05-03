@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resources :player_characters
   get '/player_characters/:id/otheruser' => 'player_characters#showOthers', as: 'otheruser'
-
+  get '/player_characters/:id/market' => 'player_characters#market', as: 'player_character_market'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

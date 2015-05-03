@@ -1,7 +1,6 @@
-
 class PlayerCharactersController < ApplicationController
-  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy]
-  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow]
+  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy,:market]
+  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow,:market]
 
   include PlayerCharactersHelper
   # GET /player_characters
@@ -198,6 +197,19 @@ class PlayerCharactersController < ApplicationController
 
     else
       respond_to do |format|
+         i = 0
+        @player_character.allies_and_organizations.each do |alliesAndOrganizations|
+          uploaded_io =  params[:player_character][:allies_and_organizations_attributes]["#{i}"][:symbolDnDImage]
+          symbol_image = nil
+        unless uploaded_io.nil?
+          sanitized_filename = sanitize_filename(uploaded_io.original_filename)
+          sanitized_filename = "#{current_user.user_name}_#{@player_character.name}_#{sanitized_filename}"
+          upload(sanitized_filename,uploaded_io)
+          symbol_image = sanitized_filename
+        end
+        @player_character.allies_and_organizations[i].symbolDnD = symbol_image unless symbol_image.nil?
+        i = i + 1
+      end
         if @player_character.update(player_character_params)
           format.html { redirect_to @player_character, notice: 'Player character was successfully updated.' }
           format.json { render :show, status: :ok, location: @player_character }
@@ -220,6 +232,9 @@ class PlayerCharactersController < ApplicationController
     end
   end
 
+  def market
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
@@ -235,4 +250,3 @@ class PlayerCharactersController < ApplicationController
     #   params.require(:ability_score).permit(:name, :score, :modifier)
     # end
   end
-
