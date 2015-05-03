@@ -53,9 +53,11 @@
   </div>
   <hr>
   <div class="form-group">
-      <div class="col-md-12">
-        <h4>Ability Scores</h4>
-        <%= f.fields_for :ability_scores do |abilityScoreForm| %>
+      <div class="col-md-12">      
+       <% @hide_attributes_table = HideAttributesTable.find_by pc_id: @player_character.id %>
+        <h4>Ability Scores <%= check_box_tag 'ability_hide_reveal', 'ability_hide_reveal', !@hide_attributes_table.ability_reveal %> 
+        <%= label_tag(:ability_hide_reveal, "Hide") %> </h4>
+            <%= f.fields_for :ability_scores do |abilityScoreForm| %>
           <div class="col-md-2">
             <%= abilityScoreForm.object.name %><br>
             <%= abilityScoreForm.number_field :score, class: "form-control", placeholder: 'Score'%><br>
@@ -69,7 +71,8 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-4">
-        <h4>Skills</h4>
+        <h4>Skills <%= check_box_tag 'skill_hide_reveal', 'skill_hide_reveal', !@hide_attributes_table.skill_reveal %></h4>
+        <%= label_tag(:skill_hide_reveal, "Hide") %> </h4>
         <%= f.fields_for :skills do |skillsForm| %>
           <div class="form-inline">
             <%= skillsForm.number_field :modifier, class: "form-control" %>
@@ -80,7 +83,8 @@
             <%= skillsForm.hidden_field :ability %>
           </div>
         <% end %>
-        <h4>Character Bonus</h4>
+        <h4>Character Bonus <%= check_box_tag 'characterbonus_hide_reveal', 'characterbonus_hide_reveal', !@hide_attributes_table.characterbonus_reveal %>
+        <%= label_tag(:characterbonus_hide_reveal, "Hide") %></h4>
         <div class="form-inline">
           <%= f.text_field :inspiration, class: "form-control" %>
           <%= f.label :Inspiration, class: "control-label" %>
@@ -95,7 +99,8 @@
         </div>
       </div>
       <div class="col-md-4">
-        <h4>Saving Throws</h4>
+        <h4>Saving Throws <%= check_box_tag 'savingthrow_hide_reveal', 'savingthrow_hide_reveal', !@hide_attributes_table.savingthrow_reveal %>
+        <%= label_tag(:savingthrow_hide_reveal, "Hide") %></h4>
           <%= f.fields_for :saving_throws do |savingThrowForm| %>
             <div class="form-inline">
               <%= savingThrowForm.text_field :modifier, class: "form-control" %>
@@ -104,7 +109,8 @@
               <%= savingThrowForm.hidden_field :name %>
             </div>
           <% end %>
-        <h4>Attributes</h4>
+        <h4>Attributes <%= check_box_tag 'attribute_hide_reveal', 'attribute_hide_reveal', !@hide_attributes_table.attribute_reveal %> 
+        <%= label_tag(:attribute_hide_reveal, "Hide") %></h4>
         <div class="form-inline">
           <%= f.number_field :armorClass, class: "form-control"  %>
           <%= f.label :'Armor Class', class: "control-label"  %>    
@@ -145,7 +151,8 @@
           <%= f.number_field :deathSaveFailures, class: "form-control"  %>
           <%= f.label :'Death Save Failures', class: "control-label"  %>
         </div>
-        <h4>Wealth</h4>
+        <h4>Wealth <%= check_box_tag 'wealth_hide_reveal', 'wealth_hide_reveal', !@hide_attributes_table.wealth_reveal %>
+        <%= label_tag(:wealth_hide_reveal, "Hide") %></h4>
         <%= f.fields_for :wealth do |wealthForm| %>
           <div class="form-inline">
             <%= wealthForm.number_field :copper, class: "form-control" %>
@@ -162,7 +169,8 @@
         <% end %>
       </div>
       <div class="col-md-4">
-        <h4>Personality</h4>
+        <h4>Personality <%= check_box_tag 'personality_hide_reveal', 'personality_hide_reveal', !@hide_attributes_table.personality_reveal %> 
+        <%= label_tag(:personality_hide_reveal, "Hide") %></h4>
         <div class="form-group">
           <%= f.label :'Personality Traits', class: "control-label" %>
           <%= f.text_area :personalityTraits, class: "form-control", size:"10x2" %>
@@ -179,7 +187,8 @@
           <%= f.label :Flaws, class: "control-label" %>
           <%= f.text_area :flaws, class: "form-control", size:"10x2" %>
         </div>
-        <h4>Physical Features</h4>
+        <h4>Physical Features <%= check_box_tag 'physicalfeature_hide_reveal', 'physicalfeature_hide_reveal', !@hide_attributes_table.physicalfeature_reveal %>  
+        <%= label_tag(:physicalfeature_hide_reveal, "Hide") %></h4>
         <div class="form-inline">
           <%= f.number_field :age, class: "form-control" %>
           <%= f.label :age, class: "control-label" %>
@@ -204,7 +213,8 @@
           <%= f.text_field :hair, class: "form-control" %>
           <%= f.label :hair, class: "control-label" %>
         </div>
-        <h4>Equipment Carry Capacity</h4>
+        <h4>Equipment Carry Capacity <%= check_box_tag 'carry_hide_reveal', 'carry_hide_reveal', !@hide_attributes_table.carry_reveal %> 
+        <%= label_tag(:carry_hide_reveal, "Hide") %></h4>
         <div class="form-inline">
           <%= f.number_field :currentEquipmentCarryCapacity, class: "form-control" %>
           <%= f.label :Current, class: "control-label" %>
@@ -213,7 +223,8 @@
           <%= f.number_field :maxEquipmentCarryCapacity, class: "form-control" %>
           <%= f.label :Max, class: "control-label" %>
         </div>
-        <h4>Spell Casting</h4>
+        <h4>Spell Casting <%= check_box_tag 'spellcast_hide_reveal', 'spellcast_hide_reveal', !@hide_attributes_table.spellcast_reveal %>  
+        <%= label_tag(:spellcast_hide_reveal, "Hide") %></h4>
         <div class="form-inline">
           <%= f.text_field :spellCastingAbility, class: "form-control" %>
           <%= f.label :'Spell Casting Ability', class: "control-label" %>
@@ -235,7 +246,8 @@
   <div class="form-group">
     <div class="row">
       <div class="col-md-12">
-        <h4>Attack Weapons</h4>
+        <h4>Attack Weapons <%= check_box_tag 'attackweapon_hide_reveal', 'attackweapon_hide_reveal', !@hide_attributes_table.attackweapon_reveal %>  
+        <%= label_tag(:attackweapon_hide_reveal, "Hide") %></h4>
         <div class="row">
           <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
           <div class="col-md-2"><%= f.label :Bonus, class: "control-label" %></div>
@@ -277,6 +289,8 @@
 
     <div class="form-group">
     <div class="row">
+      <h4>Spell <%= check_box_tag 'spell_hide_reveal', 'spell_hide_reveal', !@hide_attributes_table.spell_reveal %> 
+        <%= label_tag(:spell_hide_reveal, "Hide") %></h4>
       <div class="col-md-12">
         <h4>Add Cantrip</h4>
         <div class="row">
@@ -346,7 +360,8 @@
 
     <div class="row">
       <div class="col-md-12">
-        <h4>Armor And Shields</h4>
+        <h4>Armor And Shields <%= check_box_tag 'armorandshield_hide_reveal', 'armorandshield_hide_reveal', !@hide_attributes_table.armorshield_reveal %>  
+        <%= label_tag(:armorandshield_hide_reveal, "Hide") %></h4>
           <div class="row">
             <div class="col-md-4"><%= f.label :Name, class: "control-label" %></div>
             <div class="col-md-2"><%= f.label :Disadvantage, class: "control-label" %></div>
@@ -388,6 +403,8 @@
 
     <div class="row">
       <div class="col-md-12">
+        <%= check_box_tag(:attack_description_hide_reveal) %> 
+        <%= label_tag(:attackdescription_hide_reveal, "Hide") %>
         <%= f.label :'Attacks Description', class: "control-label" %>
         <%= f.text_area :attacksDescription, class: "form-control", size:"50x5" %>
       </div>
@@ -395,13 +412,15 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-      <h4>Equipment</h4>
+      <h4>Equipment <%= check_box_tag 'equipment_hide_reveal', 'equipment_hide_reveal', !@hide_attributes_table.equipment_reveal %> 
+        <%= label_tag(:equipment_hide_reveal, "Hide") %></h4>
       </div>
     </div>
     <hr>
     <div class="row">
       <div class="col-md-12">
-        <h4>Character Description</h4>
+        <h4>Character Description <%= check_box_tag 'characterdescription_hide_reveal', 'characterdescription_hide_reveal', !@hide_attributes_table.characterdescription_reveal %>  
+        <%= label_tag(:characterdescription_hide_reveal, "Hide") %></h4>
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -435,7 +454,8 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-        <h4>Allies And Organizations</h4>
+        <h4>Allies And Organizations <%= check_box_tag 'alliesandorganization_hide_reveal', 'alliesandorganization_hide_reveal', !@hide_attributes_table.alliesandorganisation_reveal %>  
+        <%= label_tag(:alliesandorganization_hide_reveal, "Hide") %></h4>
         <%= f.fields_for :allies_and_organizations do |alliesAndOrganizationsForm| %>
           <div class="row">
             <div class="col-md-6">
@@ -485,7 +505,8 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-        <h4>Additional Features And Traits</h4>
+        <h4>Additional Features And Traits <%= check_box_tag 'additionalfeature_hide_reveal', 'additionalfeature_hide_reveal', !@hide_attributes_table.additionalfeature_reveal %>  
+        <%= label_tag(:additionalfeature_hide_reveal, "Hide") %></h4>
         <div class="form-group">
           <%= f.text_area :additionalFeaturesAndTraits, class: "form-control", size:"50x10" %>
         </div>
@@ -494,7 +515,8 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-        <h4>Treasure</h4>
+        <h4>Treasure <%= check_box_tag 'treasure_hide_reveal', 'treasure_hide_reveal', !@hide_attributes_table.treasure_reveal %>   
+        <%= label_tag(:treasure_hide_reveal, "Hide") %></h4>
         <div class="form-group">
           <%= f.text_area :treasure, class: "form-control", size:"50x10" %>
         </div>
