@@ -35,8 +35,9 @@ Rails.application.routes.draw do
 
   get 'join_game/join_game_form'
 
-
+  
   resources :player_characters
+  post '/player_characters/ajaxwindow/:background' => 'player_characters#ajaxwindow' 
   get '/player_characters/:id/otheruser' => 'player_characters#showOthers', as: 'otheruser'
 
   get '/player_characters/:id/market' => 'player_characters#market', as: 'player_character_market'
