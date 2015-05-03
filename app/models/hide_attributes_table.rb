@@ -27,5 +27,6 @@
 #  treasure_reveal              :boolean
 #
 
+
 class HideAttributesTable < ActiveRecord::Base
 end

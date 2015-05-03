@@ -27,6 +27,7 @@
 #  treasure_reveal              :boolean
 #
 
+
 require 'test_helper'
 
 class HideAttributesTableTest < ActiveSupport::TestCase
