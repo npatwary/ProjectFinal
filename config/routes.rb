@@ -36,10 +36,17 @@ Rails.application.routes.draw do
   get 'join_game/join_game_form'
 
   
+
   post '/player_characters/ajaxwindow/:background' => 'player_characters#ajaxwindow' 
+
   resources :player_characters
+  post '/player_characters/ajaxwindow/:background' => 'player_characters#ajaxwindow' 
   get '/player_characters/:id/otheruser' => 'player_characters#showOthers', as: 'otheruser'
   #POST /player_characters/ajaxwindow/:background => 'player_characters#ajaxwindow'
+
+  get '/player_characters/:id/market' => 'player_characters#market', as: 'player_character_market'
+
+  get '/player_characters/2/edit' => 'player_characters#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

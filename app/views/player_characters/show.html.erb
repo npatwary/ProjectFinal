@@ -3,7 +3,7 @@
 <p id="notice"><%= notice %></p>
     <% unless @player_character.game.nil?%>
     <ul>
-      <li style = 'list-style:none;' align="center" ><%= link_to "Buy Attack Weapons",attack_weapons_buy_path(@player_character)%> | <%= link_to "Buy armorAndShields",armor_and_shields_buy_path(@player_character)%> | <%= link_to "Sell Attack Weapons",attack_weapons_sell_path(@player_character) %> | <%= link_to "Sell ArmorAndShields",armor_and_shields_sell_path(@player_character) %></li>
+      <li style = 'list-style:none;' align="right" ><%= link_to "Go to Market",player_character_market_path(@player_character)%> </li>
     </ul>
     <% end %>
 
@@ -50,7 +50,7 @@
 <div>
       <div class="col-md-12">
         <h4>Ability Scores </h4>
-         <% @player_character.ability_scores.each do |abilityScore| %>
+          <% @player_character.ability_scores.each do |abilityScore| %>
           <div class="col-md-2">
             <ul class="list-group">
               <li class="list-group-item"><%= abilityScore.name %></li>
@@ -364,6 +364,24 @@
     <div class="row">
       <div class="col-md-12">
       <h4>Equipment</h4>
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Cost</th>
+              <th>Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @player_character.equipments.each do |equipment| %>
+            <tr>
+              <td><%= equipment.name %></td>
+              <td><%= equipment.cost %></td>
+              <td><%= equipment.unit %></td>  
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
     <hr>
@@ -431,7 +449,7 @@
             <div class="col-md-6">
               <p>
                 <strong>Symbol:</strong><br>
-                <%= alliesAndOrganizations.symbolDnD %>
+                <% if alliesAndOrganizations.symbolDnD !=nil and alliesAndOrganizations.symbolDnD != '' %><%=  image_tag("/images/uploads/" + alliesAndOrganizations.symbolDnD, size: "200x200", alt: "Symbol")%><% end %>
               </p>
             </div>
           </div>

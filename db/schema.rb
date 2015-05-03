@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502044204) do
+ActiveRecord::Schema.define(version: 20150502232306) do
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -111,8 +111,26 @@ ActiveRecord::Schema.define(version: 20150502044204) do
   create_table "hide_attributes_tables", force: :cascade do |t|
     t.integer  "pc_id"
     t.boolean  "ability_reveal"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "skill_reveal"
+    t.boolean  "savingthrow_reveal"
+    t.boolean  "personality_reveal"
+    t.boolean  "attribute_reveal"
+    t.boolean  "characterbonus_reveal"
+    t.boolean  "wealth_reveal"
+    t.boolean  "physicalfeature_reveal"
+    t.boolean  "carry_reveal"
+    t.boolean  "spellcast_reveal"
+    t.boolean  "attackweapon_reveal"
+    t.boolean  "spell_reveal"
+    t.boolean  "armorshield_reveal"
+    t.boolean  "attackdescription_reveal"
+    t.boolean  "equipment_reveal"
+    t.boolean  "characterdescription_reveal"
+    t.boolean  "alliesandorganisation_reveal"
+    t.boolean  "additionalfeature_reveal"
+    t.boolean  "treasure_reveal"
   end
 
   create_table "invited_games_models", force: :cascade do |t|

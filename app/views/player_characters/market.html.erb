@@ -1,0 +1,26 @@
+ 
+ <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Buy Market</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr><td><%= link_to "Attack Weapons",attack_weapons_buy_path(@player_character)%></td></tr>
+              <tr><td><%= link_to "ArmorAndShields",armor_and_shields_buy_path(@player_character)%></td></tr>
+              <tr><td><%= link_to "Equipments",equipments_buy_path(@player_character)%></td></tr>  
+          </tbody>
+</table>
+
+ <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Sell Market</th>
+            </tr>
+          </thead>
+          <tbody>
+           <tr><td><%= link_to "Sell Attack Weapons",attack_weapons_sell_path(@player_character) %></td></tr>
+            <tr><td><%= link_to "Sell ArmorAndShields",armor_and_shields_sell_path(@player_character) %></td></tr>
+            <tr><td><%= link_to "Sell Equipments",equipments_sell_path(@player_character) %></td></tr> 
+          </tbody>
+</table>

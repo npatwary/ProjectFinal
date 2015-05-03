@@ -476,42 +476,6 @@ function setToolsProficiency(data,raceProficieny){
 }
 
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function raceSelectionHandler()
- {
-  
-  //alert($('#player_character_race').val());
-  selected_race_id = $('#player_character_race').val();
-    if(selected_race_id == ""){
-      //reset fields affected by race selection
-      $('#player_character_speed').val("");
-      $('#player_character_alignment').val("");
-      $('#player_character_featuresAndTraits').val("");
-      $('#player_character_otherProficienciesAndLanguages').val("");
-      return;
-    }
-      
-
-    console.log("selected race is " + $('#player_character_race option:selected').text() + " with id: " + selected_race_id)
-  //alert($('#player_character_race option:selected').text());
-
-   var request =  $.ajax({
-      type: "POST",
-      url: "/races/"+selected_race_id,
-      dataType: "json",
-      success: function(data, httpStatus, xmlHttpObj){
-        autoPopulateRaceRelatedFields(data);
-        check = getAllowedSkill(data);
-        window.check = check;
-      },
-      error: function(xmlHttpObj, httpStatus,errMsg){
-        console.log("Oops!!" + httpStatus + ":" + errMsg);
-      }
-    });
-   }
-
 ////////////////// Auto Populating Class Related Fields ///////////////////////////////////
 
 function classSelectionHandler()
