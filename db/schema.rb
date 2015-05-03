@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(version: 20150501200150) do
   add_index "ability_scores", ["playercharacter_id"], name: "index_ability_scores_on_playercharacter_id"
 
   create_table "achievements", force: :cascade do |t|
-    t.string   "user_name"
-    t.string   "game_name"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
