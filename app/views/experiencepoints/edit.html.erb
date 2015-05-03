@@ -1,0 +1,32 @@
+<% provide(:title, 'Assign Experience-Points') %>
+
+<h4>Assign Experience-Points</h4>
+<%= form_tag("/experiencepoints") do %>
+<%= hidden_field_tag(:player_character_id,  @player.id) %>
+	<table class = "table" >
+		
+		<tr>
+			<td> <%= f.label :player_name %></td>
+			<td><%= @player.name %></td>
+
+		</tr>
+		<tr>
+			<td><%= f.label :game_name %></td>
+			<td><%= @player.game.name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label 'Current Experience Points' %></td>
+			<td><%= @player.experiencePoints %></td>
+		</tr>
+		<tr>
+			<td><%= f.label 'Add Experience Points' %></td>
+			<td><%= f.text_field :experiencePoints,:size=>"50*10" %></td>
+		</tr>
+	</table>
+		 
+		<p>
+   			<%= submit_tag("Update Experience Points") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+<% end %>
+		</p>
+<% end %>
+

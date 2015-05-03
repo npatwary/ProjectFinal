@@ -13,4 +13,6 @@
 class Achievement < ActiveRecord::Base
 
 	validates :description, presence: true
+	belongs_to :game
+	belongs_to :player_character
 end

@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   get '/achievements/new', to: 'achievements#new', as:'new_achievements'
   post '/achievements', to:'achievements#create'
 
-  get 'experiencepoints/new', to: 'experiencepoints#new', as: 'new_experiencepoints'
-  get 'experiencepoints', to: 'experiencepoints#index', as: 'experiencepoints'
+
+  get 'experiencepoints/:game_id', to: 'experiencepoints#index', as: 'experiencepoints'
+
+  patch '/experiencepoints', to: 'experiencepoints#update'
+  put '/experiencepoints', to: 'experiencepoints#update'
+
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 
