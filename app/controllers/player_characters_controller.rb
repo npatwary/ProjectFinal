@@ -38,8 +38,9 @@ class PlayerCharactersController < ApplicationController
   # POST /player_characters.json
   def create
     @player_character = current_user.player_characters.new(player_character_params);
-    @player_character.race = Race.find(params[:player_character][:race]).name 
-    @player_character.classDnD = PlayerCharacterClass.find(params[:player_character][:classDnD]).name 
+
+    @player_character.race = Race.find(params[:player_character][:race]).name if Race.exists? (params[:player_character][:race])
+    @player_character.classDnD = PlayerCharacterClass.find(params[:player_character][:classDnD]).name if PlayerCharacterClass.exists? (params[:player_character][:classDnD]) 
     @new_player_character_id = PlayerCharacter.last.id; 
     @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
     @hideTable.save
