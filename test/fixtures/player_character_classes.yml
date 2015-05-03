@@ -30,7 +30,7 @@ one:
   hitDice: MyString
   currentHitPoint: 1
   maximumHitPoint: MyString
-  spellcastAbilityID: 1
+  spellcastAbility: 1
   spellSaveDC: 1
   spellAttackBonus: 1
 
@@ -39,6 +39,6 @@ two:
   hitDice: MyString
   currentHitPoint: 1
   maximumHitPoint: MyString
-  spellcastAbilityID: 1
+  spellcastAbility: 1
   spellSaveDC: 1
   spellAttackBonus: 1

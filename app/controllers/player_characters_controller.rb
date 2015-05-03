@@ -21,7 +21,7 @@ class PlayerCharactersController < ApplicationController
    #@revealTable = HideAttributesTable.find(params[:id]); 
 
     @revealTable = HideAttributesTable.find_by pc_id: 3; 
-    @ability_reveal= @revealTable.ability_reveal;
+    @ability_reveal= @revealTable.ability_reveal unless @revealTable.nil?;
     #byebug
   end
 
@@ -39,6 +39,8 @@ class PlayerCharactersController < ApplicationController
   # POST /player_characters.json
   def create
     @player_character = current_user.player_characters.new(player_character_params);
+    @player_character.race = Race.find(params[:player_character][:race]).name 
+    @player_character.classDnD = PlayerCharacterClass.find(params[:player_character][:classDnD]).name 
     @new_player_character_id = PlayerCharacter.last.id; 
     @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
     @hideTable.save
