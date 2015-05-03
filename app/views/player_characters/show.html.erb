@@ -382,7 +382,7 @@
             <div class="col-md-6">
               <p>
                 <strong>Symbol:</strong><br>
-                <%= alliesAndOrganizations.symbolDnD %>
+                <% if alliesAndOrganizations.symbolDnD !=nil and alliesAndOrganizations.symbolDnD != '' %><%=  image_tag("/images/uploads/" + alliesAndOrganizations.symbolDnD, size: "200x200", alt: "Symbol")%><% end %>
               </p>
             </div>
           </div>
