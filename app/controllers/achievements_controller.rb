@@ -1,19 +1,28 @@
 class AchievementsController < ApplicationController
   def new
-  	@achievement = Achievement.new
+    @achievement = Achievement.new
   end
 
   def index
-  	@achievements = Achievement.all
+    @game = Game.find(params[:game_id])
   end
 
   def create
-  	@achievement = Achievement.new(params.require(:achievement).permit(:user_name, :game_name, :description))
-  	if @achievement.save
-  		redirect_to achievements_path
-  	else
-  		render 'new'
-  	end
+  	selected_player_ids = params[:player_ids]
+    is_Success = true
+    selected_player_ids.each do |player_id|
+      player = PlayerCharacter.find(player_id)
+      description = 'description'+ player.id.to_s
+      @achievement = Achievement.new(description: params['description'+player_id])
+      is_Success = false unless player.save
+    end 
+    if is_Success
+        flash[:success] =  "Achievements Assigned Successfully!"
+        redirect_to game_path(params[:game_id])
+      else
+        flash[:alert] = "Sorry Error on Assiging Achievements"
+        render 'index'
+      end
   end
   
 end

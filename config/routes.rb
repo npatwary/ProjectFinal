@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
 
-  get '/achievements', to: 'achievements#index', as:'achievements'
-  get '/achievements/new', to: 'achievements#new', as:'new_achievements'
+  get '/achievements/:game_id', to: 'achievements#index', as:'achievements'
+  #get '/achievements/new', to: 'achievements#new', as:'new_achievements'
   post '/achievements', to:'achievements#create'
 
 

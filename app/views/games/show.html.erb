@@ -1,7 +1,8 @@
 <% provide(:title, "Game-Show") %>
 <% if dungeon_master?(@game.dungeon_master) %>
   <ul>
-  	<li style = "list-style:none;"><%= link_to "Edit Game",edit_game_path(@game)%> | <%= link_to "Invite Users",new_game_invitation_path(@game) %>| <%= link_to "Assign Exp Points",experiencepoints_path(@game) %></li>
+  	<li style = "list-style:none;"><%= link_to "Edit Game",edit_game_path(@game)%> | <%= link_to "Invite Users",new_game_invitation_path(@game) %>| <%= link_to "Assign Exp Points",experiencepoints_path(@game) %>
+      | <%= link_to "Assign Achievements",achievements_path(@game) %></li>
   </ul>
 <% end %>
 <h2> Game Details: </h2>

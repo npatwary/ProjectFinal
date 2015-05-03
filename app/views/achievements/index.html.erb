@@ -1,10 +1,46 @@
 <% provide(:title, 'Achievements') %>
 
-<% @achievements.each do |achmnt| %>
-	<div>
-		<li>User Name:<%= achmnt.user_name %></li>
-		<li>Game Name : <%= achmnt.game_name %></li>
-		<li>Description: <%= achmnt.description %></li>
-	</div>
-
+<h4>Game: <%= @game.name %></h4>
+<h5> Assign Achievements </h5>
+<%  if @game.player_characters.length > 0 %>
+	<%= form_tag("/achievements", method: "post") do %>
+	<%= hidden_field_tag(:game_id,  @game.id) %>
+	<table class="table">
+		<tr>
+			<th>&nbsp;</th>
+			<th colspan = '2'> Players </th>
+		</tr>
+	<% @game.player_characters.each do |player| %>
+	<tr>
+		<td><%= check_box_tag "player_ids[]",player.id, false, class: 'achievements' %></td>
+	    <td><%= player.name %></td>
+	    <td>Assign Achievements <%= text_area_tag 'description'+ player.id.to_s,'', disabled: true,:size=>"95x5" %></td>   
+	</tr>
+	<% end %>
+	</table>
+	<%= submit_tag("Add Achievements") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+	<% end %>
+<% else %>
+<p> You have no player characters in the game! </p>
 <% end %>
+
+<hr>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+
+		$('.achievements').click(function(){
+			player_id = $(this).val();
+			if (this.checked) {
+				$('#description'+player_id).prop('disabled', false);
+			}else{
+				$('#description'+player_id).prop('disabled', true);
+			}
+			//
+			//alert("hello" + player_id);
+			console.log(player_id);
+			
+		});
+
+	});
+</script>
