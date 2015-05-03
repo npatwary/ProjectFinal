@@ -13,14 +13,7 @@ class PlayerCharactersController < ApplicationController
   # GET /player_characters/1
   # GET /player_characters/1.json
   def show
-<<<<<<< HEAD
-    if @player_character.creator_id != current_user.id
-      redirect_to show1_player_character_path
-    end 
-  end
 
-  def show1
-=======
     @player_character = PlayerCharacter.find(params[:id])
     
     @user_id = current_user.id;
@@ -31,7 +24,7 @@ class PlayerCharactersController < ApplicationController
     @revealTable = HideAttributesTable.find_by pc_id: 3; 
     @ability_reveal= @revealTable.ability_reveal;
     #byebug
->>>>>>> master
+
   end
 
   # GET /player_characters/new
@@ -42,6 +35,7 @@ class PlayerCharactersController < ApplicationController
   def 
   # GET /player_characters/1/edit
   def edit
+    @hide_attributes_table = HideAttributesTable.find_by pc_id: pc_id
   end
 
   # POST /player_characters
@@ -49,7 +43,11 @@ class PlayerCharactersController < ApplicationController
   def create
     @player_character = current_user.player_characters.new(player_character_params);
     @new_player_character_id = PlayerCharacter.last.id; 
+
+
     @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
+
+
     @hideTable.save
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
@@ -104,6 +102,202 @@ class PlayerCharactersController < ApplicationController
   # PATCH/PUT /player_characters/1.json
   def update
     # if user want to add/remove wweapons or shields
+    @player_character = PlayerCharacter.find(params[:id])
+    pc_id = @player_character.id
+    @hide_attributes_table = HideAttributesTable.find_by pc_id: pc_id
+   # @collect_ability_hideattr = (params[:ability_hide].present? ? params[:ability_hide] : nil)
+
+   # byebug
+    @collect_ability_hideattr = params[:ability_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(ability_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:skill_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(skill_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:characterbonus_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(characterbonus_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:savingthrow_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(savingthrow_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:attribute_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(attribute_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:wealth_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(wealth_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:personality_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(personality_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:physicalfeature_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(physicalfeature_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:carry_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(carry_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:spellcast_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(spellcast_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:attackweapon_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(attackweapon_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:spell_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(spell_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:armorandshield_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(armorshield_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:attack_description_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(attackdescription_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:characterdescription_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(characterdescription_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:alliesandorganization_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(alliesandorganisation_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:additionalfeature_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(additionalfeature_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:treasure_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(treasure_reveal: @collect_ability_hideattr)
+
+
+     @collect_ability_hideattr = params[:equipment_hide_reveal];
+    if @collect_ability_hideattr.nil?
+        @collect_ability_hideattr = true;
+    else
+        @collect_ability_hideattr = false;
+    end
+    
+    @hide_attributes_table.update(equipment_reveal: @collect_ability_hideattr)
+
+    #byebug
     
 
    if params[:add_attack_weapon]
