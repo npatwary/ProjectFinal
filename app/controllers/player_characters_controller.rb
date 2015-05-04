@@ -22,7 +22,7 @@ class PlayerCharactersController < ApplicationController
 
     @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 
     #fix for player_controller test should show player_character
-    @revealTable = HideAttributesTable.new(pc_id: pc_id,ability_reveal: true) if @revealTable.nil
+    @revealTable = HideAttributesTable.new(pc_id: pc_id,ability_reveal: true) if @revealTable.nil?
 
 
 

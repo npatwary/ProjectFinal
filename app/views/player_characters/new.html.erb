@@ -42,32 +42,42 @@
   	console.log(data)
   	console.log(data['max_age'])
 
+    raceData = data['race']
+    classData = data['class']
+
   	//auto populate html controls
-  	$('#player_character_speed').val(data['base_speed'])
+  	$('#player_character_speed').val(raceData['base_speed'])
 
     var alignment = "";
-  	if(data['alignment'] != null){
-      alignment = data['alignment'];
+  	if(raceData['alignment'] != null){
+      alignment = raceData['alignment'];
     }
   	
     $('#player_character_alignment').val(alignment);
   	
 
-  	$('#player_character_featuresAndTraits').val(data['features'])
+  	$('#player_character_featuresAndTraits').val(raceData['features'])
 
-  	var otherProficienciesAndLanguages = data['language'] + '\n'
-    if(data['tools'] != null){
-      otherProficienciesAndLanguages = otherProficienciesAndLanguages + data['tools'];
+
+    var otherProficienciesAndLanguages = raceData['language'] + '\n'
+    if(raceData['tools'] != null){
+      otherProficienciesAndLanguages = otherProficienciesAndLanguages + raceData['tools'];
     }
-  	$('#player_character_otherProficienciesAndLanguages').val(otherProficienciesAndLanguages);
+
+    if(classData != 0){
+        setToolsProficiency(classData,otherProficienciesAndLanguages)
+    }
+    else{
+        $('#player_character_otherProficienciesAndLanguages').val(otherProficienciesAndLanguages);
+    }
 
     //set racial increase of ability scores
-    $('#race_Strength').text(data['strength']);
-    $('#race_Dexterity').text(data['dexterity']);
-    $('#race_Constitution').text(data['constitution']);
-    $('#race_Intelligence').text(data['intelligence']);
-    $('#race_Wisdom').text(data['wisdom']);
-    $('#race_Charisma').text(data['charisma']);
+    $('#race_Strength').text(raceData['strength']);
+    $('#race_Dexterity').text(raceData['dexterity']);
+    $('#race_Constitution').text(raceData['constitution']);
+    $('#race_Intelligence').text(raceData['intelligence']);
+    $('#race_Wisdom').text(raceData['wisdom']);
+    $('#race_Charisma').text(raceData['charisma']);
 
     updateAllFieldsRelatedWithAbilityScores();
 
@@ -525,11 +535,12 @@ function classSelectionHandler()
 
     console.log("selected race is " + $('#player_character_race option:selected').text() + " with id: " + selected_race_id)
  	//alert($('#player_character_race option:selected').text());
-
+  selectedClassID = $('#player_character_classDnD').val();
    var request =  $.ajax({
     	type: "POST",
     	url: "/races/"+selected_race_id,
     	dataType: "json",
+      data : {  class_id: selectedClassID },
     	success: function(data, httpStatus, xmlHttpObj){
     		autoPopulateRaceRelatedFields(data);
         },
