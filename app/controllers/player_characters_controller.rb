@@ -16,13 +16,15 @@ class PlayerCharactersController < ApplicationController
     @player_character = PlayerCharacter.find(params[:id])
     
     @user_id = current_user.id;
-
-    @dm_id = params[:dm_id];
+    if @player_character.game_id != nil
+      @game = Game.find(params[:id]);
+      @dm_id = @game.user_id
+    end
    #@revealTable = HideAttributesTable.find(params[:id]); 
-
+    
     @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 
     #fix for player_controller test should show player_character
-    @revealTable = HideAttributesTable.new(pc_id: pc_id,ability_reveal: true) if @revealTable.nil?
+    @revealTable = HideAttributesTable.new(pc_id: pc_id, ability_reveal:true, skill_reveal:true, savingthrow_reveal:true, personality_reveal:true, attribute_reveal:true, characterbonus_reveal:true, wealth_reveal:true, physicalfeature_reveal:true, carry_reveal:true, spellcast_reveal:true, attackweapon_reveal:true, spell_reveal:true, armorshield_reveal:true, attackdescription_reveal:true, equipment_reveal:true, characterdescription_reveal:true, alliesandorganisation_reveal:true, additionalfeature_reveal:true, treasure_reveal:true) if @revealTable.nil?
 
 
 
@@ -73,7 +75,7 @@ class PlayerCharactersController < ApplicationController
       # normal create function
       respond_to do |format|
         if @player_character.save
-          @hideTable = HideAttributesTable.new(pc_id:@player_character.id , ability_reveal: true);
+          @hideTable = HideAttributesTable.new(pc_id:@player_character.id , ability_reveal: true, skill_reveal:true, savingthrow_reveal:true, personality_reveal:true, attribute_reveal:true, characterbonus_reveal:true, wealth_reveal:true, physicalfeature_reveal:true, carry_reveal:true, spellcast_reveal:true, attackweapon_reveal:true, spell_reveal:true, armorshield_reveal:true, attackdescription_reveal:true, equipment_reveal:true, characterdescription_reveal:true, alliesandorganisation_reveal:true, additionalfeature_reveal:true, treasure_reveal:true);
           @hideTable.save
           format.html { redirect_to @player_character, notice: 'Player character was successfully created.' }
           format.json { render :show, status: :created, location: @player_character }

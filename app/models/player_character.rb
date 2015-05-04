@@ -54,6 +54,7 @@
 #
 
 
+
 class PlayerCharacter < ActiveRecord::Base
 
 	

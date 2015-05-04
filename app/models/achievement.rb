@@ -8,6 +8,7 @@
 #  updated_at  :datetime         not null
 #
 
+
 class Achievement < ActiveRecord::Base
 
 	validates :description, presence: true
