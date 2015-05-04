@@ -1,16 +1,5 @@
 <% provide(:title, 'Experience Points') %>
 
 <h4>Experience Points</h4>
-<%= form_for(@playercharacter) do |f| %>
-	<br>
-	<%= PlayerCharacter.find(1).name %>
-	<%= PlayerCharacter.find(1).experiencePoints %>
-	<%= Game.find(1).name %>
-	<br>
-	<%= f.label :experiencePoints %>
-	<%= f.text_field :experiencePoints %>
-		<p>
-   			<%= f.submit "Update" %>
-		</p>
-<% end %>
+
 
