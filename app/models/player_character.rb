@@ -66,7 +66,7 @@ class PlayerCharacter < ActiveRecord::Base
 	validates :race, presence: true
 
 
-
+	has_one :achievement
 	belongs_to :creator,
 				class_name: "User",
 				foreign_key: "creator_id"

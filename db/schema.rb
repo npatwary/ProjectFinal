@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150502232306) do
+
 
   create_table "ability_scores", force: :cascade do |t|
     t.string   "name"
@@ -23,6 +25,12 @@ ActiveRecord::Schema.define(version: 20150502232306) do
   end
 
   add_index "ability_scores", ["playercharacter_id"], name: "index_ability_scores_on_playercharacter_id"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "allies_and_organizations", force: :cascade do |t|
     t.integer  "playercharacter_id"
