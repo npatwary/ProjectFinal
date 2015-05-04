@@ -1,0 +1,24 @@
+
+<table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Player Achievements</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr><td>Name: <%=@player_character.name%></td></tr>
+              <tr><td>Game: <%=@player_character.game.name%></td></tr>
+              <% achievements = ''
+                @player_character.achievement.each do |a|
+                  if achievements == ''
+                    achievements = "#{a.description}"
+                  else
+                    achievements = "#{achievements};#{a.description}"
+                  end
+                end
+                %>
+              <tr><td>Achievement: <%=achievements%></td></tr>
+                
+          </tbody>
+</table>
+

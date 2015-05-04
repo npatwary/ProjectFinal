@@ -26,9 +26,14 @@ ActiveRecord::Schema.define(version: 20150502232306) do
 
   create_table "achievements", force: :cascade do |t|
     t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "player_character_id"
+    t.integer  "game_id"
   end
+
+  add_index "achievements", ["game_id"], name: "index_achievements_on_game_id"
+  add_index "achievements", ["player_character_id"], name: "index_achievements_on_player_character_id"
 
   create_table "allies_and_organizations", force: :cascade do |t|
     t.integer  "playercharacter_id"

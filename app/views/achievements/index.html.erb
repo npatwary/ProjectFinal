@@ -40,7 +40,19 @@
 			//alert("hello" + player_id);
 			console.log(player_id);
 			
-		});
+		}); 
+
+   var $form = $('form')
+    var $checkbox = $('.achievements');
+    
+    $form.on('submit', function(e) {
+        if(!$checkbox.is(':checked')) {
+            //alert('Please confirm!');
+            e.preventDefault();
+        }
+    });
+
 
 	});
 </script>
+

@@ -1,3 +1,4 @@
+
 class AchievementsController < ApplicationController
   def new
     @achievement = Achievement.new
@@ -12,9 +13,10 @@ class AchievementsController < ApplicationController
     is_Success = true
     selected_player_ids.each do |player_id|
       player = PlayerCharacter.find(player_id)
-      description = 'description'+ player.id.to_s
       @achievement = Achievement.new(description: params['description'+player_id])
-      is_Success = false unless player.save
+      @achievement.game = player.game
+      @achievement.player_character = player
+      is_Success = false unless @achievement.save
     end 
     if is_Success
         flash[:success] =  "Achievements Assigned Successfully!"
