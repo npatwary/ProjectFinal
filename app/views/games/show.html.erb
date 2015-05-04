@@ -1,7 +1,8 @@
 <% provide(:title, "Game-Show") %>
 <% if dungeon_master?(@game.dungeon_master) %>
   <ul>
-  	<li style = "list-style:none;"><%= link_to "Edit Game",edit_game_path(@game)%> | <%= link_to "Invite Users",new_game_invitation_path(@game) %></li>
+  	<li style = "list-style:none;"><%= link_to "Edit Game",edit_game_path(@game)%> | <%= link_to "Invite Users",new_game_invitation_path(@game) %>| <%= link_to "Assign Exp Points",experiencepoints_path(@game) %>
+      | <%= link_to "Assign Achievements",achievements_path(@game) %></li>
   </ul>
 <% end %>
 <h2> Game Details: </h2>
@@ -25,16 +26,25 @@
     <td>Game Players</td>
     <td><% player_characters = '' 
       @game.player_characters.each do |player_character|
-        if player_characters.length == 0 %>
-        <%=link_to player_character.name, player_character_path(:id=>player_character.id, :dm_id => @game.dungeon_master.id), method: :get %>
-         <!--player_characters = player_character.name -->
-        <% else %>
-        <!-- player_characters = "#{player_characters};#{player_character.name}"-->
-        <%=link_to player_character.name, player_character_path(:id=>player_character.id, :dm_id => @game.dungeon_master.id), method: :getexit %>
-        
-       <% end
-      end %></td>
-   	
+
+        if player_characters.length == 0 
+          if dungeon_master?(@game.dungeon_master)
+            player_characters = '<li style = "list-style:none;"><a href="' + player_character_path(player_character.id) +'">'+player_character.name + '</a>'
+          else
+            player_characters = player_character.name
+          end
+        else
+          if dungeon_master?(@game.dungeon_master)
+            pc =  '<a href="' + player_character_path(player_character.id) +'">'+player_character.name + '</a>'
+            player_characters = "#{player_characters};#{pc}"
+          else
+            player_characters = "#{player_characters};#{player_character.name}"
+          end
+        end
+      end
+      player_characters = player_characters + '</li>' if dungeon_master?(@game.dungeon_master)
+        %>
+   	<td><%= raw player_characters %></td>	
  </tr>
 
 

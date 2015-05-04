@@ -1,0 +1,46 @@
+
+<% provide(:title, 'Experience-Points Index') %>
+<h4>Game: <%= @game.name %></h4>
+<h5> Assign Experience-Points </h5>
+<%  if @game.player_characters.length > 0 %>
+	<%= form_tag("/experiencepoints", method: "patch") do %>
+	<%= hidden_field_tag(:game_id,  @game.id) %>
+	<table class="table">
+		<tr>
+			<th>&nbsp;</th>
+			<th colspan = '2'> Players </th>
+		</tr>
+	<% @game.player_characters.each do |player| %>
+	<tr>
+		<td><%= check_box_tag "player_ids[]",player.id, false, class: 'experiencepoints' %></td>
+	    <td><%= player.name %></td>
+	    <td>Experience Points <%= number_field_tag 'experiencepoints'+ player.id.to_s,'', disabled: true %></td>   
+	</tr>
+	<% end %>
+	</table>
+	<%= submit_tag("Add Experience Points") %>&nbsp;<%= button_tag "Reset", type: :reset %>
+	<% end %>
+<% else %>
+<p> You have no player characters in the game! </p>
+<% end %>
+
+<hr>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+
+		$('.experiencepoints').click(function(){
+			player_id = $(this).val();
+			if (this.checked) {
+				$('#experiencepoints'+player_id).prop('disabled', false);
+			}else{
+				$('#experiencepoints'+player_id).prop('disabled', true);
+			}
+			//
+			//alert("hello" + player_id);
+			console.log(player_id);
+			
+		});
+
+	});
+</script>

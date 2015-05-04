@@ -28,3 +28,4 @@ two:
   password_digest: <%= User.digest('user2xxxx')%>
   #password: "user2xxxx"
  # password_confirmation: "user2xxxx"
+

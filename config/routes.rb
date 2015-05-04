@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get '/classes' => 'player_character_classes#index', as:'classes'
   post '/classes' => 'player_character_classes#index'
   get '/class/show' => 'player_character_classes#show', as: 'class'
@@ -14,6 +13,15 @@ Rails.application.routes.draw do
  
  post '/equipments' => 'equipments#create'
  delete '/equipments' => 'equipments#destroy' 
+  get '/achievements/:game_id', to: 'achievements#index', as:'achievements'
+  #get '/achievements/new', to: 'achievements#new', as:'new_achievements'
+  post '/achievements', to:'achievements#create'
+
+
+  get 'experiencepoints/:game_id', to: 'experiencepoints#index', as: 'experiencepoints'
+
+  patch '/experiencepoints', to: 'experiencepoints#update'
+  put '/experiencepoints', to: 'experiencepoints#update'
 
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'

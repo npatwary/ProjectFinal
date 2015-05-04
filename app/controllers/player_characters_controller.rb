@@ -46,7 +46,6 @@ class PlayerCharactersController < ApplicationController
 
     @player_character.race = Race.find(params[:player_character][:race]).name if Race.exists? (params[:player_character][:race])
     @player_character.classDnD = PlayerCharacterClass.find(params[:player_character][:classDnD]).name if PlayerCharacterClass.exists? (params[:player_character][:classDnD]) 
-   
 
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
