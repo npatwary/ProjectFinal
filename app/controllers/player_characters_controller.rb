@@ -21,7 +21,8 @@ class PlayerCharactersController < ApplicationController
    #@revealTable = HideAttributesTable.find(params[:id]); 
 
     @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 
-
+    #fix for player_controller test should show player_character
+    @revealTable = HideAttributesTable.new(pc_id: pc_id,ability_reveal: true) if @revealTable.nil
 
 
 
@@ -45,13 +46,8 @@ class PlayerCharactersController < ApplicationController
 
     @player_character.race = Race.find(params[:player_character][:race]).name if Race.exists? (params[:player_character][:race])
     @player_character.classDnD = PlayerCharacterClass.find(params[:player_character][:classDnD]).name if PlayerCharacterClass.exists? (params[:player_character][:classDnD]) 
-    @new_player_character_id = PlayerCharacter.last.id; 
+   
 
-
-    @hideTable = HideAttributesTable.new(pc_id:@new_player_character_id , ability_reveal: true);
-
-
-    @hideTable.save
     # if user want to add/remove weapons or shields, else do normal create function
     if params[:add_attack_weapon]
       @player_character.attack_weapons.build
@@ -78,6 +74,8 @@ class PlayerCharactersController < ApplicationController
       # normal create function
       respond_to do |format|
         if @player_character.save
+          @hideTable = HideAttributesTable.new(pc_id:@player_character.id , ability_reveal: true);
+          @hideTable.save
           format.html { redirect_to @player_character, notice: 'Player character was successfully created.' }
           format.json { render :show, status: :created, location: @player_character }
         else
@@ -430,6 +428,8 @@ class PlayerCharactersController < ApplicationController
   # DELETE /player_characters/1
   # DELETE /player_characters/1.json
   def destroy
+    @hide_attributes_table = HideAttributesTable.find_by pc_id: @player_character.id
+    @hide_attributes_table.destroy
     @player_character.destroy
     respond_to do |format|
       format.html { redirect_to player_characters_url, notice: 'Player character was successfully destroyed.' }
