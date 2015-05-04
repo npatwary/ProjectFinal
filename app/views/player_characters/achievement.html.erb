@@ -1,0 +1,16 @@
+
+<table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Player Achievements</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr><td>Name: <%=@player_character.name%></td></tr>
+              <tr><td>Game: <%=@player_character.game.name%></td></tr>
+              <% if @player_character.achievement %>
+                <tr><td>Achievement: <%=@player_character.achievement.description%></td></tr>
+                <% end %>  
+          </tbody>
+</table>
+

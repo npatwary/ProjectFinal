@@ -2,7 +2,8 @@
 <p id="notice"><%= notice %></p>
     <% unless @player_character.game.nil?%>
     <ul>
-      <li style = 'list-style:none;' align="right" ><%= link_to "Go to Market",player_character_market_path(@player_character)%> </li>
+      <li style = 'list-style:none;' align="right" ><%= link_to "Go to Market",player_character_market_path(@player_character)%>
+       |<%= link_to " View Achievements",player_character_achievement_path(@player_character)%></li>
     </ul>
     <% end %>
 

@@ -1,6 +1,6 @@
 class PlayerCharactersController < ApplicationController
-  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy,:market]
-  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow,:market]
+  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy,:market,:achievement]
+  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow,:market,:achievement]
 
   include PlayerCharactersHelper
   # GET /player_characters
@@ -437,6 +437,9 @@ class PlayerCharactersController < ApplicationController
   end
 
   def market
+  end
+
+  def achievement
   end
 
   private
