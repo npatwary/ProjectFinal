@@ -428,7 +428,7 @@ class PlayerCharactersController < ApplicationController
   # DELETE /player_characters/1.json
   def destroy
     @hide_attributes_table = HideAttributesTable.find_by pc_id: @player_character.id
-    @hide_attributes_table.destroy
+    @hide_attributes_table.destroy unless @hide_attributes_table.nil?
     @player_character.destroy
     respond_to do |format|
       format.html { redirect_to player_characters_url, notice: 'Player character was successfully destroyed.' }
