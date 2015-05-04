@@ -13,7 +13,8 @@ class AchievementsController < ApplicationController
     selected_player_ids.each do |player_id|
       player = PlayerCharacter.find(player_id)
       @achievement = Achievement.new(description: params['description'+player_id])
-      #@achievement.description = params['description'+player_id]
+      @achievement.game = player.game
+      @achievement.player_character = player
       is_Success = false unless @achievement.save
     end 
     if is_Success
