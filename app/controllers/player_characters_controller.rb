@@ -16,10 +16,12 @@ class PlayerCharactersController < ApplicationController
     @player_character = PlayerCharacter.find(params[:id])
     
     @user_id = current_user.id;
+
     if @player_character.game_id != nil
-      @game = Game.find(params[:id]);
+      @game = Game.find_by id: @player_character.game_id
       @dm_id = @game.user_id
     end
+    
    #@revealTable = HideAttributesTable.find(params[:id]); 
     
     @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 

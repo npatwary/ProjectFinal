@@ -247,12 +247,62 @@ PlayerCharacterClass.create(name:"Wizard", hitDice:"1d6",currentHitPoint:6, maxi
 	spellcastAbility: 4,spellSaveDC: 8,spellAttackBonus: 0);
 
 
-HideAttributesTable.create(pc_id:1,ability_reveal: true);
-HideAttributesTable.create(pc_id:2,ability_reveal: true);
-HideAttributesTable.create(pc_id:3,ability_reveal: false);
-HideAttributesTable.create(pc_id:4,ability_reveal: true);
-HideAttributesTable.create(pc_id:5,ability_reveal: true);
-HideAttributesTable.create(pc_id:6,ability_reveal: true);
-HideAttributesTable.create(pc_id:7,ability_reveal: true);
-HideAttributesTable.create(pc_id:8,ability_reveal: true);  
-
+HideAttributesTable.create(pc_id:1,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:2,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:3,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:4,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:5,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:6,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:7,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:8,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:9,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:10,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:11,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );
+ 
+HideAttributesTable.create(pc_id:12,ability_reveal: true,skill_reveal:true,savingthrow_reveal:true,personality_reveal:true,attribute_reveal:true,
+characterbonus_reveal:true, wealth_reveal:true,physicalfeature_reveal:true, carry_reveal: true, spellcast_reveal:true,attackweapon_reveal:true,
+equipment_reveal:true, characterdescription_reveal:true,alliesandorganisation_reveal:true,spell_reveal:true,armorshield_reveal:true,
+attackdescription_reveal:true,additionalfeature_reveal:true,treasure_reveal:true );

@@ -28,7 +28,7 @@ class PlayerCharactersControllerTest < ActionController::TestCase
 
   #test "should show player_character" do
   #get :show, id: @player_character
-   #assert_response :success
+  # assert_response :success
   #end
 
   #test "should get edit" do
