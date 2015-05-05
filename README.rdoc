@@ -17,5 +17,10 @@ Test Suite
 1. Run 'rake db:migrate RAILS_ENV=test' to setup test database
 2. Run 'rake test'
 
+User Stories, System UML Diagram and Iteration Plan
+1. user stories under /docs/requirements folder
+2. system uml diagram under /docs/design folder
+3. iteration plans under /docs/plan folder
+
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
