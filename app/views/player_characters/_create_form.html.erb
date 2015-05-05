@@ -173,6 +173,7 @@
         <div class="PersonalityIdealsBondsFlaws">
         <div class="form-group">
           <%= f.label :'Personality Traits', class: "control-label" %><br>
+          <%= f.object.background %><br>
           <%= f.select :personalityTraits, options_for_select(personalityTraits5EFor(f.object.background)), {}, {class: "form-control"} %>
         </div>
         <div class="form-group">

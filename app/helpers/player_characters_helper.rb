@@ -378,20 +378,17 @@ module PlayerCharactersHelper
 	def alignment5E()
 		@@alignment5E
 	end
-	def backgroundFeature5EFor(background)
-		background.nil? ? "" : @@backgroundFeature5E[background]
-	end
 	def personalityTraits5EFor(background)
-		background.nil? ? ["Choose a background for list of Personality Traits"] : @@personalityTraits5E[background]
+		background.blank? ? ["Choose a background for list of Personality Traits"] : @@personalityTraits5E[background]
 	end
 	def ideals5EFor(background)
-		background.nil? ? ["Choose a background for list of Ideals"] : @@ideals5E[background]
+		background.blank? ? ["Choose a background for list of Ideals"] : @@ideals5E[background]
 	end
 	def bonds5EFor(background)
-		background.nil? ? ["Choose a background for list of Bonds"] : @@bonds5E[background]
+		background.blank? ? ["Choose a background for list of Bonds"] : @@bonds5E[background]
 	end
 	def flaws5EFor(background)
-		background.nil? ? ["Choose a background for list of Flaws"] : @@flaws5E[background]
+		background.blank? ? ["Choose a background for list of Flaws"] : @@flaws5E[background]
 	end
 end
 
