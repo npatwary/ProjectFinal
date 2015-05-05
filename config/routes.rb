@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
 
   get '/classes' => 'player_character_classes#index', as:'classes'
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   patch '/experiencepoints', to: 'experiencepoints#update'
   put '/experiencepoints', to: 'experiencepoints#update'
 
+  get '/player_characters/:id/achievement' => 'player_characters#achievement', as: 'player_character_achievement'
 
   get '/attack_weapons/:player_character_id/index' => 'attack_weapons#index', as: 'attack_weapons_buy'
 

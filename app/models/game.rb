@@ -15,6 +15,7 @@
 
 
 
+
 class Game < ActiveRecord::Base
 	validates:name, presence:true,uniqueness:true
 	validates:game_password,presence:true

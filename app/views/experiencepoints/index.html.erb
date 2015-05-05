@@ -42,5 +42,15 @@
 			
 		});
 
+		var $form = $('form')
+    var $checkbox = $('.experiencepoints');
+    
+    $form.on('submit', function(e) {
+        if(!$checkbox.is(':checked')) {
+            //alert('Please confirm!');
+            e.preventDefault();
+        }
+    });
+
 	});
 </script>

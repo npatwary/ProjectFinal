@@ -1,6 +1,6 @@
 class PlayerCharactersController < ApplicationController
-  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy,:market]
-  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow,:market]
+  before_action :set_player_character, only: [:show, :edit, :showOthers, :update, :destroy,:market,:achievement]
+  before_action :logged_in_user, only: [:index, :show, :new, :showOthers, :edit, :create, :update, :destroy, :ajaxwindow,:market,:achievement]
 
   include PlayerCharactersHelper
   # GET /player_characters
@@ -17,12 +17,16 @@ class PlayerCharactersController < ApplicationController
     
     @user_id = current_user.id;
 
-    @dm_id = params[:dm_id];
+    if @player_character.game_id != nil
+      @game = Game.find_by id: @player_character.game_id
+      @dm_id = @game.user_id
+    end
+    
    #@revealTable = HideAttributesTable.find(params[:id]); 
-
+    
     @revealTable = HideAttributesTable.find_by pc_id:  @player_character.id; 
     #fix for player_controller test should show player_character
-    @revealTable = HideAttributesTable.new(pc_id: pc_id,ability_reveal: true) if @revealTable.nil?
+    @revealTable = HideAttributesTable.new(pc_id: pc_id, ability_reveal:true, skill_reveal:true, savingthrow_reveal:true, personality_reveal:true, attribute_reveal:true, characterbonus_reveal:true, wealth_reveal:true, physicalfeature_reveal:true, carry_reveal:true, spellcast_reveal:true, attackweapon_reveal:true, spell_reveal:true, armorshield_reveal:true, attackdescription_reveal:true, equipment_reveal:true, characterdescription_reveal:true, alliesandorganisation_reveal:true, additionalfeature_reveal:true, treasure_reveal:true) if @revealTable.nil?
 
 
 
@@ -73,7 +77,7 @@ class PlayerCharactersController < ApplicationController
       # normal create function
       respond_to do |format|
         if @player_character.save
-          @hideTable = HideAttributesTable.new(pc_id:@player_character.id , ability_reveal: true);
+          @hideTable = HideAttributesTable.new(pc_id:@player_character.id , ability_reveal: true, skill_reveal:true, savingthrow_reveal:true, personality_reveal:true, attribute_reveal:true, characterbonus_reveal:true, wealth_reveal:true, physicalfeature_reveal:true, carry_reveal:true, spellcast_reveal:true, attackweapon_reveal:true, spell_reveal:true, armorshield_reveal:true, attackdescription_reveal:true, equipment_reveal:true, characterdescription_reveal:true, alliesandorganisation_reveal:true, additionalfeature_reveal:true, treasure_reveal:true);
           @hideTable.save
           format.html { redirect_to @player_character, notice: 'Player character was successfully created.' }
           format.json { render :show, status: :created, location: @player_character }
@@ -436,6 +440,9 @@ class PlayerCharactersController < ApplicationController
   end
 
   def market
+  end
+
+  def achievement
   end
 
   private
