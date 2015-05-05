@@ -6,19 +6,6 @@ module PlayerCharactersHelper
   	@@skill_abilities = ['Dex', 'Wis', 'Int','Str', 'Cha', 'Int', 'Wis', 'Cha', 'Int', 'Wis', 'Int', 'Wis', 'Cha', 'Cha', 'Int', 'Dex', 'Dex', 'Wis']
 	@@backgrounds5E = ['Acolyte', 'Charlatan', 'Criminal', 'Entertainer', 'Folkhero', 'Guild Artisan', 'Hermit', 'Noble', 'Outlander', 'Sage', 'Sailor', 'Soldier', 'Urchin']
 	@@alignment5E = ['Lawful good', 'Neutral good', 'Chaotic good', 'Lawful neutral', 'Neutral', 'Chaotic neutral', 'Lawful evil', 'Neutral evil', 'Chaotic evil']
-	@@backgroundFeature5E = {'Acolyte' => "",
-							 'Charlatan' => "",
-							 'Criminal' => "",
-							 'Entertainer' => "",
-							 'Flokhero' => "",
-							 'Guild Artisan' => "",
-							 'Hermit' => "",
-							 'Noble' => "",
-							 'Outlander' => "",
-							 'Sage' => "",
-							 'Sailor' => "",
-							 'Soldier' => "",
-							 'Urchin' => ""}
 	@@personalityTraits5E = {'Acolyte'=> ["I idolize a particular hero of my faith, and constantly refer to that person’s deeds and example.", 
 										  "I can find common ground between the fiercest enemies, empathizing with them annd aways working toward piece.",
 										  "I see omens in every event and action. The gods try to speak to us, we just need to listen.",
