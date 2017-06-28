@@ -13,6 +13,7 @@
 
 
 
+
 class User < ActiveRecord::Base
 
 before_save { self.user_name = user_name.downcase }

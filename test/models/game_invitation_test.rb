@@ -14,6 +14,7 @@
 
 
 
+
 require 'test_helper'
 
 class GameInvitationTest < ActiveSupport::TestCase

@@ -23,6 +23,7 @@
 
 
 
+
 class PlayerCharacterClass < ActiveRecord::Base
 	serialize :savingThroughs, Array
 	serialize :proficientSkills, Array

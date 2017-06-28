@@ -9,6 +9,7 @@
 #
 
 
+
 require 'test_helper'
 
 class SkillsTableForClassTest < ActiveSupport::TestCase

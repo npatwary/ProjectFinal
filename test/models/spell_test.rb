@@ -11,6 +11,7 @@
 
 
 
+
 require 'test_helper'
 
 class SpellTest < ActiveSupport::TestCase

@@ -28,5 +28,6 @@
 #
 
 
+
 class HideAttributesTable < ActiveRecord::Base
 end

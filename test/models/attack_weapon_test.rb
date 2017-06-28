@@ -17,6 +17,7 @@
 
 
 
+
 require 'test_helper'
 
 class AttackWeaponTest < ActiveSupport::TestCase

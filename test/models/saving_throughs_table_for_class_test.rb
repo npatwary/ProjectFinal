@@ -9,6 +9,7 @@
 #
 
 
+
 require 'test_helper'
 
 class SavingThroughsTableForClassTest < ActiveSupport::TestCase

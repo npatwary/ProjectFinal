@@ -23,6 +23,7 @@
 
 
 
+
 require 'test_helper'
 
 class PlayerCharacterClassTest < ActiveSupport::TestCase

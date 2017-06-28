@@ -14,6 +14,7 @@
 
 
 
+
 class SavingThrow < ActiveRecord::Base
   belongs_to :PlayerCharacter, foreign_key: "playercharacter_id", class_name:"PlayerCharacter"
 end

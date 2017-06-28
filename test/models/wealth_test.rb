@@ -16,6 +16,7 @@
 
 
 
+
 require 'test_helper'
 
 class WealthTest < ActiveSupport::TestCase

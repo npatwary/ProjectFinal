@@ -21,6 +21,7 @@
 #
 
 
+
 require 'test_helper'
 
 class RaceTest < ActiveSupport::TestCase

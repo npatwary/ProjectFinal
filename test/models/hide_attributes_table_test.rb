@@ -28,6 +28,7 @@
 #
 
 
+
 require 'test_helper'
 
 class HideAttributesTableTest < ActiveSupport::TestCase

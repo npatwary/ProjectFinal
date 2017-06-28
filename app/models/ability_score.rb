@@ -14,6 +14,7 @@
 
 
 
+
 class AbilityScore < ActiveRecord::Base
   belongs_to :playercharacter, inverse_of: :abilityscores, foreign_key: "playercharacter_id", class_name:"PlayerCharacter"
 

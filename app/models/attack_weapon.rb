@@ -17,6 +17,7 @@
 
 
 
+
 class AttackWeapon < ActiveRecord::Base
 
   belongs_to :player_character,

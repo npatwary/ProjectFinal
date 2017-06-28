@@ -14,6 +14,7 @@
 
 
 
+
 require 'test_helper'
 
 class AbilityScoreTest < ActiveSupport::TestCase

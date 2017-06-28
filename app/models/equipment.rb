@@ -14,6 +14,7 @@
 
 
 
+
 class Equipment < ActiveRecord::Base
 
   belongs_to :player_character,
